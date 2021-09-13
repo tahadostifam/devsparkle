@@ -7,13 +7,16 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
   </head>
   <body>
     <div id="app">
       <%= render 'layouts/header' %>
-      <div id="page_content">
-        <%= yield %>
+      <div class="container">
+        <div class="content">
+          <h2 class="container_title">مقالات</h2>
+          <%= yield %>
+        </div>
       </div>
     </div>
   </body>

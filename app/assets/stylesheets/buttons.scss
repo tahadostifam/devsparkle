@@ -1,5 +1,6 @@
 .btn{
 	position: relative;
+	cursor: pointer;
 	font-family: 'Poppins', 'Samim';
 	font-size: 14px;
 	border: none;
@@ -7,6 +8,7 @@
 	padding: 10px 15px;
 	padding-bottom: 11px;
 	color: #000;
+	width: max-content;
 	&.btn-secondary{
 		color: #ddd;
 		&:hover, &:focus, &.active {
@@ -19,5 +21,16 @@
 				color: #ddd;
 			}	
 		}
+	}
+	&.btn-primary{
+		transition: 0.3s ease;
+		background: #252b33;
+		color: #fff;
+		&:hover{
+			background: #003cff;
+		}
+	}
+	&.btn-large-padding{
+		padding: 10px 25px;
 	}
 }

@@ -10,13 +10,18 @@
 		<input type="password">
 	</div>
 
-	<div class="form_error_list">
-		<div class="item">
-			نام کاربری یا گذرواژه شما صحیح نمی باشد
-		</div>
-	</div>
+	<!-- <div class="form_error_list">
+		<div class="item">نام کاربری یا گذرواژه شما صحیح نمی باشد</div>		
+	</div> -->
 
-	<div style="width: 100%; text-align: left;">
-		<div class="btn btn-primary">ورود</div>
+	<div style="width: 100%; display: block; text-align: left;">
+		<button type="submit" class="btn btn-primary btn-large-padding">ورود</button>
+	</div>
+	
+	<div class="sepa"></div>
+
+	<div class="link_row">
+		<%= link_to 'صفحه ثبت نام', users_signup_path, :class => "link" %>
+		<%= link_to 'فراموشی گذرواژه', users_forgot_password_path, :class => "link" %>
 	</div>
 </div>

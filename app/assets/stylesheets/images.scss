@@ -1,0 +1,32 @@
+.image{
+	background: #ddd;
+	border-radius: 7px;
+	animation-name: image_preloader_animation;
+	animation-duration: 3s;
+	background: #ddd;
+    border-radius: 7px;
+    animation-name: image_preloader_animation;
+    animation-duration: 1.7s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease;
+	img{
+		opacity: 0;
+		width: 100%;
+		height: 100%;
+		transition: 0.3s ease;
+		&.loaded{
+			opacity: 1;
+		}
+	}
+}
+@keyframes image_preloader_animation {
+	0{
+		background: #ddd;
+	}
+	50%{
+		background: #e8e8e8;
+	}
+	100%{
+		background: #ddd;
+	}
+}

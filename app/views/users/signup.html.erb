@@ -1,2 +1,41 @@
-<h1>Users#signup</h1>
-<p>Find me in app/views/users/signup.html.erb</p>
+<div class="form center_form">
+	<h3 class="form_title">ثبت نام</h3>
+
+	<div class="input">
+		<label for="username">نام و نام خانوادگی</label>
+		<input type="text">
+		<small>مثال: طاها ذوستی فام</small>
+	</div>
+	<div class="input">
+		<label for="email">ایمیل</label>
+		<input type="email">
+		<small>ایمیل های مورد قبول: gmail, yahoo, outlook</small>
+	</div>
+	<div class="input">
+		<label for="username">نام کاربری</label>
+		<input type="text">
+		<small>مثال: taha.dostifam</small>
+	</div>
+	<div class="input">
+		<label for="username">گذرواژه</label>
+		<input type="password">
+		<small>مثال: tah@0912</small>
+	</div>
+	<div class="input">
+		<label for="username">تکرار گذرواژه</label>
+		<input type="password">
+	</div>
+	<!-- <div class="form_error_list">
+		<div class="item">نام کاربری یا گذرواژه شما صحیح نمی باشد</div>		
+	</div> -->
+
+	<div style="width: 100%; text-align: left;">
+		<button type="submit" class="btn btn-primary btn-large-padding">ثبت</button>
+	</div>
+
+	<div class="sepa"></div>
+
+	<div class="link_row">
+		<%= link_to 'صفحه ورود', users_signin_path, :class => "link" %>
+	</div>
+</div>

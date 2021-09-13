@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  layout 'suggestion'
+
   def index
   end
 

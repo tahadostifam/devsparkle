@@ -20,5 +20,18 @@
 		border: 1px solid #ddd;
 		padding: 0 10px;
 		background: #fff;
+		outline: none;
+		transition: border-color 0.3s ease;
+		&:focus{
+			border: 2px solid #003cff;
+		}
+	}
+	small{
+		width: 100%;
+		display: block;
+		font-family: 'Poppins', 'Samim';
+		font-size: 12px;
+		color: #777;
+		direction: rtl;
 	}
 }
