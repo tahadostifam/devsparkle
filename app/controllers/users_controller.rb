@@ -1,13 +1,22 @@
 class UsersController < ApplicationController
-  def signin
+  def signup
+    @user = User.new(user_params)
+
+
   end
 
-  def signup
+  def signin
   end
 
   def forgot_password
   end
 
   def terms_and_conditions
+  end
+
+  private
+
+  def user_params
+    
   end
 end

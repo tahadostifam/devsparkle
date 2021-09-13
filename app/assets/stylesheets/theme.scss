@@ -43,7 +43,7 @@ body{
 	#brand{
 		position: relative;
 		top: 17px;
-		right: 10px;
+		right: 20px;
 		color: #003cff;
 		font-family: 'Comfortaa';
 		padding: 6px 5px;
@@ -54,12 +54,12 @@ body{
 		position: relative;
 		top: 17px;
 		float: left;
-		width: calc(100% - 208px);
+		width: calc(100% - 215px);
 		height: 45px;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		padding-left: 25px;
+		padding-left: 10px;
 		direction: ltr;
 	}
 }
@@ -93,6 +93,7 @@ h1, h2, h3, h4, h5, b, span, small{
 	.content{
 		.container_title{
 			font-size: 32px;
+			margin-bottom: 10px;
 		}
 	}
 }
