@@ -13,3 +13,26 @@
  *= require_tree .
  *= require_self
  */
+
+ @font-face{
+    font-family: 'Poppins';
+    src:  url('/fonts/Poppins/Poppins-Regular.ttf');
+}
+@font-face{
+    font-family: 'Comfortaa';
+    src:  url('/fonts/Comfortaa/Comfortaa-Regular.ttf');
+}
+@font-face{
+    font-family: 'FARDiplomat';
+    src:  url('/fonts/FARDiplomat.ttf');
+}
+@font-face{
+    font-family: 'Gandom';
+    src:  url('/fonts/Gandom.ttf');
+}
+@font-face{
+    font-family: 'Samim';
+    src:  url('/fonts/Samim.ttf');
+}
+
+ $general_color: red;

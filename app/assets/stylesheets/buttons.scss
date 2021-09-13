@@ -1,0 +1,23 @@
+.btn{
+	position: relative;
+	font-family: 'Poppins', 'Samim';
+	font-size: 14px;
+	border: none;
+	border-radius: 6px;
+	padding: 10px 15px;
+	padding-bottom: 11px;
+	color: #000;
+	&.btn-secondary{
+		color: #ddd;
+		&:hover, &:focus, &.active {
+			background: rgb(17, 24, 39);
+			color: #fff;
+		}
+		&.btn-mute{
+			&:hover, &:focus, &.active {
+				background: transparent;
+				color: #ddd;
+			}	
+		}
+	}
+}

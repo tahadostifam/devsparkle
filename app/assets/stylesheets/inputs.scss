@@ -1,0 +1,24 @@
+.input{
+	position: relative;
+	width: 100%;
+	display: block;
+	margin: 15px 0;
+	background: #fff;
+	label{
+		top: -15px;
+	    right: 6px;
+	    background: #fff;
+	    padding: 4px 0;
+		font-family: 'Poppins', 'Samim';
+		display: block;
+	}
+	input{
+		width: 100%;
+		display: block;
+		height: 45px;
+		border-radius: 6px;
+		border: 1px solid #ddd;
+		padding: 0 10px;
+		background: #fff;
+	}
+}

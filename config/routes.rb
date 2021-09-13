@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  root 'courses#index'
+  root 'introduction#index'
+  
+  get 'introduction/index'
+  get 'introduction/about_us'
 
   get 'dashboard/index'
   get 'users/signin'
@@ -11,9 +14,9 @@ Rails.application.routes.draw do
   get 'articles/new'
   get 'articles/edir'
   get 'articles/destroy'
-  get 'courses/index'
-  get 'courses/show'
-  get 'courses/edit'
-  get 'courses/new'
-  get 'courses/delete'
+  # get 'courses/index'
+  # get 'courses/show'
+  # get 'courses/edit'
+  # get 'courses/new'
+  # get 'courses/delete'
 end

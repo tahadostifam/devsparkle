@@ -1,11 +1,15 @@
 <div id="header">
-	<h1 id="brand">devsparkle</h1>
+	<%= link_to raw("<h1 id='brand'>devsparkle</h1>"), root_path %>
+	
 	<div id="navbar" class="navbar">
 		<div id="navbar-left">
-			left
+			<%= link_to "ورود", users_signin_path, :class => "btn btn-secondary" %>
+			<%= link_to "ثبت نام", users_signup_path, :class => "btn btn-secondary" %>
 		</div>
-		<div id="navbar-right">
-			right
+		<div id="navbar-right" dir="rtl">
+			<a class="btn btn-secondary btn-mute"><del>دوره ها</del></a>
+			<%= link_to 'مقالات', articles_index_path, :class => "btn btn-secondary" %>
+			<%= link_to 'درباره ما', introduction_about_us_path, :class => "btn btn-secondary" %>
 		</div>
 	</div>
 </div>
