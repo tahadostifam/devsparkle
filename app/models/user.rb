@@ -16,7 +16,7 @@ class User < ApplicationRecord
     
     def confirmation_token
       if self.confirm_token.blank?
-          self.confirm_token = SecureRandom.base64(50).tr('+/=').to_s
+          self.confirm_token = SecureRandom.hex(50)
       end
     end
 end
