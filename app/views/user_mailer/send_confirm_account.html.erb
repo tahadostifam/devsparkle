@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <style type="text/css">
+     @font-face {
+      font-family: 'Lateef';
+      src: url('https://fonts.googleapis.com/css2?family=Lateef&display=swap');
+     }
+     @font-face {
+      font-family: 'Comfortaa';
+      src: url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700');
+     }
+     @font-face {
+      font-family: 'Poppins';
+      src: url('https://fonts.googleapis.com/css2?family=Poppins:wght@300');
+     }
+    </style>
+  </head>
+  <body>
+    <a href="https://devsparkle.ir" style="text-decoration: none;">
+      <h1 style="width: 100%; display: block; text-align: right; font-family: 'Comfortaa'; color: #003cff; margin: 0">devsparkle</h1>
+    </a>
+    <div style="width: 100%; display: block; text-align: right;" dir="rtl">
+      <p style="font-family: 'Poppins', 'Lateef'; color: #484848; margin: 0;">
+        سلام <%= @user.full_name %> عزیز
+        اکانت شما با موفقیت ساخته شد
+        نام کاربری شما: <%= @user.username %><br>
+        برای وارد شدن به اکانت تان روی این <a href="<%= @url %>">لینک</a> کلیک کنید. <br>
+        ممنون از اینکه سایت مارا انتخاب کردید <br>
+        روز خوبی داشته باشید. <br>
+      </p>
+    </div>
+  </body>
+</html>

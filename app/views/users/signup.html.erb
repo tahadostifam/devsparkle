@@ -1,49 +1,71 @@
 <div class="form center_form">
-	<div style="display: flex; justify-content: space-between; width: 100%; height: 42px;">
-		<div class="btn btn-primary">
-			<ion-icon name="git-branch-outline"></ion-icon>
+	<% unless flash[:success_signup].present? && flash[:success_signup] %>
+		<%= form_with model: @user, url: { :action => "submit_signup" }, method: :post do |f| %>
+			<div style="display: flex; justify-content: space-between; width: 100%; height: 42px;">
+				<div class="btn btn-primary btn-mute">
+					<ion-icon  style="font-size: 18px; margin-top: 2px;" name="logo-github"></ion-icon>
+					<span style="position: relative; top: -3px;">Github</span>
+				</div>
+				<div>
+					<h3 class="form_title">ثبت نام</h3>
+				</div>
+			</div>
+
+			<div class="input">
+				<%= f.label :full_name, 'نام و نام خانوادگی' %>
+				<%= f.text_field :full_name %>
+				<small>مثال: طاها دوستی فام</small>
+			</div>
+			<div class="input">
+				<%= f.label :email, 'ایمیل' %>
+				<%= f.text_field :email %>
+				<small>ایمیل های مورد قبول: gmail, yahoo, outlook</small>
+			</div>
+			<div class="input">
+				<%= f.label :username, 'نام کاربری' %>
+				<%= f.text_field :username %>
+				<small>مثال: taha.dostifam</small>
+			</div>
+			<div class="input">
+				<%= f.label :password, 'گذرواژه' %>
+				<%= f.password_field :password %>
+				<small>مثال: tah@0912</small>
+			</div>
+			<div class="input">
+				<%= f.label :password_confirm, 'تکرار گذرواژه' %>
+				<%= f.password_field :password_confirmation %>
+			</div>
+
+			<% unless flash[:signup_errors_list].nil? %>
+				<% flash[:signup_errors_list].each do |e| %>
+					<div class="form_error_list">
+						<div class="item"><%= e %></div>
+					</div>
+				<% end %>
+			<% end %>
+
+
+			<div style="width: 100%; text-align: left;">
+				<%= f.submit 'ارسال', :class => "btn btn-primary btn-large-padding" %>
+			</div>
+
+			<div class="sepa"></div>
+
+			<div class="link_row">
+				<%= link_to 'صفحه ورود', users_signin_path, :class => "link" %>
+			</div>
+		<% end %>
+	<% else %>
+		<div style="text-align: center; padding-top: 20px;">
+			<div style="width: 100%; display: block; margin-bottom: 10px;">
+				<%= image_tag '/images/mail_sent.svg', :style => 'width: 80px;', :alt => "mail sent" %>
+			</div>
+
+			<span dir="rtl">
+				ثبت نام با موفقیت انجام شد
+				<br>
+				پوشه (spam) را حتمی بررسی کنید.
+			</span>
 		</div>
-		<div>
-			<h3 class="form_title">ثبت نام</h3>
-		</div>
-	</div>
-
-	<div class="input">
-		<label for="text">نام و نام خانوادگی</label>
-		<input type="text">
-		<small>مثال: طاها دوستی فام</small>
-	</div>
-	<div class="input">
-		<label for="email">ایمیل</label>
-		<input type="email">
-		<small>ایمیل های مورد قبول: gmail, yahoo, outlook</small>
-	</div>
-	<div class="input">
-		<label for="username">نام کاربری</label>
-		<input type="text">
-		<small>مثال: taha.dostifam</small>
-	</div>
-	<div class="input">
-		<label for="username">گذرواژه</label>
-		<input type="password">
-		<small>مثال: tah@0912</small>
-	</div>
-	<div class="input">
-		<label for="username">تکرار گذرواژه</label>
-		<input type="password">
-	</div>
-
-	<!-- <div class="form_error_list">
-		<div class="item">نام کاربری یا گذرواژه شما صحیح نمی باشد</div>		
-	</div> -->
-
-	<div style="width: 100%; text-align: left;">
-		<button type="submit" class="btn btn-primary btn-large-padding">ثبت</button>
-	</div>
-
-	<div class="sepa"></div>
-
-	<div class="link_row">
-		<%= link_to 'صفحه ورود', users_signin_path, :class => "link" %>
-	</div>
+	<% end %>
 </div>

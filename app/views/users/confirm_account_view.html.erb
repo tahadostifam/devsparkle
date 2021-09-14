@@ -1,0 +1,19 @@
+<div class="form center_form" style="padding-top: 20px;">
+	<% if flash[:account_confirmed].present? && flash[:account_confirmed] %>
+		<div style="text-align: center;">
+			<div style="width: 100%; display: block; margin-bottom: 10px;">
+				<%= image_tag '/images/mail_sent.svg', :style => 'width: 80px;', :alt => "mail sent" %>
+			</div>
+
+			<span dir="rtl">اکانت شما با موفقیت تایید شد.</span>
+		</div>
+	<% else %>
+		<div style="text-align: center;">
+			<div style="width: 100%; display: block; margin-bottom: 10px;">
+				<%= image_tag '/images/mail_error.svg', :style => 'width: 80px;', :alt => "mail error" %>
+			</div>
+
+			<span dir="rtl">توکن صحیح نمی باشد یا منقضی شده است.</span>
+		</div>
+	<% end %>
+</div>

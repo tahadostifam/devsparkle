@@ -29,6 +29,12 @@
 		&:hover{
 			background: #003cff;
 		}
+		&.btn-mute{
+			&:hover, &:focus, &.active {
+				background: #252b33;
+				color: #fff;
+			}	
+		}
 	}
 	&.btn-large-padding{
 		padding: 10px 25px;
