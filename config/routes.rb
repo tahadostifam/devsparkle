@@ -6,9 +6,10 @@ Rails.application.routes.draw do
 
   get 'dashboard/index'
   get 'users/signin'
-  post 'users/submit_signin'
-  get 'users/signup'
   post 'users/submit_signup'
+  get 'users/signup'
+  post 'users/submit_signin'
+  get 'users/logout'
   get 'users/confirm_account/:token', to: 'users#confirm_account'
   get 'users/forgot_password'
   get 'users/terms_and_conditions'

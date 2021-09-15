@@ -1,7 +1,7 @@
 #articles_list{
 	width: 100%;
 	display: grid;
-	grid-template-columns: calc(100% / 3 - 15px) calc(100% / 3 - 15px) calc(100% / 3 - 15px);
+	grid-template-columns: calc(100% / 3) calc(100% / 3 - 15px) calc(100% / 3 - 15px);
 	grid-gap: 15px;
 	direction: rtl;
 	.article_box{
@@ -42,7 +42,7 @@
 }
 @media screen and (max-width: 1100px) {
 	#articles_list{
-		grid-template-columns: calc(100% / 2 - 10px) calc(100% / 2 - 10px);
+		grid-template-columns: calc(100% / 2) calc(100% / 2 - 10px);
 	}
 }
 @media screen and (max-width: 720px) {

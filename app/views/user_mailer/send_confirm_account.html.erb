@@ -2,34 +2,39 @@
 <html>
   <head>
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-    <style type="text/css">
-     @font-face {
-      font-family: 'Lateef';
-      src: url('https://fonts.googleapis.com/css2?family=Lateef&display=swap');
-     }
-     @font-face {
-      font-family: 'Comfortaa';
-      src: url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700');
-     }
-     @font-face {
-      font-family: 'Poppins';
-      src: url('https://fonts.googleapis.com/css2?family=Poppins:wght@300');
-     }
-    </style>
   </head>
   <body>
-    <a href="https://devsparkle.ir" style="text-decoration: none;">
-      <h1 style="width: 100%; display: block; text-align: right; font-family: 'Comfortaa'; color: #003cff; margin: 0">devsparkle</h1>
-    </a>
-    <div style="width: 100%; display: block; text-align: right;" dir="rtl">
-      <p style="font-family: 'Poppins', 'Lateef'; color: #484848; margin: 0;">
-        سلام <%= @user.full_name %> عزیز
-        اکانت شما با موفقیت ساخته شد
+    <div style="background: #252b33; display: block; width: 100%; padding: 20px 10px; padding-top: 22px;">
+      <a href="https://devsparkle.ir" style="text-decoration: none;">
+        <h1 style="width: 100%; display: block; text-align: center; font-family: 'Comfortaa'; color: #003cff; margin: 0">devsparkle</h1>
+      </a>
+    </div>
+    <div style="width: 100%; font-family: 'Harmattan'; font-size: 20px; color: #484848; display: block; text-align: center; padding: 30px 60px; line-height: 37px;" dir="rtl">
+      <p style="margin: 0;">
+        سلام <%= @user.full_name %> عزیز<br>
+        اکانت شما با موفقیت ساخته شد<br>
         نام کاربری شما: <%= @user.username %><br>
-        برای وارد شدن به اکانت تان روی این <a href="<%= @url %>">لینک</a> کلیک کنید. <br>
+        برای تایید ایمیل روی دکمه زیر کلیک کنید<br>
+        <div style="display: block; width: 100%; margin: 20px 0;">
+          <%= link_to 'تایید ایمیل', 'https://devsparkle.ir/users/confirm_email/' + @user.confirm_token, :style => "font-family: 'Harmattan'; padding: 10px 35px; font-size: 17px; border-radius: 7px; background: #252b33; color: #fff" %>
+        </div>
         ممنون از اینکه سایت مارا انتخاب کردید <br>
         روز خوبی داشته باشید. <br>
       </p>
     </div>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Harmattan&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200;1,300&display=swap');
+      *{
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      a{
+        text-decoration: none;
+      }
+      body{
+        font-family: 'Poppins', 'Jomhuria';
+      }
+    </style>
   </body>
 </html>

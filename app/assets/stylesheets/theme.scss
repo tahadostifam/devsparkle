@@ -39,11 +39,13 @@ body{
 	height: $header_height;
 	background: #252b33;
 	color: #dadada;
-	direction: rtl;
+
+	// rtl
+	// direction: rtl;
 	#brand{
 		position: relative;
 		top: 17px;
-		right: 20px;
+		left: 20px;
 		color: #003cff;
 		font-family: 'Comfortaa';
 		padding: 6px 5px;
@@ -53,14 +55,22 @@ body{
 	#navbar{
 		position: relative;
 		top: 17px;
-		float: left;
+
+		// rtl
+		float: right;
+		padding-right: 22px;
+
 		width: calc(100% - 215px);
 		height: 45px;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		padding-left: 10px;
-		direction: ltr;
+		direction: rtl;
+
+		.inline_avatar{
+			top: .5px;
+			padding-right: 5px;
+		}
 	}
 }
 #page_content{
@@ -100,5 +110,23 @@ h1, h2, h3, h4, h5, b, span, small{
 @media screen and (max-width: 1100px) {
 	.container{
 		padding: 20px 20px;
+	}
+}
+.inline_avatar{
+	position: relative;
+	.avatar, .value{
+		display: inline-block;
+	}
+	.avatar{
+		--size: 45px;
+		width: var(--size);
+		height: var(--size);
+		background: rgb(17, 24, 39);
+		border-radius: 50px;
+		text-align: center;
+    	padding-top: 10px;
+	}
+	.value{
+		margin-right: 7px;
 	}
 }

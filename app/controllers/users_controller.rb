@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def submit_signup
     @user = User.new(user_params)
     if @user.save
-      UserMailer.with(user: @user).send_confirm_account.deliver
+      UserMailer.with(user: @user).send_confirm_account.deliver_later
 
       flash[:success_signup] = true
       flash[:signup_errors_list] = nil
@@ -33,6 +33,25 @@ class UsersController < ApplicationController
   end
 
   def signin
+    @user = User.new
+  end
+
+  def submit_signin
+    @user = User.find_by(username: signin_params['username'])
+    if @user.present? && @user.authenticate(signin_params['password'])
+      session[:user] = @user
+      redirect_to root_path
+    else
+      flash[:signin_errors_list] = [
+        "نام کاربری یا گذرواژه شما صحیح نمی باشد"
+      ]
+      redirect_to action: 'signin'
+    end
+  end
+
+  def logout
+    session[:user] = nil
+    redirect_to root_path
   end
 
   def forgot_password
@@ -42,6 +61,10 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def signin_params
+    params.require(:user).permit(:username, :password)
+  end
 
   def user_params
     params.permit(:full_name, :email, :username, :password, :password_confirmation)
