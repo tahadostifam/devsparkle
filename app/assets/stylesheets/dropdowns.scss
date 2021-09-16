@@ -25,7 +25,9 @@
 	    .item{
     	    color: #777;
 		    font-size: 15px;
-		    line-height: 31px;
+		    line-height: 30px;
+			margin: 4px 0;
+			display: block;
 	    }
 	}
 	&:hover .content {
