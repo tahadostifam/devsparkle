@@ -1,3 +1,35 @@
 <div class="container">
-    
+    <div id="dashboard_panel">
+        <div class="covered_avatar">
+            <div class="avatar">
+                <div class="block_avatar">
+                    <div class="avatar">
+                        <%= session[:user]['full_name'][0] %>
+                    </div>
+                    <span class="value"><%= session[:user]['full_name'] %></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="dashboard_content">
+        <div class="content_box">
+            <h4 class="header">اطلاعات حساب کاربری</h4>
+            <div class="form">
+                <div class="input" style="margin-right: 5px;">
+                    <label class="label">نام و نام خانوادگی</label>
+                    <input type="text">
+                </div>
+                <div class="flex_row">
+                    <div class="input" style="margin-right: 5px;">
+                        <label class="label">نام کاربری</label>
+                        <input type="text" readonly>
+                    </div>
+                    <div class="input" style="margin-left: 5px;">
+                        <label class="label">ایمیل</label>
+                        <input type="text" readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
