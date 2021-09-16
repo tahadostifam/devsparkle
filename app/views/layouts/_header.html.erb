@@ -4,8 +4,8 @@
 	<div id="navbar" class="navbar">
 		<div id="navbar-left">
 			<% unless session[:user].present? %>
-				<%= link_to "ورود", users_signin_path, :class => "btn btn-secondary" %>
 				<%= link_to "ثبت نام", users_signup_path, :class => "btn btn-secondary" %>
+				<%= link_to "ورود", users_signin_path, :class => "btn btn-secondary" %>
 			<% else %>
 				<div class="dropdown">
 					<div class="button">

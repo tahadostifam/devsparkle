@@ -10,7 +10,7 @@ class ArticlesController < ApplicationController
   def new
   end
 
-  def edir
+  def edit
   end
 
   def destroy
