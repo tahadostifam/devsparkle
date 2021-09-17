@@ -39,8 +39,15 @@ class UsersController < ApplicationController
   def submit_signin
     @user = User.find_by(username: signin_params['username'])
     if @user.present? && @user.authenticate(signin_params['password'])
-      session[:user] = @user
-      redirect_to root_path
+      if @user.email_confirmed?
+        session[:user] = @user
+        redirect_to root_path
+      else
+        flash[:signin_errors_list] = [
+          "ایمیل شما تایید نشده است... ورود به اکانت امکان پذیر نمی باشد."
+        ]
+        redirect_to action: 'signin'
+      end
     else
       flash[:signin_errors_list] = [
         "نام کاربری یا گذرواژه شما صحیح نمی باشد"

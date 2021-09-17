@@ -1,40 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="fa">
   <head>
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@200;300;400&family=Poppins:wght@200;300&display=swap');
+    </style>
   </head>
   <body>
-    <div style="background: #252b33; display: block; width: 100%; padding: 20px 10px; padding-top: 22px;">
-      <a href="https://devsparkle.ir" style="text-decoration: none;">
-        <h1 style="width: 100%; display: block; text-align: center; font-family: 'Comfortaa'; color: #003cff; margin: 0">devsparkle</h1>
-      </a>
-    </div>
-    <div style="width: 100%; font-family: 'Harmattan'; font-size: 20px; color: #484848; display: block; text-align: center; padding: 30px 60px; line-height: 37px;" dir="rtl">
-      <p style="margin: 0;">
-        سلام <%= @user.full_name %> عزیز<br>
-        اکانت شما با موفقیت ساخته شد<br>
-        نام کاربری شما: <%= @user.username %><br>
-        برای تایید ایمیل روی دکمه زیر کلیک کنید<br>
-        <div style="display: block; width: 100%; margin: 20px 0;">
-          <%= link_to 'تایید ایمیل', 'https://devsparkle.ir/users/confirm_email/' + @user.confirm_token, :style => "font-family: 'Harmattan'; padding: 10px 35px; font-size: 17px; border-radius: 7px; background: #252b33; color: #fff" %>
-        </div>
-        ممنون از اینکه سایت مارا انتخاب کردید <br>
-        روز خوبی داشته باشید. <br>
-      </p>
-    </div>
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Harmattan&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200;1,300&display=swap');
-      *{
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-      a{
-        text-decoration: none;
-      }
-      body{
-        font-family: 'Poppins', 'Jomhuria';
-      }
-    </style>
+    <p style="font-family: 'Poppins', 'Noto Sans Arabic'; text-align: right; color: #444; font-size: 15px;" dir="rtl">
+      سلام <%= @user.full_name %> عزیز<br>
+      اکانت شما با موفقیت ساخته شد<br>
+      نام کاربری شما: <%= @user.username %><br>
+      برای تایید ایمیل روی این <%= link_to 'لینک', 'https://devsparkle.ir/users/confirm_account/' + @user.confirm_token, :style => "color: blue; font-family: 'Noto Sans Arabic';" %> کلیک کنید<br>
+      ممنون از اینکه سایت مارا انتخاب کردید <br>
+      روز خوبی داشته باشید. <br>
+    </p>
   </body>
 </html>
