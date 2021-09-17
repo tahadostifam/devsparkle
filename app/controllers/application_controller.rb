@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 	def check_user_before_action
 		if session[:user].present?
 			user = User.find_by(id: session[:user]['id'])
-			if user.present?
+			if user.present? && user.email_confirmed?
 				session[:user] = user
 			else
 				session[:user] = nil
