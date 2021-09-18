@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'introduction/index'
   get 'introduction/about_us'
 
-  get 'dashboard/index'
+  get 'dashboard/edit_profile', to: 'dashboard#edit_profile_page'
   post 'dashboard/edit_profile'
   post 'dashboard/change_password'
   get 'users/signin'

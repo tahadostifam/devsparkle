@@ -2,7 +2,7 @@ class DashboardController < ApplicationController
   layout 'dashboard'
   before_action :require_login
 
-  def index
+  def edit_profile_page
   end
 
   def edit_profile
@@ -10,7 +10,7 @@ class DashboardController < ApplicationController
     if @user.update(edit_profile_params)
       flash[:edit_profile_success] = 'اطلاعات کاربری شما با موفقیت تغییر کرد.'
       session[:user] = @user
-      redirect_to action: :index
+      redirect_to action: :edit_profile_page
     else
       flash[:edit_profile_errors] = @user.errors.full_messages
     end
