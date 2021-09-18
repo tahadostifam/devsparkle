@@ -39,6 +39,9 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
+    active_link_to (1.0.5)
+      actionpack
+      addressable
     activejob (6.1.4.1)
       activesupport (= 6.1.4.1)
       globalid (>= 0.3.6)
@@ -205,6 +208,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  active_link_to
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.4)
   byebug

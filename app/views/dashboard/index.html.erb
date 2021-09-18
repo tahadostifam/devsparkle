@@ -7,8 +7,12 @@
                         <%= session[:user]['full_name'][0] %>
                     </div>
                     <span class="value"><%= session[:user]['full_name'] %></span>
+                    <%= link_to 'خروج از حساب کاربری', users_logout_url, :class => "link" %>
                 </div>
             </div>
+        </div>
+        <div id="dashboard_nav">
+            <%= active_link_to 'اطلاعات حساب کاربری', dashboard_index_url, :class => 'link' %>
         </div>
     </div>
     <div id="dashboard_content">

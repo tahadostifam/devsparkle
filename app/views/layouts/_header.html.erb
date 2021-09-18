@@ -2,10 +2,10 @@
 	<%= link_to raw("<h1 id='brand'>devsparkle</h1>"), root_path %>
 	
 	<div id="navbar" class="navbar">
-		<div id="navbar-left">
+		<div id="navbar-right">
 			<% unless session[:user].present? %>
-				<%= link_to "ثبت نام", users_signup_path, :class => "btn btn-secondary" %>
-				<%= link_to "ورود", users_signin_path, :class => "btn btn-secondary" %>
+				<%= active_link_to "ثبت نام", users_signup_path, :class => "btn btn-secondary" %>
+				<%= active_link_to "ورود", users_signin_path, :class => "btn btn-secondary" %>
 			<% else %>
 				<div class="dropdown">
 					<div class="button">
@@ -17,16 +17,74 @@
 						</div>
 					</div>
 					<div class="content">
-						<%= link_to 'ناحیه کاربری', dashboard_index_url, :class => "item" %>
-						<%= link_to 'خروج از حساب کاربری', users_logout_url, :class => "item" %>
+						<%= active_link_to 'ناحیه کاربری', dashboard_index_url, :class => "item" %>
+						<%= active_link_to 'خروج از حساب کاربری', users_logout_url, :class => "item" %>
 					</div>
 				</div>
 			<% end %>
 		</div>
-		<div id="navbar-right">
-			<%= link_to 'درباره ما', introduction_about_us_path, :class => "btn btn-secondary" %>
-			<%= link_to 'مقالات', articles_index_path, :class => "btn btn-secondary" %>
+		<div id="navbar-left">
+			<%= active_link_to 'درباره ما', introduction_about_us_path, :class => "btn btn-secondary" %>
+			<%= active_link_to 'مقالات', articles_index_path, :class => "btn btn-secondary" %>
 			<a class="btn btn-secondary btn-mute"><del>دوره ها</del></a>
 		</div>
+	</div>
+</div>
+
+<div id="bottom_navigator">
+	<div id="bottom_navigator_nav">
+		<a>
+			<div class="item">
+				<div class="icon">
+					<ion-icon name="school-outline"></ion-icon>
+				</div>
+				<span class="text">
+					<del>دوره ها</del>
+				</span>
+			</div>
+		</a>
+		<%= active_link_to raw('
+		<div class="item">
+			<div class="icon">
+				<ion-icon name="document-text-outline"></ion-icon>
+			</div>
+			<span class="text">
+				مقالات
+			</span>
+		</div>
+		'), articles_index_path %>
+		<%= active_link_to raw('
+		<div class="item">
+			<div class="icon">
+				<ion-icon name="information-outline"></ion-icon>
+			</div>
+			<span class="text">
+				درباره ما
+			</span>
+		</div>
+		'), introduction_about_us_path %>
+		<% unless session[:user].present? %>
+			<%= active_link_to raw('
+			<div class="item">
+				<div class="icon">
+					<ion-icon name="person-outline"></ion-icon>
+				</div>
+				<span class="text">
+					ورود
+				</span>
+			</div>
+			'), users_signin_path %>
+		<% else %>
+			<%= active_link_to raw('
+			<div class="item">
+				<div class="icon">
+					<ion-icon name="file-tray-stacked-outline"></ion-icon>
+				</div>
+				<span class="text">
+					ناحیه کاربری
+				</span>
+			</div>
+			'), dashboard_index_url %>
+		<% end %>
 	</div>
 </div>

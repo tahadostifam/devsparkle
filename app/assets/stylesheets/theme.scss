@@ -51,25 +51,103 @@ body {
         padding: 6px 5px;
         display: inline-block;
         cursor: pointer;
+        z-index: 85;
     }
     #navbar {
         position: relative;
         top: 17px;
-
         // rtl
         float: right;
         padding-right: 22px;
-
         width: calc(100% - 215px);
         height: 45px;
-        display: flex;
         align-items: center;
         justify-content: space-between;
         direction: rtl;
-
+        transition: left 0.25s ease;
         .inline_avatar {
             top: 0.5px;
             padding-right: 5px;
+        }
+    }
+}
+#toggle_menu_button{
+    cursor: pointer;
+    position: absolute;
+    right: 19px;
+    top: 18px;
+    width: 45px;
+    height: 45px;
+    border-radius: 7px;
+    padding: 3px;
+    padding-top: 2px;
+    z-index: 85;
+    span{
+        width: 100%;
+        height: 4px;
+        display: block;
+        background-color: #003cff;
+        margin: 7px 0;
+    }
+}
+ @media screen and (min-width: 700px) {
+    .navbar{
+        display: flex;
+    }
+    #bottom_navigator{
+        display: none;
+    }
+}
+@media screen and (max-width: 700px) {
+    .navbar{
+        display: none;
+    }
+    #header #brand{
+        width: 100%;
+        text-align: center;
+        left: 0;
+    }
+    #bottom_navigator{
+        display: block;
+    }
+}
+#bottom_navigator{
+    position: fixed;
+    width: 100%;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    height: 65px;
+    background: #252b33;
+    z-index: 80;
+    #bottom_navigator_nav{
+        display: flex;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        justify-content: space-around;
+        align-items: center;
+        a{
+            color: #dadada;
+        }
+        .active{
+            color: #003cff;
+        }
+        .item{
+            width: 80px;
+            .icon{
+                position: relative;
+                top: 6px;
+                font-size: 24px;
+            }
+            .text{
+                position: relative;
+                bottom: 3px;
+                font-size: 13px;
+            }
+            &.active{
+                
+            }
         }
     }
 }

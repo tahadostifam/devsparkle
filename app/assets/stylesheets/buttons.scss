@@ -11,22 +11,23 @@
 	width: max-content;
 	&.btn-secondary{
 		color: #ddd;
-		&:hover, &:focus, &.active {
-			background: rgb(17, 24, 39);
-			color: #fff;
+		&.active, &.active:hover{
+			background: #1b1f25;
+		}
+		&:hover{
+			background: #333942;
 		}
 		&.btn-mute{
-			&:hover, &:focus, &.active {
+			&.active {
 				background: transparent;
 				color: #ddd;
 			}	
 		}
 	}
 	&.btn-primary{
-		transition: 0.3s ease;
 		background: #252b33;
 		color: #fff;
-		&:hover{
+		&:active{
 			background: #003cff;
 		}
 		&.btn-mute{

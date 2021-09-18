@@ -6,6 +6,62 @@ $panel_width: 300px;
     background: #fff;
     border-radius: 7px;
     box-shadow: 0px 0px 0px 5px rgba(255, 255, 255, 0.5);
+    .covered_avatar{
+        width: 100%;
+        padding: 30px 10px;
+        .block_avatar{
+            position: relative;
+            left: 50%;
+            transform: translate(-50%);
+            text-align: center;
+            .avatar{
+                position: relative;
+                left: 50%;
+                transform: translate(-50%);
+                display: block;
+                --size: 80px;
+                width: var(--size);
+                height: var(--size);
+                background: #252b33;
+                border-radius: 50%;
+                font-size: 25px;
+                color: #fff;
+                padding-top: 23px;
+            }
+            .value{
+                display: block;
+                margin-top: 15px;
+            }
+            .link{
+                color: #777;
+                font-family: 'Samim';
+                font-size: 13px;
+            }
+        }
+    }
+    #dashboard_nav{
+        position: relative;
+        left: 50%;
+        transform: translate(-50%);
+        width: 90%;
+        padding: 5px;
+        display: block;
+        text-align: right;
+        border-top: 1px solid #f1f1f1;
+        .link{
+            color: #777;
+            font-family: 'Samim';
+            font-size: 14px;
+            line-height: 30px;
+            transition: none;
+            &:hover{
+                color: #003cff;
+            }
+            &.active{
+                color: #003cff;
+            }
+        }
+    }
 }
 #dashboard_content{
     .content_box{
