@@ -49,17 +49,13 @@ $panel_width: 300px;
         text-align: right;
         border-top: 1px solid #f1f1f1;
         .link{
+            display: block;
+            width: 100%;
             color: #777;
             font-family: 'Samim';
             font-size: 14px;
             line-height: 30px;
             transition: none;
-            &:hover{
-                color: #003cff;
-            }
-            &.active{
-                color: #003cff;
-            }
         }
     }
 }

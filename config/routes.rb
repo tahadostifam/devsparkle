@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get 'introduction/about_us'
 
   get 'dashboard/index'
+  post 'dashboard/edit_profile'
+  post 'dashboard/change_password'
   get 'users/signin'
   post 'users/submit_signup'
   get 'users/signup'

@@ -1,39 +1,43 @@
-<h2 class="container_title bb">مقالات</h2>
+<div class="container" style="top: 0">
+    <div class="content">
+		<h2 class="container_title bb">مقالات</h2>
 
-<div id="articles_list">
-    <% 10.times do %>
-		<%= link_to raw('
-		<div class="article_box">
-			<div class="image cover">
-				<img src="https://picsum.photos/700/400" class="" onload="imagePreloader(this)" />
-			</div>
-			<h3 class="title">آموزش نصب فلاسک در پایتون</h3>
-			<p class="desc">درین مقاله میخواییم بریم سراغ نصب فلاسک در پایتون و یه سرور ساده بزنیم.</p>
-			<div class="footer" style="display: flex; justify-content: space-between" dir="ltr">
-				<div>
-					<span class="author">
-						طاها دوستی فام
-						<span class="icon">
-							<ion-icon name="person-outline"></ion-icon>
-						</span>
-					</span>
+		<div id="articles_list">
+		    <% 10.times do %>
+				<%= link_to raw('
+				<div class="article_box">
+					<div class="image cover">
+						<img src="https://picsum.photos/700/400" class="" onload="imagePreloader(this)" />
+					</div>
+					<h3 class="title">آموزش نصب فلاسک در پایتون</h3>
+					<p class="desc">درین مقاله میخواییم بریم سراغ نصب فلاسک در پایتون و یه سرور ساده بزنیم.</p>
+					<div class="footer" style="display: flex; justify-content: space-between" dir="ltr">
+						<div>
+							<span class="author">
+								طاها دوستی فام
+								<span class="icon">
+									<ion-icon name="person-outline"></ion-icon>
+								</span>
+							</span>
+						</div>
+						<div>
+							<span class="comments_count">
+								2
+								<span class="icon">
+									<ion-icon name="chatbubble-outline"></ion-icon>
+								</span>
+							</span>
+							<span class="article_submit_time">
+								1400/4/23
+								<span class="icon">
+									<ion-icon name="calendar-outline"></ion-icon>
+								</span>
+							</span>
+						</div>
+					</div>
 				</div>
-				<div>
-					<span class="comments_count">
-						2
-						<span class="icon">
-							<ion-icon name="chatbubble-outline"></ion-icon>
-						</span>
-					</span>
-					<span class="article_submit_time">
-						1400/4/23
-						<span class="icon">
-							<ion-icon name="calendar-outline"></ion-icon>
-						</span>
-					</span>
-				</div>
-			</div>
+				'), articles_show_path %>
+			<% end %>
 		</div>
-		'), articles_show_path %>
-	<% end %>
+    </div>
 </div>

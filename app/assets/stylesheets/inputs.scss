@@ -24,6 +24,12 @@
 		&:focus{
 			border: 2px solid #003cff;
 		}
+		&:read-only{
+			cursor: default;
+			&:focus{
+				border: 1px solid #ddd;
+			}
+		}
 	}
 	small{
 		width: 100%;

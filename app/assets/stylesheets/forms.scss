@@ -34,8 +34,17 @@
 		width: 100%;
 		color: red;
 		font-size: 14px;
-		font-family: 'Poppins', 'Gandom';
+		font-family: 'Poppins', 'Samim';
 	}
+}
+.success_message{
+ 	display: block;
+	width: 100%;
+	text-align: right;
+	direction: rtl;
+	font-size: 14px;
+	font-family: 'Poppins', 'Gandom';
+	color: #106b2b;
 }
 @media screen and (max-width: 720px) {
 	.center_form{
