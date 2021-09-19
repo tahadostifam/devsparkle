@@ -12,7 +12,8 @@
 		font-family: 'Poppins', 'Samim';
 		display: block;
 	}
-	input{
+	input, textarea, select{
+		font-family: 'Poppins', 'Samim';
 		width: 100%;
 		display: block;
 		height: 45px;
@@ -21,6 +22,7 @@
 		padding: 0 10px;
 		background: #fff;
 		outline: none;
+		direction: rt;
 		&:focus{
 			border: 2px solid #003cff;
 		}
@@ -31,6 +33,11 @@
 			}
 		}
 	}
+	textarea{
+		padding-top: 10px;
+		min-height: 80px;
+		resize: vertical;
+	}
 	small{
 		width: 100%;
 		display: block;
@@ -38,5 +45,11 @@
 		font-size: 12px;
 		color: #777;
 		direction: rtl;
+	}
+}
+.selectbox{
+	select{
+		background: #fff;
+		width: 100%;
 	}
 }

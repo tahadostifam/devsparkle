@@ -4,6 +4,7 @@ class User < ApplicationRecord
     validates :password, confirmation: true
     validates_presence_of :full_name, :email, :username
     validates_presence_of :password_confirmation, if: :password_digest_changed?
+    validates :gender, inclusion: { in: ['عدم انتخاب', 'مذکر', 'مونث'], message: "مقدار وارد شده مورد قبول نمی باشد." }
 
     def email_activate
         self.email_confirmed = true

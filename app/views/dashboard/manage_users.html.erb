@@ -1,0 +1,22 @@
+<div class="content_box">
+    <h4 class="header">مدیریت کاربران</h4>
+
+    <table class="table">
+        <!-- headers -->
+        <tr>
+            <th>نام و نام خانوادگی</th>
+            <th>نام کاربری</th>
+            <th>-</th>
+        </tr>
+        <!-- rows -->
+        <% @users.each do |user| %>
+            <tr>
+                <td><%= user.full_name %></td>
+                <td><%= user.username %></td>
+                <td>
+                    <%= link_to 'مشاهده', dashboard_user_profile_url, :class => 'link' %>
+                </td>
+            </tr>
+        <% end %>
+    </table>
+</div>

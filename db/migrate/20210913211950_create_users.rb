@@ -7,11 +7,12 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.string :password_digest, null: false
       t.boolean :email_confirmed, :default => false
       t.string :confirm_token
+      t.text :bio
+      t.string :gender
+      t.string :website
 
-      t.boolean :is_owner, default; false
-      t.boolean :is_admin, default; false
-      t.boolean :is_writer, default; false
-      t.boolean :is_user, default; true
+      t.boolean :is_owner, default: false
+      t.boolean :is_admin, default: false
 
       t.timestamps
     end

@@ -8,30 +8,34 @@
   <body>
     <div id="app">
       <%= render 'layouts/header' %>
-      <div id="page_content">
-        <div class="container">
-            <div id="dashboard_panel">
-                <div class="covered_avatar">
-                    <div class="avatar">
-                        <div class="block_avatar">
+      <div id="dashboard_layout">
+            <div id="page_content">
+                <div class="container">
+                    <div id="dashboard_panel">
+                        <div class="covered_avatar">
                             <div class="avatar">
-                                <%= @user['full_name'][0] %>
+                                <div class="block_avatar">
+                                    <div class="avatar">
+                                        <%= @user['full_name'][0] %>
+                                    </div>
+                                    <span class="value"><%= @user['full_name'] %></span>
+                                    <%= link_to 'خروج از حساب کاربری', users_logout_url, :class => "link" %>
+                                </div>
                             </div>
-                            <span class="value"><%= @user['full_name'] %></span>
-                            <%= link_to 'خروج از حساب کاربری', users_logout_url, :class => "link" %>
+                        </div>
+                        <div id="dashboard_nav">
+                            <%= link_to 'اطلاعات حساب کاربری', dashboard_edit_profile_url, :class => 'link' %>
+                            <%= link_to 'تغییر رمز عبور', dashboard_change_password_url, :class => 'link' %>
+                            <% if @user.is_owner? %>
+                                <%= link_to 'مدیریت کاربران', dashboard_manage_users_url, :class => 'link' %>
+                            <% end %>
                         </div>
                     </div>
-                </div>
-                <div id="dashboard_nav">
-                    <%= link_to 'اطلاعات حساب کاربری', dashboard_edit_profile_url, :class => 'link' %>
-                    <%= link_to 'تغییر رمز عبور', root_path, :class => 'link' %>
-                    <%#= link_to 'دوره هایی که شرکت میکنم', root_path, :class => 'link' %>
-                </div>
+                    <div id="dashboard_content">
+                        <%= yield %>
+                    </div>
+                </div> 
             </div>
-            <div id="dashboard_content">
-                <%= yield %>
-            </div>
-        </div> 
       </div>
     </div>
   </body>
