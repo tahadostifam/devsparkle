@@ -9,17 +9,19 @@
         </tr>
         <!-- rows -->
         <% @admins_list.each do |admin| %>
-            <% if user.id != session[:user]['id'] %>
-                <tr>
+            <tr>
+                <% if admin.id != session[:user]['id'] %>
                     <td><%= admin.full_name %></td>
                     <td><%= admin.username %></td>
                     <td>
-                        <%= link_to 'مشاهده', dashboard_user_profile_url(:id => user.id),:class => 'link' %>
+                        <%= link_to 'مشاهده', dashboard_user_profile_url(:id => admin.id),:class => 'link' %>
                     </td>
-                </tr>
-            <% end %>
+                <% end %>
+            </tr>
         <% end %>
     </table>
+
+    <br>
 
     <h4 class="header">آخرین ثبت نامی ها (20)</h4>
     <table class="table">

@@ -28,6 +28,7 @@ class DashboardController < ApplicationController
 
   def manage_users
     @last_users = User.last(20)
+    @admins_list = User.where(is_admin: true)
   end
 
   def user_profile

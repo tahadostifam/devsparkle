@@ -193,6 +193,7 @@ small {
             border-bottom: 1px solid #ddd;
         }
     }
+    margin-bottom: 60px;
 }
 @media screen and (max-width: 1100px) {
     .container {
@@ -220,4 +221,13 @@ small {
 }
 .flex_row{
     display: flex;
+    flex: 1 0;
+}
+@media screen and (max-width: 700px) {
+    .flex_row {
+        display: block;
+        div{
+            width: 100%;
+        }
+    }
 }
