@@ -15,7 +15,9 @@
 							</div>
 							<span class="value">
 								<%= session[:user]['full_name'] %>
-								<% if session[:user]['is_admin'] %>
+								<% if session[:user]['is_owner'] %>
+								(موسس)
+								<% elsif session[:user]['is_admin'] %>
 								(ادمین)
 								<% end %>
 							</span>
