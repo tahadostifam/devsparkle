@@ -13,7 +13,12 @@
 							<div class="avatar">
 								<%= session[:user]['full_name'][0] %>
 							</div>
-							<span class="value"><%= session[:user]['full_name'] %></span>
+							<span class="value">
+								<%= session[:user]['full_name'] %>
+								<% if session[:user]['is_admin'] %>
+								(ادمین)
+								<% end %>
+							</span>
 						</div>
 					</div>
 					<div class="content">

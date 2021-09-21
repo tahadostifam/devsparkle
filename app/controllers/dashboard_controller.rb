@@ -38,7 +38,7 @@ class DashboardController < ApplicationController
   end
 
   def submit_user_profile
-    @up = User.find_by(username: 'shusui')
+    @up = User.find_by(username: params[:user][:username])
     if params[:user][:username] == session[:user][:username]
       return redirect_to :manage_users  
     end
