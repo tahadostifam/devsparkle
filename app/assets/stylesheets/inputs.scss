@@ -13,6 +13,7 @@
 		display: block;
 	}
 	input, textarea, select{
+		user-select: text;
 		font-family: 'Poppins', 'Samim';
 		width: 100%;
 		display: block;
@@ -22,7 +23,6 @@
 		padding: 0 10px;
 		background: #fff;
 		outline: none;
-		direction: rt;
 		&:focus{
 			border: 2px solid #003cff;
 		}

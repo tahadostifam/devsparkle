@@ -5,10 +5,14 @@ Rails.application.routes.draw do
   get 'introduction/about_us'
 
   get 'dashboard/edit_profile'
-  get 'dashboard/manage_users'
   post 'dashboard/submit_edit_profile'
+
+  get 'dashboard/manage_users'
   get 'dashboard/user_profile'
-  post 'dashboard/change_password'
+  post 'dashboard/submit_user_profile'
+
+  get 'dashboard/change_password'
+  post 'dashboard/submit_change_password'
 
   get 'users/signin'
   post 'users/submit_signup'

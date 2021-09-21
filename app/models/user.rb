@@ -2,9 +2,9 @@ class User < ApplicationRecord
     has_secure_password
 
     validates :password, confirmation: true
-    validates_presence_of :full_name, :email, :username
-    validates_presence_of :password_confirmation, if: :password_digest_changed?
-    validates :gender, inclusion: { in: ['عدم انتخاب', 'مذکر', 'مونث'], message: "مقدار وارد شده مورد قبول نمی باشد." }
+    validates_presence_of :full_name, :email, :username, message: 'نمی تواند خالی باشد.'
+    validates_presence_of :password_confirmation, if: :password_digest_changed?, message: 'تکرار گذرواژه همخوانی ندارد'
+    validates_inclusion_of :gender, :in => ['عدم انتخاب', 'مذکر', 'مونث', nil], :message => "مقدار وارد شده مورد قبول نمی باشد."
 
     def email_activate
         self.email_confirmed = true

@@ -2,10 +2,13 @@ class DashboardController < ApplicationController
   layout 'dashboard'
   before_action :require_login
   before_action :need_owner_access, only: [
-    :manage_users
+    :manage_users,
+    :user_profile,
+    :submit_user_profile
   ]
   before_action :need_admin_access, only: [
-    
+    :new_post,
+    :submit_new_post
   ]
 
   def edit_profile
@@ -24,15 +27,44 @@ class DashboardController < ApplicationController
   end
 
   def manage_users
-    @users = User.last(20)
+    @last_users = User.last(20)
   end
+
+  def user_profile
+    user_id = params['id']
+    unless user_id == session[:user]['id'].to_s
+      @up = User.find_by(id: user_id)
+    end
+  end
+
+  def submit_user_profile
+    @up = User.find_by(username: 'shusui')
+    if params[:user][:username] == session[:user][:username]
+      return redirect_to :manage_users  
+    end
+
+    if @up.present?
+      if @up.update(update_user_profile_params)
+        flash[:user_profile_success] = 'اطلاعات کاربری کاربر با موفقیت تغییر کرد.'
+        redirect_to action: 'user_profile', :id => @up.id
+      else
+        flash[:user_profile_errors] = @up.errors.values
+        redirect_to action: 'user_profile', :id => @up.id
+      end
+    else
+      redirect_to action: 'user_profile', :id => @up.id
+    end
+  end
+
+  #######################
 
   def new_post
   end
 
   def submit_new_post
-
   end
+
+  #######################
 
   def change_password
   end
@@ -75,6 +107,10 @@ class DashboardController < ApplicationController
     unless session[:user].is_admin?
       redirect_to action: :edit_profile
     end
+  end
+
+  def update_user_profile_params
+    params.require(:user).permit(:is_admin, :bio, :website)
   end
 
   def edit_profile_params

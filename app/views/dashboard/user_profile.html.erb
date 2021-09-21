@@ -1,1 +1,67 @@
-user profile
+<div class="content_box">
+    <h4 class="header">نمایش اطلاعات کاربری کاربر</h4>
+    <div class="form">
+        <% if @up.present? %>
+            <%= form_with model: @up, url: {:action => 'submit_user_profile'}, method: :post do |f| %>
+                <div class="input" style="margin-right: 5px;">
+                    <%= f.label :full_name, 'نام و نام خانوادگی' %>
+                    <%= f.text_field :full_name, :readonly => true %>
+                </div>
+
+                <div class="flex_row">
+                    <div class="input" style="margin-right: 5px;">
+                        <%= f.label :username, raw('نام کاربری (غیر قابل تغییر)') %>
+                        <%= f.text_field :username, :readonly => true %>
+                    </div>
+                    <div class="input" style="margin-left: 5px;">
+                        <%= f.label :email, raw('ایمیل (غیر قابل تغییر)') %>
+                        <%= f.text_field :email, :readonly => true %>
+                    </div>
+                </div>
+
+                <div class="input" style="margin-right: 5px;" dir="rtl">
+                    <%= f.label :bio, 'بیگرافی' %>
+                    <%= f.text_area :bio %>
+                </div>
+
+                <div class="input" style="margin-right: 5px;">
+                    <%= f.label :website, 'آدرس وبسایت' %>
+                    <%= f.text_field :website, :readonly => true %>
+                </div>
+
+                <div class="input" style="margin-right: 5px;" dir="rtl">
+                    <%= f.label :email_confirmed, 'تایید ایمیل' %>
+                    <%= f.text_field :email_confirmed, :readonly => true %>
+                </div>
+
+                <div class="input" style="margin-right: 5px;" dir="rtl">
+                    <%= f.label :gender, 'جنسیت' %>
+                    <%= f.text_field :gender, :readonly => true %>
+                </div>
+
+                <div class="checkbox" style="margin-right: 5px;">
+                    <%= f.label :is_admin, 'ادمین' %>
+                    <%= f.check_box :is_admin, {}, true, false %>
+                </div>
+
+                <% unless flash[:user_profile_errors].nil? %>
+                    <% flash[:user_profile_errors].each do |e| %>
+                        <div class="form_error_list">
+                            <div class="item"><%= e %></div>
+                        </div>
+                    <% end %>
+                <% end %>
+
+                <% unless flash[:user_profile_success].nil? %>
+                    <span class="success_message"><%= flash[:user_profile_success] %></span>
+                <% end %>
+
+                <div style="width: 100%; text-align: left;">
+                    <%= f.submit 'ثبت', :class => "btn btn-primary btn-large-padding" %>
+                </div>
+            <% end %>
+        <% else %>
+            <span dir="rtl" style="width: 100%; display: block; text-align: center; color: #777; margin-top: 10px;">کاربری پیدا نشد.</span>
+        <% end %>
+    </div>
+</div>

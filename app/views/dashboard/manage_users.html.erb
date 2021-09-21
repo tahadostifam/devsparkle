@@ -1,5 +1,5 @@
 <div class="content_box">
-    <h4 class="header">مدیریت کاربران</h4>
+    <h4 class="header">آخرین ثبت نامی ها (20)</h4>
 
     <table class="table">
         <!-- headers -->
@@ -9,14 +9,16 @@
             <th>-</th>
         </tr>
         <!-- rows -->
-        <% @users.each do |user| %>
-            <tr>
-                <td><%= user.full_name %></td>
-                <td><%= user.username %></td>
-                <td>
-                    <%= link_to 'مشاهده', dashboard_user_profile_url, :class => 'link' %>
-                </td>
-            </tr>
+        <% @last_users.each do |user| %>
+            <% if user.id != session[:user]['id'] %>
+                <tr>
+                    <td><%= user.full_name %></td>
+                    <td><%= user.username %></td>
+                    <td>
+                        <%= link_to 'مشاهده', dashboard_user_profile_url(:id => user.id),:class => 'link' %>
+                    </td>
+                </tr>
+            <% end %>
         <% end %>
     </table>
 </div>
