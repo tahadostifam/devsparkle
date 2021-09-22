@@ -30,6 +30,10 @@ body {
         }
     }
 }
+.turbolinks-progress-bar {
+    height: 3px;
+    background-color: #003cff;
+}
 #header {
     position: fixed;
     z-index: 70;

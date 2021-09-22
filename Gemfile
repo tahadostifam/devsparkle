@@ -18,8 +18,6 @@ gem 'turbolinks', '~> 5'
 
 # active links handler (+active_class)
 gem 'active_link_to'
-# jquery for rails
-gem 'jquery-rails', '~> 4.4'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.7'

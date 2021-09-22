@@ -7,11 +7,12 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
-import './scripts.js'
+
+require('./prism')
+
+import SimpleMDE from './simplemde.min'
+window.SimpleMDE = SimpleMDE
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
-
-//= require jquery2
-//= require jquery_ujs
