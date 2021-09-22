@@ -1,11 +1,14 @@
-import SimpleMDE from './simplemde.min'
-
 window.imagePreloader = function (e) {
 	return e.classList.add('loaded')
 }
 
-window.onload = () => {
-    const simplemde = new SimpleMDE({
-        element: document.getElementById('simplemde_textarea'),
-    });
-}
+$(function() {
+	console.log('test');
+	if (window.location.pathname === '/') {
+		console.log('root');
+	}
+});
+
+$(document).ready(() => {
+	console.log('jquery is here!');
+})

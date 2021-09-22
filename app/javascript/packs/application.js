@@ -12,3 +12,6 @@ import './scripts.js'
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+//= require jquery2
+//= require jquery_ujs
