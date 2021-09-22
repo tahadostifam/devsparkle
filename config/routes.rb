@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   get 'dashboard/change_password'
   post 'dashboard/submit_change_password'
 
+  get 'dashboard/new_article'
+  post 'dashboard/submit_new_article'
+
   get 'users/signin'
   post 'users/submit_signup'
   get 'users/signup'
@@ -22,11 +25,10 @@ Rails.application.routes.draw do
   get 'users/confirm_account/:token', to: 'users#confirm_account'
   get 'users/forgot_password'
   get 'users/terms_and_conditions'
+
   get 'articles/index'
   get 'articles/show'
-  get 'articles/new'
-  get 'articles/edit'
-  get 'articles/destroy'
+
   # get 'courses/index'
   # get 'courses/show'
   # get 'courses/edit'

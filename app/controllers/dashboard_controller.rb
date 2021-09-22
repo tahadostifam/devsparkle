@@ -57,15 +57,12 @@ class DashboardController < ApplicationController
     end
   end
 
-  #######################
-
-  def new_post
+  def new_article
+    @article = Article.new
   end
 
-  def submit_new_post
+  def submit_new_article
   end
-
-  #######################
 
   def change_password
   end

@@ -1,0 +1,26 @@
+<div class="content_box">
+    <h4 class="header">مقاله جدید</h4>
+    
+    <div class="form">
+        <%= form_with model: @article, url: {:action => 'submit_new_article'}, method: :post do |f| %>
+            <div class="input">
+                <%= f.label :header, 'سر برگ' %>
+                <%= f.text_field :header %>
+            </div>
+            <div class="input">
+                <%= f.label :cover_text, 'توضیحات کوتاه (کاور)' %>
+                <%= f.text_area :cover_text %>
+            </div>
+
+            <div class="input">
+                <%= f.label :content, 'محتوا' %>
+                <%= f.text_area :content, :id => 'simplemde_textarea' %>
+            </div>
+
+            <div class="input">
+                <%= f.label :cover_text, 'توضیحات کوتاه (کاور)' %>
+                <%= f.text_area :cover_text %>
+            </div>
+        <% end %>
+    </div>
+</div>

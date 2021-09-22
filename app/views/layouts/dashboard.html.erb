@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>devsparkle.ir</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">    
     <%= render 'layouts/tags' %>
   </head>
   <body>
@@ -27,7 +27,7 @@
                             <%= link_to 'اطلاعات حساب کاربری', dashboard_edit_profile_url, :class => 'link' %>
                             <%= link_to 'تغییر رمز عبور', dashboard_change_password_url, :class => 'link' %>
                             <% if @user.is_owner? || @user.is_admin? %>
-                                <%= link_to 'مقاله جدید', dashboard_manage_users_url, :class => 'link' %>
+                                <%= link_to 'مقاله جدید', dashboard_new_article_url, :class => 'link' %>
                                 <%= link_to 'مقاله های شما', dashboard_manage_users_url, :class => 'link' %>
                                 <%= link_to 'آمار کلی', dashboard_manage_users_url, :class => 'link' %>
                                 <%= link_to 'آمار پر بازدید ترین مقاله ها', dashboard_manage_users_url, :class => 'link' %>
