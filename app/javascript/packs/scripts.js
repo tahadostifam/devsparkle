@@ -4,6 +4,7 @@ window.imagePreloader = function (e) {
 
 document.addEventListener("turbolinks:load", function() {
 	new SimpleMDE({
-		element: document.querySelector(".mde_textarea")
+		element: document.querySelector(".mde_textarea"),
+		hideIcons: ["fullscreen", "side-by-side", "guide"],
 	})
 })

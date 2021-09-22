@@ -53,3 +53,13 @@
 		width: 100%;
 	}
 }
+.mde{
+	label{
+		text-align: right;
+		direction: rtl;
+		width: 100%;
+		display: block;
+	}
+	direction: ltr;
+	text-align: left;
+}
