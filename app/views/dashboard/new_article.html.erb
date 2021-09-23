@@ -7,9 +7,21 @@
                 <%= f.label :header, 'سر برگ' %>
                 <%= f.text_field :header %>
             </div>
+
             <div class="input">
                 <%= f.label :cover_text, 'توضیحات کوتاه (کاور)' %>
                 <%= f.text_area :cover_text %>
+            </div>
+
+            <div class="input fileupload">
+                <%= f.label :image, 'عکس', :style => 'display: block; width: 100%;' %>
+                <div style="position: relative; margin-top: 16px; right: -6px">
+                    <%= f.label :image, 'انتخاب عکس', :class => 'btn btn-primary', :style => 'width: 100%; padding: 10px; text-align: center;' %>
+                    <%= f.file_field :image, :style => 'display: none' %>
+                </div>
+                <div class="image" style="display: none;">
+                    <img src="#" alt="preview image before upload" onload="imagePreloader(this)">
+                </div>
             </div>
 
             <div class="mde">
@@ -17,9 +29,8 @@
                 <%= f.text_area :content, :class => 'mde_textarea' %>
             </div>
 
-            <div class="input">
-                <%= f.label :cover_text, 'توضیحات کوتاه (کاور)' %>
-                <%= f.text_area :cover_text %>
+            <div style="width: 100%; display: block; text-align: left;">
+                <%= f.submit 'ثبت مقاله', :class => "btn btn-primary btn-large-padding" %>
             </div>
         <% end %>
     </div>
