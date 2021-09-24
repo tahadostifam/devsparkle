@@ -19,6 +19,8 @@ gem 'turbolinks', '~> 5'
 # active links handler (+active_class)
 gem 'active_link_to'
 
+gem 'rails_pdate'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production

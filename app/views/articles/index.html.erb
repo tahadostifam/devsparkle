@@ -2,42 +2,47 @@
     <div class="content">
 		<h2 class="container_title bb">مقالات</h2>
 
+		<% if @articles.length > 0 %>
 		<div id="articles_list">
-		    <% 10.times do %>
-				<%= link_to raw('
-				<div class="article_box">
-					<div class="image cover">
-						<img src="https://picsum.photos/700/400" class="" onload="imagePreloader(this)" />
-					</div>
-					<h3 class="title">آموزش نصب فلاسک در پایتون</h3>
-					<p class="desc">درین مقاله میخواییم بریم سراغ نصب فلاسک در پایتون و یه سرور ساده بزنیم.</p>
-					<div class="footer" style="display: flex; justify-content: space-between" dir="ltr">
-						<div>
-							<span class="author">
-								طاها دوستی فام
-								<span class="icon">
-									<ion-icon name="person-outline"></ion-icon>
-								</span>
-							</span>
+		    <% @articles.each do |art| %>
+				<a>
+					<div class='article_box'>
+						<div class='image cover'>
+							<%#= image_tag art.image.variant(:thumb), :onload => 'imagePreloader(this)' %>
+							<%= image_tag art.image.variant(:thumb) %>
 						</div>
-						<div>
-							<span class="comments_count">
-								2
-								<span class="icon">
-									<ion-icon name="chatbubble-outline"></ion-icon>
+						<h3 class='title'><%= art.header %></h3>
+						<p class='desc'><%= art.cover_text %></p>
+						<div class='footer' style='display: flex; justify-content: space-between' dir='ltr'>
+							<div>
+								<span class='author'>
+									طاها دوستی فام
+									<span class='icon'>
+										<ion-icon name='person-outline'></ion-icon>
+									</span>
 								</span>
-							</span>
-							<span class="article_submit_time">
-								1400/4/23
-								<span class="icon">
-									<ion-icon name="calendar-outline"></ion-icon>
+							</div>
+							<div>
+								<span class='comments_count'>
+									2
+									<span class='icon'>
+										<ion-icon name='chatbubble-outline'></ion-icon>
+									</span>
 								</span>
-							</span>
+								<span class='article_submit_time'>
+									<%= art.created_at %>
+									<span class='icon'>
+										<ion-icon name='calendar-outline'></ion-icon>
+									</span>
+								</span>
+							</div>
 						</div>
 					</div>
-				</div>
-				'), articles_show_path %>
+				</a>
 			<% end %>
 		</div>
+		<% else %>
+			<span style='color: #777; font-size: 14px; width: 100%; display: block; text-align: center; padding: 20px 0'>مقاله ای پیدا نشد.</span>
+		<% end %>
     </div>
 </div>

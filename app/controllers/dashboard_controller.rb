@@ -62,6 +62,15 @@ class DashboardController < ApplicationController
   end
 
   def submit_new_article
+    @article = Article.new(new_article_params)
+    @article.user_id = session[:user]['id']
+    if @article.save
+      flash[:new_article_success] = 'مقاله با موفقیت ثبت شد.'
+      redirect_to action: 'new_article'
+    else
+      flash[:new_article_errors] = @article.errors.full_messages
+      redirect_to action: 'new_article'
+    end
   end
 
   def change_password
@@ -105,6 +114,10 @@ class DashboardController < ApplicationController
     unless session[:user].is_admin?
       redirect_to action: :edit_profile
     end
+  end
+
+  def new_article_params
+    params.require(:article).permit(:header, :cover_text, :image, :content)
   end
 
   def update_user_profile_params

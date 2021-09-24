@@ -41,11 +41,13 @@ ActiveRecord::Schema.define(version: 2021_09_21_160230) do
   end
 
   create_table "articles", force: :cascade do |t|
-    t.text "slug", null: false
+    t.string "slug", null: false
     t.string "header", null: false
     t.text "content", null: false
     t.text "cover_text"
     t.boolean "published", default: false
+    t.string "published_time", default: "1400/07/02"
+    t.boolean "draft", default: false
     t.integer "visit_count", default: 0
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false

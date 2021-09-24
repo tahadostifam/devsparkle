@@ -29,6 +29,32 @@
                 <%= f.text_area :content, :class => 'mde_textarea' %>
             </div>
 
+            <div class="checkbox" style="margin-right: 5px; margin-top: 10px;">
+                <%= f.label :draft, 'پیش نویس' %>
+                <%= f.check_box :draft %>
+            </div>
+
+            <% if session[:user]['is_owner'] %>
+                <div class="checkbox" style="margin-right: 5px; margin-top: 10px;">
+                    <%= f.label :published, 'انتشار مقاله' %>
+                    <%= f.check_box :published %>
+                </div>
+            <% end %>
+
+            <div style="margin-top: 10px;">
+                <% unless flash[:new_article_errors].nil? %>
+                    <% flash[:new_article_errors].each do |e| %>
+                        <div class="form_error_list">
+                            <div class="item"><%= e %></div>
+                        </div>
+                    <% end %>
+                <% end %>
+
+                <% unless flash[:new_article_success].nil? %>
+                    <span class="success_message"><%= flash[:new_article_success] %></span>
+                <% end %>
+            </div>
+
             <div style="width: 100%; display: block; text-align: left;">
                 <%= f.submit 'ثبت مقاله', :class => "btn btn-primary btn-large-padding" %>
             </div>
