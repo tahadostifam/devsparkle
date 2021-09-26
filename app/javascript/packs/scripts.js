@@ -12,7 +12,6 @@ document.addEventListener("turbolinks:load", function() {
 
 	const markdownDivsToHtml = document.querySelector('.md_to_html')
 	if (markdownDivsToHtml) {
-		console.log(markdown.toHTML(markdownDivsToHtml.innerHTML.trim()).trim());
 		markdownDivsToHtml.innerHTML = markdown.toHTML(markdownDivsToHtml.innerHTML.trim()).trim();
 	}
 
