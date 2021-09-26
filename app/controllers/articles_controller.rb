@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   def index
-    @articles = Article.where(published: true)
+    @articles = Article.where(published: true, draft: false)
   end
 
   def show

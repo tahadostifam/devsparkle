@@ -64,6 +64,9 @@ class DashboardController < ApplicationController
   def submit_new_article
     @article = Article.new(new_article_params)
     @article.user_id = session[:user]['id']
+    if session[:user]['is_owner']
+      @article.published = params[:params]
+    end
     if @article.save
       flash[:new_article_success] = 'مقاله با موفقیت ثبت شد.'
       redirect_to action: 'new_article'
@@ -117,7 +120,7 @@ class DashboardController < ApplicationController
   end
 
   def new_article_params
-    params.require(:article).permit(:header, :cover_text, :image, :content)
+    params.require(:article).permit(:header, :cover_text, :image, :content, :draft)
   end
 
   def update_user_profile_params

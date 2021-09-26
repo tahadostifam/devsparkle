@@ -1,43 +1,44 @@
 <div class="container" style="top: 0">
     <div class="content">
 		<h2 class="container_title bb">مقالات</h2>
-
 		<% if @articles.length > 0 %>
 		<div id="articles_list">
 		    <% @articles.each do |art| %>
-				<a href="/articles/show/<%= art.slug %>">
-					<div class='article_box'>
-						<div class='image cover'>
-							<%= image_tag art.image, :onload => 'imagePreloader(this)' %>
-						</div>
-						<h3 class='title'><%= art.header %></h3>
-						<p class='desc'><%= art.cover_text %></p>
-						<div class='footer' style='display: flex; justify-content: space-between' dir='ltr'>
-							<div>
-								<span class='author'>
-									<%= art.user.full_name %>
-									<span class='icon'>
-										<ion-icon name='person-outline'></ion-icon>
-									</span>
-								</span>
+		    	<% if art.image.present? %>
+					<a href="/articles/show/<%= art.slug %>">
+						<div class='article_box'>
+							<div class='image cover'>
+								<%= image_tag art.image, :onload => 'imagePreloader(this)' %>
 							</div>
-							<div>
-								<span class='comments_count'>
-									2
-									<span class='icon'>
-										<ion-icon name='chatbubble-outline'></ion-icon>
+							<h3 class='title'><%= art.header %></h3>
+							<p class='desc'><%= art.cover_text %></p>
+							<div class='footer' style='display: flex; justify-content: space-between' dir='ltr'>
+								<div>
+									<span class='author'>
+										<%= art.user.full_name %>
+										<span class='icon'>
+											<ion-icon name='person-outline'></ion-icon>
+										</span>
 									</span>
-								</span>
-								<span class='article_submit_time'>
-									<%= art.published_time %>
-									<span class='icon'>
-										<ion-icon name='calendar-outline'></ion-icon>
+								</div>
+								<div>
+									<span class='comments_count'>
+										2
+										<span class='icon'>
+											<ion-icon name='chatbubble-outline'></ion-icon>
+										</span>
 									</span>
-								</span>
+									<span class='article_submit_time'>
+										<%= art.published_time %>
+										<span class='icon'>
+											<ion-icon name='calendar-outline'></ion-icon>
+										</span>
+									</span>
+								</div>
 							</div>
 						</div>
-					</div>
-				</a>
+					</a>
+				<% end %>
 			<% end %>
 		</div>
 		<% else %>
