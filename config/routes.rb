@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   get 'users/terms_and_conditions'
 
   get 'articles/index'
-  get 'articles/show'
+  get 'articles/show/:slug', to: 'articles#show'
 
   # get 'courses/index'
   # get 'courses/show'

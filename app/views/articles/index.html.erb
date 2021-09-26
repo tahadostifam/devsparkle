@@ -5,18 +5,17 @@
 		<% if @articles.length > 0 %>
 		<div id="articles_list">
 		    <% @articles.each do |art| %>
-				<a>
+				<a href="/articles/show/<%= art.slug %>">
 					<div class='article_box'>
 						<div class='image cover'>
-							<%#= image_tag art.image.variant(:thumb), :onload => 'imagePreloader(this)' %>
-							<%= image_tag art.image.variant(:thumb) %>
+							<%= image_tag art.image, :onload => 'imagePreloader(this)' %>
 						</div>
 						<h3 class='title'><%= art.header %></h3>
 						<p class='desc'><%= art.cover_text %></p>
 						<div class='footer' style='display: flex; justify-content: space-between' dir='ltr'>
 							<div>
 								<span class='author'>
-									طاها دوستی فام
+									<%= art.user.full_name %>
 									<span class='icon'>
 										<ion-icon name='person-outline'></ion-icon>
 									</span>
@@ -30,7 +29,7 @@
 									</span>
 								</span>
 								<span class='article_submit_time'>
-									<%= art.created_at %>
+									<%= art.published_time %>
 									<span class='icon'>
 										<ion-icon name='calendar-outline'></ion-icon>
 									</span>

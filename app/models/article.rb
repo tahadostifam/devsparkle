@@ -12,7 +12,17 @@ class Article < ApplicationRecord
 
     private
 
+    def to_slug(val)
+        ret = val.strip
+        ret.gsub! /['`]/,""
+        ret.gsub! /\s*@\s*/, " at "
+        ret.gsub! /\s*&\s*/, " and "
+        ret.gsub! /_+/,"_"
+        ret.gsub! /\A[_\.]+|[_\.]+\z/,""
+        ret
+    end
+
     def handle_auto_params
-        self.slug = self.header
+        self.slug = to_slug(self.header)
     end
 end
