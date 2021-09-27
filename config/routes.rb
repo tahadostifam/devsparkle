@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   get 'dashboard/new_article'
   post 'dashboard/submit_new_article'
+  get 'dashboard/my_articles'
 
   get 'users/signin'
   post 'users/submit_signup'

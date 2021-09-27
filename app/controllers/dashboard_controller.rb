@@ -57,6 +57,10 @@ class DashboardController < ApplicationController
     end
   end
 
+  def my_articles
+    @my_articles = Article.where(user_id: session[:user]['id'])
+  end
+
   def new_article
     @article = Article.new
   end
