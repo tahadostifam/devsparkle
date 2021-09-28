@@ -1,8 +1,7 @@
-<div class="container" style="top: 0">
-    <div class="content">
+<div class="content">
 		<h2 class="container_title bb">مقاله های شما</h2>
 		<% if @my_articles.length > 0 %>
-		<div id="articles_list">
+		<div id="articles_mini_list">
 		    <% @my_articles.each do |art| %>
 		    	<% if art.image.present? %>
 					<a href="/articles/show/<%= art.slug %>">
@@ -45,4 +44,3 @@
 			<span style='color: #777; font-size: 14px; width: 100%; display: block; text-align: center; padding: 20px 0'>مقاله ای پیدا نشد.</span>
 		<% end %>
     </div>
-</div>
