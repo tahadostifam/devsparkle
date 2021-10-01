@@ -5,6 +5,9 @@
 	.cover{
 		width: 100%;
 		height: 230px;
+		&.big_cover{
+			height: 280px;
+		}
 	}
 	width: 100%;
 	.desc{

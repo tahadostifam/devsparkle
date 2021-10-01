@@ -2,7 +2,7 @@
     <h4 class="header">مقاله جدید</h4>
 
     <div class="form">
-        <%= form_with model: @article, url: {:action => 'submit_new_article'}, method: :post do |f| %>
+        <%= form_for @article, url: {:action => 'submit_new_article'}, method: :post do |f| %>
             <div class="input">
                 <%= f.label :header, 'سر برگ' %>
                 <%= f.text_field :header %>

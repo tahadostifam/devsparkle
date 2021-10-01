@@ -6,7 +6,7 @@
 		    	<% if art.image.present? %>
 					<a href="/articles/show/<%= art.slug %>">
 						<div class='article_box'>
-							<div class='image cover'>
+							<div class='image cover big_cover'>
 								<%= image_tag art.image, :onload => 'imagePreloader(this)' %>
 							</div>
 							<h3 class='title'><%= art.header %></h3>

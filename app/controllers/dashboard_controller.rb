@@ -68,15 +68,16 @@ class DashboardController < ApplicationController
   def submit_new_article
     @article = Article.new(new_article_params)
     @article.user_id = session[:user]['id']
-    if session[:user]['is_owner']
-      @article.published = params[:params]
+    if session[:user][:is_owner]
+      @article.published = params[:published]
     end
+    
     if @article.save
       flash[:new_article_success] = 'مقاله با موفقیت ثبت شد.'
-      redirect_to action: 'new_article'
+      render :new_article
     else
-      flash[:new_article_errors] = @article.errors.full_messages
-      redirect_to action: 'new_article'
+      flash[:new_article_errors] = @article.errors.values
+      render :new_article
     end
   end
 
