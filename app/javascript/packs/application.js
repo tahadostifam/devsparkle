@@ -10,9 +10,6 @@ import "channels"
 
 require('./prism')
 
-import SimpleMDE from './simplemde.min'
-window.SimpleMDE = SimpleMDE
-
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()

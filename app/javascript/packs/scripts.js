@@ -5,14 +5,9 @@ window.imagePreloader = function (e) {
 }
 
 document.addEventListener("turbolinks:load", function() {
-	new SimpleMDE({
-		element: document.querySelector(".mde_textarea"),
-		hideIcons: ["fullscreen", "side-by-side", "guide"],
-	})
-
 	const markdownDivsToHtml = document.querySelector('.md_to_html')
 	if (markdownDivsToHtml) {
-		markdownDivsToHtml.innerHTML = markdown.toHTML(markdownDivsToHtml.innerHTML.trim()).trim();
+		markdownDivsToHtml.innerHTML = markdown.toHTML(markdownDivsToHtml.innerHTML.trim());
 	}
 
 	const fileuploadDiv = document.querySelector('.fileupload')

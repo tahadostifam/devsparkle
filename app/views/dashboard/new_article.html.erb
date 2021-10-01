@@ -5,12 +5,12 @@
         <%= form_for @article, url: {:action => 'submit_new_article'}, method: :post do |f| %>
             <div class="input">
                 <%= f.label :header, 'سر برگ' %>
-                <%= f.text_field :header %>
+                <%= f.text_field :header, :dir => :rtl %>
             </div>
 
             <div class="input">
                 <%= f.label :cover_text, 'توضیحات کوتاه (کاور)' %>
-                <%= f.text_area :cover_text %>
+                <%= f.text_area :cover_text, :dir => :rtl %>
             </div>
 
             <div class="input fileupload">
@@ -24,9 +24,9 @@
                 </div>
             </div>
 
-            <div class="mde">
+            <div class="input">
                 <%= f.label :content, 'محتوا' %>
-                <%= f.text_area :content, :class => 'mde_textarea' %>
+                <%= f.text_area :content, :style => 'height: 300px', :rows => 600, :dir => :rtl %>
             </div>
 
             <div class="checkbox" style="margin-right: 5px; margin-top: 10px;">
@@ -34,7 +34,7 @@
                 <%= f.check_box :draft %>
             </div>
 
-            <% if session[:user]['is_owner'] %>
+            <% if session[:user][:is_owner] %>
                 <div class="checkbox" style="margin-right: 5px; margin-top: 10px;">
                     <%= f.label :published, 'انتشار مقاله' %>
                     <%= f.check_box :published %>

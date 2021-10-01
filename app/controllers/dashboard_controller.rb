@@ -68,8 +68,8 @@ class DashboardController < ApplicationController
   def submit_new_article
     @article = Article.new(new_article_params)
     @article.user_id = session[:user]['id']
-    if session[:user][:is_owner]
-      @article.published = params[:published]
+    unless session[:user][:is_owner]
+      @article.published = false
     end
     
     if @article.save
@@ -125,7 +125,7 @@ class DashboardController < ApplicationController
   end
 
   def new_article_params
-    params.require(:article).permit(:header, :cover_text, :image, :content, :draft)
+    params.require(:article).permit(:header, :cover_text, :image, :content, :draft, :published)
   end
 
   def update_user_profile_params
