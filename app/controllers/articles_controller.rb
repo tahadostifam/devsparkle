@@ -15,7 +15,10 @@ class ArticlesController < ApplicationController
   end
 
   def confirm_delete_article
-
+    @article = Article.find_by(slug: params[:slug])
+    unless @article.present?
+      redirect_to action: :index
+    end
   end
 
   private

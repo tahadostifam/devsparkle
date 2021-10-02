@@ -70,9 +70,6 @@
 
 #view_article{
 	text-align: right;
-	.cover{
-		height: 600px;
-	}
 	.article_icon_span{
 		font-family: sans-serif;
 		.icon{
@@ -125,5 +122,25 @@
 			direction: ltr;
 			border-radius: 2px;
 		}
+	}
+}
+@media screen and (min-width: 1250px) {
+	#view_article .cover {
+		height: 600px;
+	}
+}
+@media screen and (max-width: 1250px) {
+	#view_article .cover {
+		height: 500px;
+	}
+}
+@media screen and (max-width: 800px) {
+	#view_article .cover {
+		height: 400px;
+	}
+}
+@media screen and (max-width: 600px) {
+	#view_article .cover {
+		height: 300px;
 	}
 }

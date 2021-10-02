@@ -30,7 +30,7 @@ Rails.application.routes.draw do
 
   get 'articles/index'
   get 'articles/show/:slug', to: 'articles#show'
-  get 'articles/confirm_delete_article'
+  get 'articles/confirm_delete_article/:slug', to: 'articles#confirm_delete_article'
 
   # get 'courses/index'
   # get 'courses/show'

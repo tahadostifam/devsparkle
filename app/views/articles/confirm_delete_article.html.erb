@@ -2,15 +2,23 @@
     <div style="text-align: center;">
         <h1>حذف مقاله</h1>
         
-        <h5>adadasdas</h5>
+        <h5><%= @article.header %></h5>
 
-        <span dir="rtl" style="margin-top: 20px;">ادمین عزیز لطفا توجه داشته باشید امکان برگرداندن مقاله بعد از حذف ممکن نخواهد بود.</span>
+        <span dir="rtl" style="margin-top: 20px; display: block;">ادمین عزیز لطفا توجه داشته باشید امکان برگرداندن مقاله بعد از حذف ممکن نخواهد بود.</span>
 
-        <div style="margin-top: 10px;">
+        <div style="margin-top: 15px;" dir="rtl">
             <%= link_to raw("
-            حذف مقاله
-            <ion-icon name='trash-outline'></ion-icon>
-            "), root_path, :class => 'btn btn-danger' %>
+            انصراف
+            "), '/articles/show/' + @article.slug, :class => 'btn btn-primary', :style => 'margin-left: 5px' %>
+
+            <div style="display: inline-block;">
+                <%= form_with url: '/articles/submit_delete_article' do |f| %>
+                    <%= f.submit raw("حذف مقاله"),
+                    :class => 'btn btn-danger',
+                    :style => 'padding-bottom: 10px'
+                    %>
+                <% end %>
+            </div>
         </div>
     </div>
 </div>

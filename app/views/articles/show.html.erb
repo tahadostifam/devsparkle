@@ -6,7 +6,7 @@
                 <div style="display: flex; justify-content: space-between;">
                     <div>
                         <% if session[:user][:is_owner] || @article.user_id == session[:user][:id] %>
-                            <%= link_to 'حذف', articles_confirm_delete_article_url,:style => 'display: inline-block', :class => 'link link-danger' %>
+                            <%= link_to 'حذف', '/articles/confirm_delete_article/' + @article.slug, :style => 'display: inline-block', :class => 'link link-danger' %>
                             <a class="link" style="margin-left: 10px; display: inline-block">ویرایش</a>
                         <% end %>
                     </div>
