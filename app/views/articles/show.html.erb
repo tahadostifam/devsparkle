@@ -3,12 +3,30 @@
         <div class='article_box'>
             <div style="display: block; width: 100%; margin-bottom: 10px;">
                 <h1 class='title' dir="rtl" style="margin-bottom: 10px;"><%= @article.header %></h3>
-                <span class="article_submit_time" dir="ltr">
-                    <span class='icon'>
-                        <ion-icon name='calendar-outline'></ion-icon>
-                    </span>
-                    <%= @article.published_time %>
-                </span>
+                <div style="display: flex; justify-content: space-between;">
+                    <div>
+                        <% if session[:user][:is_owner] || @article.user_id == session[:user][:id] %>
+                            <%= link_to 'حذف', articles_confirm_delete_article_url,:style => 'display: inline-block', :class => 'link link-danger' %>
+                            <a class="link" style="margin-left: 10px; display: inline-block">ویرایش</a>
+                        <% end %>
+                    </div>
+                    <div>
+                        <a class="link" href="#">
+                            <span class="article_icon_span link-danger" dir="ltr">
+                                <span class='icon'>
+                                    <ion-icon name='heart'></ion-icon>
+                                </span>
+                                10
+                            </span>
+                        </a>
+                        <span class="article_icon_span" dir="ltr">
+                            <span class='icon'>
+                                <ion-icon name='calendar-outline'></ion-icon>
+                            </span>
+                            <%= @article.published_time %>
+                        </span>
+                    </div>
+                </div>
             </div>
             <div class='image cover'>
                 <%= image_tag @article.image, :onload => 'imagePreloader(this)' %>

@@ -73,7 +73,7 @@
 	.cover{
 		height: 600px;
 	}
-	.article_submit_time{
+	.article_icon_span{
 		font-family: sans-serif;
 		.icon{
 			position: relative;
@@ -81,6 +81,11 @@
 			font-size: 20px;
 		}
 		padding-bottom: 3px;
+		margin-left: 10px;
+		color: #222;
+		&.link-danger{
+			color: rgb(255, 11, 11);
+		}
 	}
 	.author_row{
 		// remove box-shadow virtual margins...

@@ -17,16 +17,15 @@ body {
     font-family: "Poppins", "Samim";
     a {
         text-decoration: none;
-        color: #003cff;
     }
     .link {
         color: #777;
         font-family: "Poppins", "Gandom";
         font-size: 16px;
         transition: 0.3s ease;
-        &:hover,
-        &:focus {
-            color: #003cff;
+        cursor: pointer;
+        &.link-danger{
+            color: rgb(255, 11, 11);
         }
     }
 }
