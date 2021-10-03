@@ -13,7 +13,11 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find_by(slug: params[:slug])
-    if session[:user] != nil
+    if (@article.published? == false || @article.draft? == true) && (session[:user][:is_owner] == false)
+      return @article = nil
+    end
+    
+    if session[:user] != nil && @article.present?
       if session[:user][:id] == @article.user_id || session[:user][:is_owner]
         render :show, :locals => { :show_actions => true }
       else
@@ -26,7 +30,7 @@ class ArticlesController < ApplicationController
 
   def confirm_delete_article
     @article = Article.find_by(slug: params[:slug])
-    unless @article.present?
+    if @article.nil?
       redirect_to action: :index
     end
   end
@@ -37,15 +41,17 @@ class ArticlesController < ApplicationController
     if art.present?
       if session[:user][:is_owner]
         art.destroy
-        redirect_to :index
+        flash[:notice_success] = 'مقاله با موفقیت حذف'
+        redirect_to action: :index
       elsif art.user_id == session[:user][:id]
         art.destroy
-        redirect_to :index
+        flash[:notice_success] = 'مقاله با موفقیت حذف'
+        redirect_to '/503'
       else
-        redirect_to :index
+        redirect_to '/404'
       end
     else
-      redirect_to :index
+      redirect_to action: :index
     end
   end
 

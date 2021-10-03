@@ -9,7 +9,15 @@
 							<div class='image cover big_cover'>
 								<%= image_tag art.image, :onload => 'imagePreloader(this)' %>
 							</div>
-							<h3 class='title'><%= art.header %></h3>
+							<h3 class='title'>
+								<%= art.header %>
+								<% if art.draft? %>
+									(پیشنویس)
+								<% end %>
+								<% unless art.published? %>
+									(منتشر نشده)
+								<% end %>
+							</h3>
 							<p class='desc'><%= art.cover_text %></p>
 							<div class='footer' style='display: flex; justify-content: space-between' dir='ltr'>
 								<div>

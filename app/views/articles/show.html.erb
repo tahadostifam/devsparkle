@@ -1,6 +1,7 @@
 <div class="container" style="top: 0">
     <div id="view_article">
-        <div class='article_box'>
+       <% if @article.present? %>
+            <div class='article_box'>
             <div style="display: block; width: 100%; margin-bottom: 10px;">
                 <h1 class='title' dir="rtl" style="margin-bottom: 10px;"><%= @article.header %></h3>
                 <div style="display: flex; justify-content: space-between;">
@@ -43,5 +44,8 @@
                 </div>
             </div>
         </div>
+        <% else %>
+            <span style='color: #777; font-size: 17px; width: 100%; display: block; text-align: center; padding: 20px 0'>مقاله مورد نظر پیدا نشد.</span>
+        <% end %>
     </div>
 </div>
