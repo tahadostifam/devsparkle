@@ -13,6 +13,7 @@
 
             <div style="display: inline-block;">
                 <%= form_with url: '/articles/submit_delete_article' do |f| %>
+                    <%= f.hidden_field :slug, :value => @article.slug %>
                     <%= f.submit raw("حذف مقاله"),
                     :class => 'btn btn-danger',
                     :style => 'padding-bottom: 10px'

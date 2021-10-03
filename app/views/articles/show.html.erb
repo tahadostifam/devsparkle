@@ -5,7 +5,7 @@
                 <h1 class='title' dir="rtl" style="margin-bottom: 10px;"><%= @article.header %></h3>
                 <div style="display: flex; justify-content: space-between;">
                     <div>
-                        <% if session[:user][:is_owner] || @article.user_id == session[:user][:id] %>
+                        <% if show_actions %>
                             <%= link_to 'حذف', '/articles/confirm_delete_article/' + @article.slug, :style => 'display: inline-block', :class => 'link link-danger' %>
                             <a class="link" style="margin-left: 10px; display: inline-block">ویرایش</a>
                         <% end %>
