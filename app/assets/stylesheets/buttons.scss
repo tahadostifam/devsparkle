@@ -43,5 +43,14 @@
 	&.btn-danger{
 		background: rgb(255, 23, 23);
 		color: #fff;
+		&:active{
+			background: rgb(223, 14, 14);
+		}
+		&.btn-mute{
+			&:hover, &:focus, &.active {
+				background: rgb(255, 23, 23);
+				color: #fff;
+			}	
+		}
 	}
 }

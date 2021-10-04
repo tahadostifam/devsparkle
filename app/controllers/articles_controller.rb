@@ -44,14 +44,14 @@ class ArticlesController < ApplicationController
     if art.present?
       if session[:user][:is_owner]
         art.destroy
-        flash[:notice_success] = 'مقاله با موفقیت حذف'
+        flash[:notice_success] = 'مقاله با موفقیت حذف شد.'
         redirect_to action: :index
       elsif art.user_id == session[:user][:id]
         art.destroy
-        flash[:notice_success] = 'مقاله با موفقیت حذف'
-        redirect_to '/503'
+        flash[:notice_success] = 'مقاله با موفقیت حذف شد.'
+        redirect_to '/articles/my_articles'
       else
-        redirect_to '/404'
+        redirect_to '/503'
       end
     else
       redirect_to action: :index

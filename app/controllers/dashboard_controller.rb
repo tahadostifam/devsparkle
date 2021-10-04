@@ -71,10 +71,9 @@ class DashboardController < ApplicationController
     unless session[:user][:is_owner]
       @article.published = false
     end
-    
     if @article.save
       flash[:new_article_success] = 'مقاله با موفقیت ثبت شد.'
-      render :new_article
+      render '/articles/article_created', :locals => {:published => @article.published}
     else
       flash[:new_article_errors] = @article.errors.values
       render :new_article

@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   get 'articles/show/:slug', to: 'articles#show'
   get 'articles/confirm_delete_article/:slug', to: 'articles#confirm_delete_article'
   post 'articles/submit_delete_article'
+  get 'articles/article_created'
 
   # get 'courses/index'
   # get 'courses/show'
