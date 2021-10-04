@@ -13,8 +13,11 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find_by(slug: params[:slug])
-    if (@article.published? == false || @article.draft? == true) && (session[:user][:is_owner] == false)
-      return @article = nil
+
+    unless @article.user_id == session[:user][:id]
+      if (@article.published? == false || @article.draft? == true) && (session[:user][:is_owner] == false)
+        return @article = nil
+      end
     end
     
     if session[:user] != nil && @article.present?
