@@ -1,0 +1,25 @@
+<div class="content_box" style="padding-bottom: 30px">
+	<div style="text-align: center;">
+		<div style="width: 100%; display: block; margin-bottom: 10px;">
+			<%= image_tag '/images/feeling_proud.svg', :style => 'width: 200px;', :alt => "mail error" %>
+		</div>
+
+		<span dir="rtl">
+			مقاله شما با موفقیت ثبت شد
+			<br>
+			<% unless published %>
+				و بعد از تایید موسس قابل مشاهده خواهد بود.
+			<% end %>
+		</span>
+		
+		<% unless published %>
+			<div style="width: 100%; display: block; margin-top: 20px">
+            	<%= link_to "پیش نمایش مقاله", '/articles/show/' + slug, :class => 'btn btn-primary' %>
+        	</div>
+		<% else %>
+			<div style="width: 100%; display: block; margin-top: 20px">
+				<%= link_to "نمایش مقاله", '/articles/show/' + slug, :class => 'btn btn-primary' %>
+			</div>
+		<% end %>
+	</div>
+</div>

@@ -14,21 +14,23 @@ class ArticlesController < ApplicationController
   def show
     @article = Article.find_by(slug: params[:slug])
 
-    unless @article.user_id == session[:user][:id]
-      if (@article.published? == false || @article.draft? == true) && (session[:user][:is_owner] == false)
-        return @article = nil
+    if @article.present?
+      unless @article.user_id == session[:user][:id]
+        if (@article.published? == false || @article.draft? == true) && (session[:user][:is_owner] == false)
+          return @article = nil
+        end
       end
-    end
-    
-    if session[:user] != nil && @article.present?
-      if session[:user][:id] == @article.user_id || session[:user][:is_owner]
-        render :show, :locals => { :show_actions => true }
+      
+      if session[:user] != nil
+        if session[:user][:id] == @article.user_id || session[:user][:is_owner]
+          render :show, :locals => { :show_actions => true }
+        else
+          render :show, :locals => { :show_actions => false }
+        end
       else
         render :show, :locals => { :show_actions => false }
       end
-    else
-      render :show, :locals => { :show_actions => false }
-    end
+    end    
   end
 
   def confirm_delete_article
@@ -42,14 +44,9 @@ class ArticlesController < ApplicationController
     slug = params[:slug]
     art = Article.find_by(slug: slug)
     if art.present?
-      if session[:user][:is_owner]
+      if session[:user][:is_owner] || art.user_id == session[:user][:id]
         art.destroy
-        flash[:notice_success] = 'مقاله با موفقیت حذف شد.'
-        redirect_to action: :index
-      elsif art.user_id == session[:user][:id]
-        art.destroy
-        flash[:notice_success] = 'مقاله با موفقیت حذف شد.'
-        redirect_to '/articles/my_articles'
+        render 'article_deleted'
       else
         redirect_to '/503'
       end

@@ -37,13 +37,24 @@
 	}
 	.hashtag{
 		position: absolute;
+		z-index: 10;
 		left: 0;
-		color: #fff;
-		background-color: #003cff;
 		font-size: 13px;
 		padding: 4px 10px;
 		border-bottom-right-radius: 7px;
 		border-top-left-radius: 7px;
+		&.hashtag-primary{
+			color: #fff;
+			background-color: #003cff;
+		}
+		&.hashtag-black{
+			color: #fff;
+			background-color: #111;
+		}
+		&.hashtag-red{
+			color: #fff;
+			background-color: rgb(255, 11, 11);
+		}
 	}
 }	
 #articles_list{

@@ -6,15 +6,13 @@
 		    	<% if art.image.present? %>
 					<a href="/articles/show/<%= art.slug %>">
 						<div class='article_box'>
-							<span class="hashtag">
-								<% if art.draft? %>
-									(پیشنویس)
-								<% elsif art.published? %>
-									(منتشر شده)
-								<% elsif !art.published? %>
-									(منتشر نشده)
-								<% end %>
-							</span>
+							<% if art.draft? %>
+								<span class="hashtag hashtag-black">(پیشنویس)</span>
+							<% elsif art.published? %>
+								<span class="hashtag hashtag-primary">(منتشر شده)</span>
+							<% elsif !art.published? %>
+								<span class="hashtag hashtag-red">(منتشر نشده)</span>
+							<% end %>
 							<div class='image cover big_cover'>
 								<%= image_tag art.image, :onload => 'imagePreloader(this)' %>
 							</div>
