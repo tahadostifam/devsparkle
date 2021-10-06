@@ -12,7 +12,7 @@
 #
 # To use a different locale, set it with `I18n.locale`:
 #
-#     I18n.locale = :es
+# I18n.locale
 #
 # This would use the information in config/locales/es.yml.
 #
@@ -30,4 +30,24 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      user:
+        full_name: "نام و نام خانوادگی"
+        email: "ایمیل"
+        username: "نام کاربری"
+        password: 'گذرواژه'
+        password_confirmation: 'تکرار گذرواژه'
+    errors:
+      messages: 
+        blank: "نمی تواند خالی باشد"
+        confirmation: "و گذرواژه مساوی نیست."
+      models:
+        user:
+          attributes:
+            email:
+              blank: "نمی تواند خالی باشد"
+              taken: 'دیگری با این مقدار وجود دارد.'
+            username:
+              blank: "نمی تواند خالی باشد"
+              taken: 'دیگری با این مقدار وجود دارد.'
