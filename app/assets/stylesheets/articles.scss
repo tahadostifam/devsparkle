@@ -17,7 +17,7 @@
 	.footer{
 		margin-top: 4px;
 		display: block;
-		.author, .comments_count, .article_submit_time{
+		.author, .comments_count, .article_submit_time, .like_icon{
 			position: relative;
 			color: #003cff;
 			padding-right: 22px;
@@ -30,7 +30,7 @@
 		.article_submit_time{
 			font-family: sans-serif;
 		}
-		.comments_count{
+		.comments_count, .like_icon{
 			padding-right: 20px;
 			margin-right: 10px;
 		}
@@ -93,12 +93,12 @@
 #view_article{
 	text-align: right;
 	.article_icon_span{
-		font-family: sans-serif;
 		.icon{
 			position: relative;
-			top: 3px;
+			top: 4px;
 			font-size: 20px;
 		}
+		font-family: sans-serif;
 		padding-bottom: 3px;
 		margin-left: 10px;
 		color: #222;
@@ -144,6 +144,14 @@
 			direction: ltr;
 			border-radius: 2px;
 		}
+	}
+	.like_button, form{
+		display: inline-block;
+	}
+	.like_button{
+		cursor: pointer;
+		background: transparent;
+		border: none;
 	}
 }
 @media screen and (min-width: 1250px) {

@@ -12,14 +12,26 @@
                         <% end %>
                     </div>
                     <div>
-                        <a class="link" href="#">
-                            <span class="article_icon_span link-danger" dir="ltr">
-                                <span class='icon'>
-                                    <ion-icon name='heart'></ion-icon>
-                                </span>
-                                10
-                            </span>
-                        </a>
+                        <%= form_with url: {:controller => :likes, :action => :toggle_like} do |f| %>
+                            <input type="hidden" name="slug" value="<%= @article.slug %>">
+                            <button type="submit" class="like_button">
+                                <% if @article.liked(session[:user][:id]) %>
+                                    <span class="article_icon_span link-danger" dir="ltr">
+                                        <span class='icon'>
+                                            <ion-icon name='heart'></ion-icon>
+                                        </span>
+                                        <%= @article.likes.length %>
+                                    </span>
+                                <% else %>
+                                    <span class="article_icon_span" dir="ltr">
+                                        <span class='icon'>
+                                            <ion-icon name='heart'></ion-icon>
+                                        </span>
+                                        <%= @article.likes.length %>
+                                    </span>
+                                <% end %>
+                            </button>
+                        <% end %>
                         <span class="article_icon_span" dir="ltr">
                             <span class='icon'>
                                 <ion-icon name='calendar-outline'></ion-icon>

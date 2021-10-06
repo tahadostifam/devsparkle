@@ -33,6 +33,8 @@ Rails.application.routes.draw do
   get 'articles/confirm_delete_article/:slug', to: 'articles#confirm_delete_article'
   post 'articles/submit_delete_article'
 
+  post 'likes/toggle_like'
+
   # get 'courses/index'
   # get 'courses/show'
   # get 'courses/edit'
