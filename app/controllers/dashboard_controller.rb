@@ -79,7 +79,13 @@
   def submit_change_password
     @user = User.find_by(id: session[:user]['id'])
     if @user.authenticate(params.permit(:old_password)['old_password'])
-      
+      if @user.update(change_password_params)
+        flash[:change_password_success] = "گذرواژه شما با موفقیت تغییر کرد."
+        redirect_to action: :change_password
+        else
+        flash[:change_password_errors] = @user.errors.full_messages  
+        redirect_to action: :change_password
+      end
     else
       flash[:change_password_errors] = [
         "گذرواژه فعلی شما صحیح نمی باشد."
@@ -123,6 +129,6 @@
   end
 
   def change_password_params
-    params.permit(:password, :password_confirm)
+    params.permit(:password, :password_confirmation)
   end
 end
