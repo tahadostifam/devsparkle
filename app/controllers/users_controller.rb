@@ -1,7 +1,4 @@
 class UsersController < ApplicationController
-  def signup
-  end
-
   def submit_signup
     @user = User.new(user_params)
     if @user.save

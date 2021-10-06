@@ -1,4 +1,4 @@
-class DashboardController < ApplicationController
+ class DashboardController < ApplicationController
   layout 'dashboard'
   before_action :require_login
   before_action :need_owner_access, only: [
@@ -10,9 +10,6 @@ class DashboardController < ApplicationController
     :new_post,
     :submit_new_post
   ]
-
-  def edit_profile
-  end
 
   def submit_edit_profile
     @user = User.find_by(id: session[:user]['id'])
@@ -79,24 +76,15 @@ class DashboardController < ApplicationController
     end
   end
 
-  def change_password
-  end
-
   def submit_change_password
     @user = User.find_by(id: session[:user]['id'])
-    if @user.authenticate(params.permit(:old_password))
-      if @user.update(change_password_params)
-        flash[:change_password_success] = "گذرواژه شما با موفقیت تغییر کرد."
-        redirect_to action: :change_password_page
-        else
-        flash[:change_password_errors] = @user.errors.full_messages  
-        redirect_to action: :change_password_page
-      end
+    if @user.authenticate(params.permit(:old_password)['old_password'])
+      
     else
       flash[:change_password_errors] = [
         "گذرواژه فعلی شما صحیح نمی باشد."
       ]
-      redirect_to action: :change_password_page
+      redirect_to action: :change_password
     end
   end
 
@@ -135,6 +123,6 @@ class DashboardController < ApplicationController
   end
 
   def change_password_params
-    params.require(:user).permit(:password, :password_confirm)
+    params.permit(:password, :password_confirm)
   end
 end

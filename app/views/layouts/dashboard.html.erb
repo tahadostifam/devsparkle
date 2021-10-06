@@ -25,7 +25,7 @@
                         </div>
                         <div id="dashboard_nav">
                             <%= link_to 'اطلاعات حساب کاربری', dashboard_edit_profile_url, :class => 'link' %>
-                            <%= link_to 'تغییر رمز عبور', dashboard_change_password_url, :class => 'link' %>
+                            <%= link_to 'تغییر گذرواژه', dashboard_change_password_url, :class => 'link' %>
                             <% if @user.is_owner? || @user.is_admin? %>
                                 <%= link_to 'مقاله جدید', dashboard_new_article_url, :class => 'link' %>
                                 <%= link_to 'مقاله های من', dashboard_my_articles_url, :class => 'link' %>
