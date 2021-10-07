@@ -12,25 +12,34 @@
                         <% end %>
                     </div>
                     <div>
-                        <%= form_with url: {:controller => :likes, :action => :toggle_like} do |f| %>
-                            <input type="hidden" name="slug" value="<%= @article.slug %>">
-                            <button type="submit" class="like_button">
-                                <% if @article.liked(session[:user][:id]) %>
-                                    <span class="article_icon_span link-danger" dir="ltr">
-                                        <span class='icon'>
-                                            <ion-icon name='heart'></ion-icon>
+                        <% if session[:user] != nil %>
+                            <%= form_with url: {:controller => :likes, :action => :toggle_like} do |f| %>
+                                <input type="hidden" name="slug" value="<%= @article.slug %>">
+                                <button type="submit" class="like_button">
+                                    <% if @article.liked(session[:user][:id]) %>
+                                        <span class="article_icon_span link-danger" dir="ltr">
+                                            <span class='icon'>
+                                                <ion-icon name='heart'></ion-icon>
+                                            </span>
+                                            <%= @article.likes.length %>
                                         </span>
-                                        <%= @article.likes.length %>
-                                    </span>
-                                <% else %>
-                                    <span class="article_icon_span" dir="ltr">
-                                        <span class='icon'>
-                                            <ion-icon name='heart'></ion-icon>
+                                    <% else %>
+                                        <span class="article_icon_span" dir="ltr">
+                                            <span class='icon'>
+                                                <ion-icon name='heart'></ion-icon>
+                                            </span>
+                                            <%= @article.likes.length %>
                                         </span>
-                                        <%= @article.likes.length %>
-                                    </span>
-                                <% end %>
-                            </button>
+                                    <% end %>
+                                </button>
+                            <% end %>
+                        <% else %>
+                            <span class="article_icon_span" dir="ltr">
+                                <span class='icon'>
+                                    <ion-icon name='heart'></ion-icon>
+                                </span>
+                                <%= @article.likes.length %>
+                            </span>
                         <% end %>
                         <span class="article_icon_span" dir="ltr">
                             <span class='icon'>

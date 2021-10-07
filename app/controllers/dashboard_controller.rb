@@ -12,8 +12,7 @@
   before_action :need_admin_access, only: [
     :new_article,
     :submit_new_article,
-    :my_articles,
-
+    :my_articles
   ]
 
   def submit_edit_profile
@@ -23,7 +22,7 @@
       session[:user] = @user
       redirect_to action: :edit_profile
     else
-      flash[:edit_profile_errors] = @user.errors.values
+      flash[:edit_profile_errors] = @user.errors.full_messages
       redirect_to action: :edit_profile
     end
   end
@@ -51,7 +50,7 @@
         flash[:user_profile_success] = 'اطلاعات کاربری کاربر با موفقیت تغییر کرد.'
         redirect_to action: 'user_profile', :id => @up.id
       else
-        flash[:user_profile_errors] = @up.errors.values
+        flash[:user_profile_errors] = @up.errors.full_messages
         redirect_to action: 'user_profile', :id => @up.id
       end
     else
@@ -76,7 +75,7 @@
     if @article.save 
       render 'articles/article_created', :locals => {published: @article.published, slug: @article.slug}
     else
-      flash[:new_article_errors] = @article.errors.values
+      flash[:new_article_errors] = @article.errors.full_messages
       render :new_article
     end
   end
@@ -92,11 +91,12 @@
         @article.published = false
         params[:published] = false
       end
+      @article.image.purge
       if @article.update(new_article_params)
         flash[:edit_article_success] = 'مقاله با موفقیت ویرایش شد.'
         redirect_to '/dashboard/edit_article/' + @article.slug
       else
-        flash[:edit_article_errors] = @article.errors.values
+        flash[:edit_article_errors] = @article.errors.full_messages
         redirect_to '/dashboard/edit_article/' + @article.slug
       end
     else

@@ -4,7 +4,7 @@
     <div class="form">
         <%= form_for @article, url: {:action => 'submit_new_article'}, method: :post do |f| %>
             
-            <%= render 'articles/form', f: f %>
+            <%= render 'articles/form', f: f, preview_image: false %>
 
             <div style="margin-top: 10px;">
                 <% unless flash[:new_article_errors].nil? %>

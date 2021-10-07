@@ -1,7 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :need_owner_access, only: [
-    
-  ]
+  before_action :need_owner_access, only: []
   before_action :need_admin_access, only: [
     :confirm_delete_article,
     :submit_delete_article
@@ -15,22 +13,18 @@ class ArticlesController < ApplicationController
     @article = Article.find_by(slug: params[:slug])
 
     if @article.present?
-      unless @article.user_id == session[:user][:id]
-        if (@article.published? == false || @article.draft? == true) && (session[:user][:is_owner] == false)
-          return @article = nil
-        end
-      end
-      
       if session[:user] != nil
-        if session[:user][:id] == @article.user_id || session[:user][:is_owner]
-          render :show, :locals => { :show_actions => true }
-        else
-          render :show, :locals => { :show_actions => false }
+        if @article.user_id == session[:user][:id] || session[:user][:is_owner]
+          return render :show, :locals => { :show_actions => true }
         end
-      else
-        render :show, :locals => { :show_actions => false }
       end
-    end    
+
+      if (@article.published? == false || @article.draft? == true)
+        @article = nil
+      end
+
+      render :show, :locals => { :show_actions => false }
+    end
   end
 
   def confirm_delete_article
@@ -44,7 +38,7 @@ class ArticlesController < ApplicationController
     slug = params[:slug]
     art = Article.find_by(slug: slug)
     if art.present?
-      if session[:user][:is_owner] || art.user_id == session[:user][:id]
+      if session[:user].present? && session[:user][:is_owner] || art.user_id == session[:user][:id]
         art.destroy
         render 'article_deleted'
       else

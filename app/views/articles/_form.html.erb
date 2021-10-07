@@ -8,16 +8,29 @@
     <%= f.text_area :cover_text, :dir => :rtl %>
 </div>
 
-<div class="input fileupload">
-    <%= f.label :image, 'عکس', :style => 'display: block; width: 100%;' %>
-    <div style="position: relative; margin-top: 16px; right: -6px">
-        <%= f.label :image, 'انتخاب عکس', :class => 'btn btn-primary', :style => 'width: 100%; padding: 10px; text-align: center;' %>
-        <%= f.file_field :image, accept: 'image/png,image/jpg,image/jpeg',:style => 'display: none' %>
+<% if !preview_image %>
+    <div class="input fileupload">
+        <%= f.label :image, 'عکس', :style => 'display: block; width: 100%;' %>
+        <div style="position: relative; margin-top: 16px; right: -6px">
+            <%= f.label :image, 'انتخاب عکس', :class => 'btn btn-primary', :style => 'width: 100%; padding: 10px; text-align: center;' %>
+            <%= f.file_field :image, accept: 'image/png,image/jpg,image/jpeg',:style => 'display: none' %>
+        </div>
+        <div class="image" style="display: none;">
+            <img src="#" alt="preview image before upload" onload="imagePreloader(this)">
+        </div>
     </div>
-    <div class="image" style="display: none;">
-        <img src="#" alt="preview image before upload" onload="imagePreloader(this)">
+<% else %>
+    <div class="input fileupload">
+        <%= f.label :image, 'عکس', :style => 'display: block; width: 100%;' %>
+        <div style="position: relative; margin-top: 16px; right: -6px">
+            <%= f.label :image, 'انتخاب عکس', :class => 'btn btn-primary', :style => 'width: 100%; padding: 10px; text-align: center;' %>
+            <%= f.file_field :image, accept: 'image/png,image/jpg,image/jpeg',:style => 'display: none' %>
+        </div>
+        <div class="image">
+            <%= image_tag @article.image, :alt => "preview image before upload", :onload => "imagePreloader(this)" %>
+        </div>
     </div>
-</div>
+<% end %>
 
 <div class="input">
     <%= f.label :content, 'محتوا' %>
