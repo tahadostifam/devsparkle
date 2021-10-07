@@ -1,0 +1,65 @@
+<div class="content_box">
+    <h4 class="header">ویرایش مقاله</h4>
+
+    <div class="form">
+        <%= form_for @article, url: {:action => 'submit_edit_article'}, method: :post do |f| %>
+            <div class="input">
+                <%= f.label :header, 'سر برگ' %>
+                <%= f.text_field :header, :dir => :rtl %>
+            </div>
+
+            <div class="input">
+                <%= f.label :cover_text, 'توضیحات کوتاه (کاور)' %>
+                <%= f.text_area :cover_text, :dir => :rtl %>
+            </div>
+
+            <div class="input fileupload">
+                <%= f.label :image, 'عکس', :style => 'display: block; width: 100%;' %>
+                <div style="position: relative; margin-top: 16px; right: -6px">
+                    <%= f.label :image, 'انتخاب عکس', :class => 'btn btn-primary', :style => 'width: 100%; padding: 10px; text-align: center;' %>
+                    <%= f.file_field :image, :style => 'display: none' %>
+                </div>
+                <div class="image">
+                    <%= image_tag @article.image, :alt => "preview image before upload", :onload => "imagePreloader(this)" %>
+                </div>
+            </div>
+
+            <div class="input">
+                <%= f.label :content, 'محتوا' %>
+                <%= f.text_area :content, :style => 'height: 300px', :rows => 600, :dir => :rtl %>
+            </div>
+
+            <div class="checkbox" style="margin-right: 5px; margin-top: 10px;">
+                <%= f.label :draft, 'پیش نویس' %>
+                <%= f.check_box :draft %>
+            </div>
+
+            <% if session[:user][:is_owner] %>
+                <div class="checkbox" style="margin-right: 5px; margin-top: 10px;">
+                    <%= f.label :published, 'انتشار مقاله' %>
+                    <%= f.check_box :published %>
+                </div>
+            <% end %>
+
+            <div style="margin-top: 10px;">
+                <% unless flash[:edit_article_errors].nil? %>
+                    <% flash[:edit_article_errors].each do |e| %>
+                        <div class="form_error_list">
+                            <div class="item"><%= e %></div>
+                        </div>
+                    <% end %>
+                <% end %>
+
+                <% unless flash[:edit_article_success].nil? %>
+                    <span class="success_message"><%= flash[:edit_article_success] %></span>
+                <% end %>
+            </div>
+
+            <%= hidden_field_tag :slug, @article.slug %>
+
+            <div style="width: 100%; display: block; text-align: left;">
+                <%= f.submit 'ثبت مقاله', :class => "btn btn-primary btn-large-padding" %>
+            </div>
+        <% end %>
+    </div>
+</div>

@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   post 'dashboard/submit_new_article'
   get 'dashboard/submit_new_article', to: 'dashboard#new_article'
   get 'dashboard/my_articles'
+  get 'dashboard/edit_article/:slug', to: 'dashboard#edit_article'
+  post 'dashboard/submit_edit_article'
 
   get 'users/signin'
   post 'users/submit_signup'

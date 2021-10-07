@@ -1,6 +1,7 @@
 class Article < ApplicationRecord
     before_create :handle_auto_params
-
+    before_update :handle_auto_params
+    
     has_one_attached :image
 
     belongs_to :user

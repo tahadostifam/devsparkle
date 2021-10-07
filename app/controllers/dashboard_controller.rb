@@ -4,11 +4,16 @@
   before_action :need_owner_access, only: [
     :manage_users,
     :user_profile,
-    :submit_user_profile
+    :submit_user_profile,
+    :manage_users,
+    :submit_user_profile,
+
   ]
   before_action :need_admin_access, only: [
-    :new_post,
-    :submit_new_post
+    :new_article,
+    :submit_new_article,
+    :my_articles,
+
   ]
 
   def submit_edit_profile
@@ -76,6 +81,29 @@
     end
   end
 
+  def edit_article
+    @article = Article.find_by(slug: params[:slug])
+  end
+
+  def submit_edit_article
+    @article = Article.find_by(slug: params[:slug])
+    if @article.present?
+      unless session[:user][:is_owner]
+        @article.published = false
+        params[:published] = false
+      end
+      if @article.update(new_article_params)
+        flash[:edit_article_success] = 'مقاله با موفقیت ویرایش شد.'
+        redirect_to '/dashboard/edit_article/' + @article.slug
+      else
+        flash[:edit_article_errors] = @article.errors.values
+        redirect_to '/dashboard/edit_article/' + @article.slug
+      end
+    else
+      redirect_to '/404'
+    end
+  end
+
   def submit_change_password
     @user = User.find_by(id: session[:user]['id'])
     if @user.authenticate(params.permit(:old_password)['old_password'])
@@ -118,6 +146,10 @@
 
   def new_article_params
     params.require(:article).permit(:header, :cover_text, :image, :content, :draft, :published)
+  end
+
+  def new_article_params
+    params.require(:article).permit(:slug, :header, :cover_text, :image, :content, :draft, :published)
   end
 
   def update_user_profile_params
