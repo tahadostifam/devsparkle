@@ -2,36 +2,8 @@
     <h4 class="header">اطلاعات حساب کاربری</h4>
     <div class="form">
         <%= form_with model: @user, url: {:action => 'submit_edit_profile'}, method: :post do |f| %>
-            <div class="input" style="margin-right: 5px;">
-                <%= f.label :full_name, 'نام و نام خانوادگی' %>
-                <%= f.text_field :full_name %>
-            </div>
-
-            <div class="flex_row">
-                <div class="input" style="margin-right: 5px;">
-                    <%= f.label :username, raw('نام کاربری (غیر قابل تغییر)') %>
-                    <%= f.text_field :username, :readonly => true %>
-                </div>
-                <div class="input" style="margin-left: 5px;">
-                    <%= f.label :email, raw('ایمیل (غیر قابل تغییر)') %>
-                    <%= f.text_field :email, :readonly => true %>
-                </div>
-            </div>
-
-            <div class="input" style="margin-right: 5px;" dir="rtl">
-                <%= f.label :bio, 'بیگرافی' %>
-                <%= f.text_area :bio %>
-            </div>
-
-            <div class="input" style="margin-right: 5px;">
-                <%= f.label :website, 'آدرس وبسایت' %>
-                <%= f.text_field :website %>
-            </div>
-
-            <div class="input" style="margin-right: 5px;" dir="rtl">
-                <%= f.label :gender, 'جنسیت' %>
-                <%= f.select :gender, ['عدم انتخاب', 'مذکر', 'مونث']%>
-            </div>
+        
+            <%= render 'articles/form', f: f %>
 
             <% unless flash[:edit_profile_errors].nil? %>
                 <% flash[:edit_profile_errors].each do |e| %>

@@ -10,7 +10,8 @@ class Article < ApplicationRecord
 
     validates_presence_of :header, :cover_text, :content
     validates_presence_of :image, on: :create
-
+    validates :image, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 1..3.megabytes }
+    
     def liked(uid)
         return self.likes.select { |l| l.user_id == uid && l.article_id == self.id }.length > 0
     end

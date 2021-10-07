@@ -1,0 +1,37 @@
+<div class="input">
+    <%= f.label :header, 'سر برگ' %>
+    <%= f.text_field :header, :dir => :rtl %>
+</div>
+
+<div class="input">
+    <%= f.label :cover_text, 'توضیحات کوتاه (کاور)' %>
+    <%= f.text_area :cover_text, :dir => :rtl %>
+</div>
+
+<div class="input fileupload">
+    <%= f.label :image, 'عکس', :style => 'display: block; width: 100%;' %>
+    <div style="position: relative; margin-top: 16px; right: -6px">
+        <%= f.label :image, 'انتخاب عکس', :class => 'btn btn-primary', :style => 'width: 100%; padding: 10px; text-align: center;' %>
+        <%= f.file_field :image, accept: 'image/png,image/jpg,image/jpeg',:style => 'display: none' %>
+    </div>
+    <div class="image" style="display: none;">
+        <img src="#" alt="preview image before upload" onload="imagePreloader(this)">
+    </div>
+</div>
+
+<div class="input">
+    <%= f.label :content, 'محتوا' %>
+    <%= f.text_area :content, :style => 'height: 300px', :rows => 600, :dir => :rtl %>
+</div>
+
+<div class="checkbox" style="margin-right: 5px; margin-top: 10px;">
+    <%= f.label :draft, 'پیش نویس' %>
+    <%= f.check_box :draft %>
+</div>
+
+<% if session[:user][:is_owner] %>
+    <div class="checkbox" style="margin-right: 5px; margin-top: 10px;">
+        <%= f.label :published, 'انتشار مقاله' %>
+        <%= f.check_box :published %>
+    </div>
+<% end %>
