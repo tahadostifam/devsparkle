@@ -34,6 +34,8 @@ Rails.application.routes.draw do
   get 'users/confirm_account/:token', to: 'users#confirm_account'
   get 'users/forgot_password'
   get 'users/terms_and_conditions'
+  get 'users/signup_with_github/:clientid', to: 'users#signup_with_github'
+  get 'users/signup_with_github_callback'
 
   get 'articles/index'
   get 'articles/show/:slug', to: 'articles#show'

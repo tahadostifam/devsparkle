@@ -29,6 +29,30 @@ class UsersController < ApplicationController
     end
   end
 
+  def signup
+    github_api = GithubApi.new
+
+    @user = User.new
+    
+    render :signup, :locals => { :github_clientid => github_api.clientid }
+  end
+  
+  def signup_with_github
+    redirect_to 'https://github.com/login/oauth/authorize?client_id=' + params[:clientid]
+  end
+
+  def signup_with_github_callback
+    github_api = GithubApi.new
+
+    user_info = github_api.fetch_github params['code']
+
+    if user_info.present?
+      render :json => user_info
+    else
+      render :json => JSON.parse('{"code": "500"}')
+    end
+  end
+
   def signin
     @user = User.new
   end
@@ -64,6 +88,8 @@ class UsersController < ApplicationController
   def terms_and_conditions
     @setting = Setting.first
   end
+
+  
 
   private
 
