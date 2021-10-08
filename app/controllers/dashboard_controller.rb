@@ -16,6 +16,9 @@
 
   def site_settings
     @setting = Setting.first
+    unless @setting.present?
+      @setting = Setting.new
+    end
   end
 
   def submit_site_settings

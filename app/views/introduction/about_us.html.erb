@@ -1,7 +1,9 @@
 <div class="container" style="top: 0px">
     <h2 class="container_title bb">درباره ما</h2>
 
-    <div class="content md_to_html" style="margin: 10px 0;" dir="rtl">
-        <%= @setting.about_us %>
-    </div>
+    <% if @setting.present? %>
+        <div class="content md_to_html" style="margin: 10px 0;" dir="rtl">
+            <%= @setting.about_us %>
+        </div>
+    <% end %>
 </div>
