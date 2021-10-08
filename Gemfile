@@ -16,6 +16,9 @@ gem 'webpacker', '~> 5.0'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 
+# a gem for validate activestorage items
+gem 'activestorage-validator'
+
 # active links handler (+active_class)
 gem 'active_link_to'
 
@@ -30,7 +33,6 @@ gem 'bcrypt', '~> 3.1.7'
 
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
-gem 'activestorage-validator'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
