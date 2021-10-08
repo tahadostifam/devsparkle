@@ -92,3 +92,23 @@ $panel_width: 300px;
         width: 100%;
     }
 }
+.card-box{
+    width: 100%;
+    padding: 20px 10px;
+    text-align: center;
+    .icon{
+        font-size: 60px;
+        color: #111;
+    }
+    .title{
+        position: relative;
+        top: -15px;
+        color: #777;
+    }
+    .value{
+        position: relative;
+        top: -5px;
+        color: #777;
+        font-family: 'sans-serif';
+    }
+}

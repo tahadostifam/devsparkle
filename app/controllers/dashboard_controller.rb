@@ -7,6 +7,7 @@
     :submit_user_profile,
     :manage_users,
     :submit_user_profile,
+    :general_statistics
 
   ]
   before_action :need_admin_access, only: [
@@ -120,6 +121,12 @@
       ]
       redirect_to action: :change_password
     end
+  end
+
+  def general_statistics
+    @articles = Article.all
+    @users = User.all
+    @likes = Like.all
   end
 
   private

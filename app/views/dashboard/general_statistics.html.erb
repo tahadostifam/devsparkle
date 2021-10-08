@@ -1,3 +1,38 @@
 <div class="content_box">
-    
+    <div class="flex_row">
+        <div class="card-box">
+            <div class="icon">
+                <ion-icon name="people-outline"></ion-icon>
+            </div>
+            <h4 class="title">
+                تعداد کاربران
+            </h4>
+            <span class="value">
+                <%= @users.all.length %>
+            </span>
+        </div>
+        <div class="card-box">
+            <div class="icon">
+                <ion-icon name="newspaper-outline"></ion-icon>
+            </div>
+            <h4 class="title">
+                تعداد مقالات
+            </h4>
+            <span class="value">
+                <%= @articles.all.length %>
+            </span>
+        </div>
+        <div class="card-box">
+            <div class="icon">
+                <ion-icon name="heart-outline"></ion-icon>
+            </div>
+            <h4 class="title">
+                تعداد لایک ها
+            </h4>
+            <span class="value">
+                <%= @likes.all.length %>
+            </span>
+        </div>
+        
+    </div>
 </div>

@@ -11,18 +11,15 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find_by(slug: params[:slug])
-
     if @article.present?
       if session[:user] != nil
         if @article.user_id == session[:user][:id] || session[:user][:is_owner]
           return render :show, :locals => { :show_actions => true }
         end
       end
-
       if (@article.published? == false || @article.draft? == true)
         @article = nil
       end
-
       render :show, :locals => { :show_actions => false }
     end
   end
@@ -39,6 +36,7 @@ class ArticlesController < ApplicationController
     art = Article.find_by(slug: slug)
     if art.present?
       if session[:user].present? && session[:user][:is_owner] || art.user_id == session[:user][:id]
+        art.likes.delete_all
         art.destroy
         render 'article_deleted'
       else
