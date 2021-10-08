@@ -29,7 +29,7 @@
                             <% if @user.is_owner? || @user.is_admin? %>
                                 <%= link_to 'مقاله جدید', dashboard_new_article_url, :class => 'link' %>
                                 <%= link_to 'مقاله های من', dashboard_my_articles_url, :class => 'link' %>
-                                <%= link_to 'مقاله های تایید نشده', dashboard_my_articles_url, :class => 'link' %>
+                                <%= link_to 'مقاله های تایید نشده', dashboard_articles_that_not_verified_url, :class => 'link' %>
                                 <div class="sepa"></div>
                                 <%= link_to 'آمار کلی', dashboard_general_statistics_url, :class => 'link' %>
                                 <%= link_to 'مقالات محبوب', '', :class => 'link' %>

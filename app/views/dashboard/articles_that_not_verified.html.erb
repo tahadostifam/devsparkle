@@ -1,0 +1,30 @@
+<div class="content_box">
+    <h4 class="header">لیست مقالات تایید نشده (<%= @atnv.length %>)</h4>
+    <table class="table">
+        <!-- headers -->
+        <tr>
+            <th>سر برگ</th>
+            <th>نویسنده</th>
+            <th>-</th>
+        </tr>
+        <!-- rows -->
+        <% @atnv.each do |a| %>
+            <tr>
+                <td>
+                    <%= link_to a.header, '/articles/show/' + a.slug, :class => 'link', :style => 'font-size: 16px' %>
+                </td>
+                <td>
+                    <%= a.user.full_name %>
+                </td>
+                <td>
+                    <%= form_with url: { :action => :submit_articles_that_not_verified } do |f| %>
+                        <div class="form">
+                            <%= f.hidden_field :slug, :value => a.slug %>
+                            <%= f.submit 'تایید', :class => 'btn btn-success btn-large-padding' %>
+                        </div>
+                    <% end %>
+                </td>
+            </tr>
+        <% end %>
+    </table>
+</div>

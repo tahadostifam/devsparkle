@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   get 'dashboard/general_statistics'
   get 'dashboard/site_settings'
   post 'dashboard/submit_site_settings'
+  get 'dashboard/articles_that_not_verified'
+  post 'dashboard/submit_articles_that_not_verified'
 
   get 'users/signin'
   post 'users/submit_signup'

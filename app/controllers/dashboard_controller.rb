@@ -5,6 +5,8 @@
     :manage_users,
     :user_profile,
     :submit_user_profile,
+    :articles_that_not_verified,
+    :submit_articles_that_not_verified
   ]
   before_action :need_admin_access, only: [
     :new_article,
@@ -17,6 +19,23 @@
     @setting = Setting.first
     unless @setting.present?
       @setting = Setting.new
+    end
+  end
+
+  def articles_that_not_verified
+    @atnv = Article.where(published: false, draft: false)
+  end
+
+  def submit_articles_that_not_verified
+    @atnv = Article.where(slug: params[:slug])
+    if @atnv.present?
+      if @atnv.update(published: true)
+        redirect_to action: :articles_that_not_verified
+      else
+        redirect_to '/503'
+      end
+    else
+      redirect_to action: :articles_that_not_verified
     end
   end
 
@@ -109,6 +128,9 @@
 
   def edit_article
     @article = Article.find_by(slug: params[:slug])
+    unless @article.present?
+      redirect_to '/404'
+    end
   end
 
   def submit_edit_article
