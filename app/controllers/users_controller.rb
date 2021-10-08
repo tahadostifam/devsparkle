@@ -71,7 +71,7 @@ class UsersController < ApplicationController
       redirect_to '/dashboard/index'
     else
       flash[:complete_signup_with_github_errors] = @user.errors.full_messages
-      render :complete_signup_with_github, :locals => { nil_email: false }
+      render :complete_signup_with_github, :locals => { nil_email: false, user: @user }
     end
   end
 
