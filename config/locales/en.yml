@@ -40,6 +40,10 @@ en:
         password_confirmation: 'تکرار گذرواژه'
         accept_terms_and_conditions: ''
       article:
+        header: 'سر برگ'
+        cover_text: 'توضیحات کوتاه'
+        content: ''
+        content: 'محتوا'
         image: 'عکس'
     errors:
       messages: 
