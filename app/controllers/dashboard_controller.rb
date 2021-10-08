@@ -5,13 +5,12 @@
     :manage_users,
     :user_profile,
     :submit_user_profile,
-    :general_statistics
-
   ]
   before_action :need_admin_access, only: [
     :new_article,
     :submit_new_article,
-    :my_articles
+    :my_articles,
+    :general_statistics
   ]
 
   def site_settings
@@ -119,7 +118,9 @@
         @article.published = false
         params[:published] = false
       end
-      @article.image.purge
+      if params[:image] != nil
+        @article.image.purge
+      end
       if @article.update(new_article_params)
         flash[:edit_article_success] = 'مقاله با موفقیت ویرایش شد.'
         redirect_to '/dashboard/edit_article/' + @article.slug

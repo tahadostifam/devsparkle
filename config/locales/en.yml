@@ -39,6 +39,8 @@ en:
         password: 'گذرواژه'
         password_confirmation: 'تکرار گذرواژه'
         accept_terms_and_conditions: ''
+      article:
+        image: 'عکس'
     errors:
       messages: 
         blank: "نمی تواند خالی باشد"
