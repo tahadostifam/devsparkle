@@ -38,16 +38,17 @@ en:
         username: "نام کاربری"
         password: 'گذرواژه'
         password_confirmation: 'تکرار گذرواژه'
+        accept_terms_and_conditions: ''
     errors:
       messages: 
         blank: "نمی تواند خالی باشد"
-        confirmation: "و گذرواژه مساوی نیست."
+        confirmation: "و گذرواژه مساوی نیست"
       models:
         user:
           attributes:
             email:
               blank: "نمی تواند خالی باشد"
-              taken: 'دیگری با این مقدار وجود دارد.'
+              taken: 'دیگری با این مقدار وجود دارد'
             username:
               blank: "نمی تواند خالی باشد"
-              taken: 'دیگری با این مقدار وجود دارد.'
+              taken: 'دیگری با این مقدار وجود دارد'

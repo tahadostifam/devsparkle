@@ -62,6 +62,7 @@ class UsersController < ApplicationController
   end
 
   def terms_and_conditions
+    @setting = Setting.first
   end
 
   private
@@ -71,6 +72,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.permit(:full_name, :email, :username, :password, :password_confirmation)
+    params.permit(:full_name, :email, :username, :password, :password_confirmation, :accept_terms_and_conditions)
   end
 end

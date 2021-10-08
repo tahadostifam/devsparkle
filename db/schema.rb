@@ -46,9 +46,8 @@ ActiveRecord::Schema.define(version: 2021_10_08_082232) do
     t.text "content", null: false
     t.text "cover_text"
     t.boolean "published", default: false
-    t.string "published_time", default: "1400/07/14"
+    t.string "published_time", default: "1400/07/16"
     t.boolean "draft", default: false
-    t.integer "visit_count", default: 0
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -74,6 +73,7 @@ ActiveRecord::Schema.define(version: 2021_10_08_082232) do
 
   create_table "settings", force: :cascade do |t|
     t.string "about_us"
+    t.string "tac"
     t.boolean "can_comment"
   end
 

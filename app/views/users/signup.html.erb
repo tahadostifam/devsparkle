@@ -2,7 +2,7 @@
 	<% unless flash[:success_signup].present? && flash[:success_signup] %>
 		<%= form_with model: @user, url: { :action => "submit_signup" }, method: :post do |f| %>
 			<div style="display: flex; justify-content: space-between; width: 100%; height: 42px; margin-top: 12px;">
-				<div class="btn btn-primary btn-mute">
+				<div class="btn btn-primary">
 					<ion-icon  style="font-size: 18px; margin-top: 2px;" name="logo-github"></ion-icon>
 					<span style="position: relative; top: -3px;">Github</span>
 				</div>
@@ -36,6 +36,11 @@
 				<%= f.password_field :password_confirmation %>
 			</div>
 
+			<div class="checkbox" style="margin-right: 5px; margin-top: 10px;">
+                <%= f.label :tac, raw("من تمام <a href='/users/terms_and_conditions'>قوانین</a> این وبسایت را میپذیرم") %>
+                <%= f.check_box :accept_terms_and_conditions, :checked => false %>
+            </div>
+
 			<% unless flash[:signup_errors_list].nil? %>
 				<% flash[:signup_errors_list].each do |e| %>
 					<div class="form_error_list">
@@ -43,7 +48,6 @@
 					</div>
 				<% end %>
 			<% end %>
-
 
 			<div style="width: 100%; text-align: left;">
 				<%= f.submit 'ارسال', :class => "btn btn-primary btn-large-padding" %>

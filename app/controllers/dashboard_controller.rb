@@ -187,7 +187,7 @@
   end
 
   def site_settings_params
-    params.require(:setting).permit(:about_us, :can_comment)
+    params.require(:setting).permit(:about_us, :can_comment, :tac)
   end
 
   def update_user_profile_params

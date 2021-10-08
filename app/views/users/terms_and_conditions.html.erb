@@ -1,2 +1,9 @@
-<h1>Users#terms_and_conditions</h1>
-<p>Find me in app/views/users/terms_and_conditions.html.erb</p>
+<div class="container" style="top: 0px">
+    <h2 class="container_title bb">قوانین وبسایت</h2>
+
+    <% if @setting.present? %>
+        <div class="content md_to_html" style="margin: 10px 0;" dir="rtl">
+            <%= @setting.tac %>
+        </div>
+    <% end %>
+</div>

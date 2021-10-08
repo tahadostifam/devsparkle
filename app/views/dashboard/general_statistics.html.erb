@@ -2,6 +2,17 @@
     <div class="flex_row">
         <div class="card-box">
             <div class="icon">
+                <ion-icon name="beer-outline"></ion-icon>
+            </div>
+            <h4 class="title">
+                تعداد ادمین ها
+            </h4>
+            <span class="value">
+                <%= @users.where(is_admin: true, is_owner: true).length %>
+            </span>
+        </div>
+        <div class="card-box">
+            <div class="icon">
                 <ion-icon name="people-outline"></ion-icon>
             </div>
             <h4 class="title">
@@ -13,6 +24,43 @@
         </div>
         <div class="card-box">
             <div class="icon">
+                <ion-icon name="mail-outline"></ion-icon>
+            </div>
+            <h4 class="title">
+                ایمیل های تایید نشده
+            </h4>
+            <span class="value">
+                <%= @users.where(email_confirmed: false).length %>
+            </span>
+        </div>
+    </div>
+    <div class="flex_row">
+        <div class="card-box">
+            <div class="icon">
+                <ion-icon name="male-outline"></ion-icon>
+            </div>
+            <h4 class="title">
+                تعداد کاربران مذکر
+            </h4>
+            <span class="value">
+                <%= @users.where(gender: 'مذکر').length %>
+            </span>
+        </div>
+        <div class="card-box">
+            <div class="icon">
+                <ion-icon name="female-outline"></ion-icon>
+            </div>
+            <h4 class="title">
+                تعداد کاربران مونث
+            </h4>
+            <span class="value">
+                <%= @users.where(gender: 'مونث').length %>
+            </span>
+        </div>
+    </div>
+    <div class="flex_row">
+    <div class="card-box">
+        <div class="icon">
                 <ion-icon name="newspaper-outline"></ion-icon>
             </div>
             <h4 class="title">
@@ -31,6 +79,17 @@
             </h4>
             <span class="value">
                 <%= @likes.all.length %>
+            </span>
+        </div>
+        <div class="card-box">
+            <div class="icon">
+                <ion-icon name="chatbubble-outline"></ion-icon>
+            </div>
+            <h4 class="title">
+                تعداد کامنت ها
+            </h4>
+            <span class="value">
+                0
             </span>
         </div>
     </div>
