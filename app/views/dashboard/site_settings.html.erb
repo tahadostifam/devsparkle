@@ -1,0 +1,33 @@
+<div class="content_box">
+    <%= form_with model: @setting, url: {:action => :submit_site_settings} , method: :post do |f|%>
+        <div class="form">
+            <div class="input">
+                <%= f.label :about_us, 'محتوای درباره ما' %>
+                <%= f.text_area :about_us, :style => 'height: 300px', :rows => 600, :dir => :rtl %>
+            </div>
+
+            <div class="checkbox" style="margin-right: 5px; margin-top: 10px;">
+                <%= f.label :can_comment, 'امکان نظر دهی برای مقالات' %>
+                <%= f.check_box :can_comment %>
+            </div>
+
+            <div style="margin-top: 10px;">
+                <% unless flash[:site_settings_errors].nil? %>
+                    <% flash[:site_settings_errors].each do |e| %>
+                        <div class="form_error_list">
+                            <div class="item"><%= e %></div>
+                        </div>
+                    <% end %>
+                <% end %>
+
+                <% unless flash[:site_settings_success].nil? %>
+                    <span class="success_message"><%= flash[:site_settings_success] %></span>
+                <% end %>
+            </div>
+
+            <div style="width: 100%; display: block; text-align: left;">
+                <%= f.submit 'ثبت تنظیمات', :class => "btn btn-danger btn-large-padding" %>
+            </div>
+        </div>
+    <% end %>
+</div>

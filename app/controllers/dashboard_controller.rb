@@ -5,8 +5,6 @@
     :manage_users,
     :user_profile,
     :submit_user_profile,
-    :manage_users,
-    :submit_user_profile,
     :general_statistics
 
   ]
@@ -15,6 +13,32 @@
     :submit_new_article,
     :my_articles
   ]
+
+  def site_settings
+    @setting = Setting.first
+  end
+
+  def submit_site_settings
+    @setting = Setting.first
+    if @setting.present?
+      if @setting.update(site_settings_params)
+        flash[:site_settings_success] = "تنظیمات وبسایت با موفقیت تغییر کرد."
+        redirect_to action: :site_settings
+      else
+        flash[:site_settings_errors] = @setting.errors.full_messages
+        redirect_to action: :site_settings
+      end
+    else
+      @setting = Setting.new(site_settings_params)
+      if @setting.save
+        flash[:site_settings_success] = "تنظیمات وبسایت با موفقیت تغییر کرد."
+        redirect_to action: :site_settings
+      else
+        flash[:site_settings_errors] = @setting.errors.full_messages
+        redirect_to action: :site_settings
+      end
+    end
+  end
 
   def submit_edit_profile
     @user = User.find_by(id: session[:user]['id'])
@@ -157,6 +181,10 @@
 
   def new_article_params
     params.require(:article).permit(:slug, :header, :cover_text, :image, :content, :draft, :published)
+  end
+
+  def site_settings_params
+    params.require(:setting).permit(:about_us, :can_comment)
   end
 
   def update_user_profile_params
