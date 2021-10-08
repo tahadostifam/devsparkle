@@ -1,0 +1,49 @@
+<div class="form form-large center_form">
+    <% unless nil_email %>
+        <%= form_with model: @user, url: { :action => :complete_signup_with_github }, method: :post do |f| %>
+                <h3 class="form_title">تکمیل ثبت نام با گیت هاب</h3>
+
+                <span dir="rtl">
+                    اکانت شناسایی شده : <%= @user.username %>
+                </span>
+
+                <div class="input">
+                    <%= f.label :password, 'گذرواژه' %>
+                    <%= f.password_field :password %>
+                </div>
+                <div class="input">
+                    <%= f.label :password_confirm, 'تکرار گذرواژه' %>
+                    <%= f.password_field :password_confirmation %>
+                </div>
+
+                <div class="checkbox" style="margin-right: 5px; margin-top: 10px;">
+                    <%= f.label :tac, raw("من تمام <a href='/users/terms_and_conditions'>قوانین</a> این وبسایت را میپذیرم") %>
+                    <%= f.check_box :accept_terms_and_conditions, :checked => false %>
+                </div>
+
+                <% unless flash[:complete_signup_with_github_errors].nil? %>
+                    <% flash[:complete_signup_with_github_errors].each do |e| %>
+                        <div class="form_error_list">
+                            <div class="item"><%= e %></div>
+                        </div>
+                    <% end %>
+                <% end %>
+
+                <div style="width: 100%; text-align: left;">
+                    <%= f.submit 'تکمیل ثبت نام', :class => "btn btn-primary btn-large-padding" %>
+                </div>
+        <% end %>
+    <% else %>
+        <h3 style="text-align-center">خطا در ادامه عملیات</h3>
+        <span class="link" dir="rtl">
+            دوست عزیز برای ادامه ثبت نام بوسیله اکانت گیت هاب لازم است که ایمیل تان را در اکانت گیت هاب تان عمومی کنید :
+        </span>
+
+        <div style="width: 100%; display: block; margin-top: 20px; text-align: left">
+            <a class="link link-general" style="font-size: 15px" href="https://github.com/settings/profile">https://github.com/settings/profile</a>
+            <div style="width: 100%; height: 350px; display: block; margin-top: 5px; text-align: center" class="image">
+                <%= image_tag '/github_public_email_help.png', :alt => "change github mail to public mail", :onload => "imagePreloader(this)" %>
+            </div>
+        </div>
+    <% end %>
+</div>

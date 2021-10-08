@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   get 'users/terms_and_conditions'
   get 'users/signup_with_github/:clientid', to: 'users#signup_with_github'
   get 'users/signup_with_github_callback'
+  post 'users/complete_signup_with_github'
 
   get 'articles/index'
   get 'articles/show/:slug', to: 'articles#show'

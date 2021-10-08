@@ -47,9 +47,31 @@ class UsersController < ApplicationController
     user_info = github_api.fetch_github params['code']
 
     if user_info.present?
-      render :json => user_info
+      unless user_info['email'].present?
+        return render :complete_signup_with_github, :locals => { nil_email: true }
+      end
+      @user = User.new
+      @user.email = user_info['email']
+      @user.full_name = user_info['name']
+      @user.username = user_info['login']
+      flash[:user_info_in_signup_with_github] = @user
+      render :complete_signup_with_github, :locals => { nil_email: false }
     else
-      render :json => JSON.parse('{"code": "500"}')
+      redirect_to action: :signup
+    end
+  end
+
+  def complete_signup_with_github
+    @user = User.new(flash[:user_info_in_signup_with_github])
+    @user.password = complete_signup_with_github_params['password']
+    @user.password_confirmation = complete_signup_with_github_params['password_confirmation']
+    @user.accept_terms_and_conditions = complete_signup_with_github_params['accept_terms_and_conditions']
+    if @user.save
+      session[:user] = @user
+      redirect_to '/dashboard/index'
+    else
+      flash[:complete_signup_with_github_errors] = @user.errors.full_messages
+      render :complete_signup_with_github, :locals => { nil_email: false }
     end
   end
 
@@ -89,9 +111,11 @@ class UsersController < ApplicationController
     @setting = Setting.first
   end
 
-  
-
   private
+
+  def complete_signup_with_github_params
+    params.require(:user).permit(:password, :password_confirmation, :accept_terms_and_conditions)
+  end
 
   def signin_params
     params.require(:user).permit(:username, :password)
