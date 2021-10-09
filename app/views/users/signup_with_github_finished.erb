@@ -21,14 +21,16 @@
         </div>
     <% else %>
         <div style="text-align: center">
-            <h3>ثبت نام با موفقیت انجام شد</h3>
+            <h3 style="margin-bottom: 10px;">ثبت نام با موفقیت انجام شد</h3>
             <span class="link" dir="rtl">
                 نام کاربری شما : <span style="user-select: text; cursor: text;" class="link link-general"><%= @user.username %></span>
                 <br>
                 گذرواژه شما : <span style="user-select: text; cursor: text;" class="link link-general"><%= @user.password %></span>
                 <br>
-                حتمی برای تغییر گذرواژه از داشبورد اقدام کنید.
+                حتمی برای <%= link_to 'تغییر گذرواژه', dashboard_change_password_url, :class => 'link link-general' %> از داشبورد اقدام کنید.
             </span>
+            <br><br>
+            <%= link_to 'داشبورد', dashboard_edit_profile_url, :class => "btn btn-primary btn-large-padding" %>
         </div>
     <% end %>
 </div>

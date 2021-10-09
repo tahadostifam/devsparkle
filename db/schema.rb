@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2021_10_08_082232) do
     t.text "content", null: false
     t.text "cover_text"
     t.boolean "published", default: false
-    t.string "published_time", default: "1400/07/16"
+    t.string "published_time", default: "1400/07/17"
     t.boolean "draft", default: false
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
