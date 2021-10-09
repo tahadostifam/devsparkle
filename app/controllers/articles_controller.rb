@@ -11,6 +11,7 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find_by(slug: params[:slug])
+    @setting = Setting.first
     if @article.present?
       if session[:user] != nil
         if @article.user_id == session[:user][:id] || session[:user][:is_owner]

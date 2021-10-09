@@ -1,6 +1,6 @@
 class Article < ApplicationRecord
-    before_create :handle_auto_params
-    before_update :handle_auto_params
+    before_create :handle_auto_params_create
+    before_update :handle_auto_params_update
     
     has_one_attached :image
 
@@ -38,7 +38,12 @@ class Article < ApplicationRecord
         ret
     end
 
-    def handle_auto_params
+    def handle_auto_params_update
         self.slug = to_slug(self.header)
+    end
+
+    def handle_auto_params_create
+        self.slug = to_slug(self.header)
+        self.published_time = Date.today.to_pdate.strftime("%Y/%m/%d")
     end
 end

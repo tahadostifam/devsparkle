@@ -176,3 +176,66 @@
 		height: 300px;
 	}
 }
+.comments{
+	.header{
+		margin-bottom: 20px;
+	}
+	.send_comment{
+		margin-bottom: 10px;
+		.header{
+			margin-bottom: 0;
+			margin-top: 10px;
+		}
+		form{
+			width: 100%;
+			.input{
+				background: transparent;
+			}
+		}
+	}
+	.comment{
+		position: relative;
+		width: 100%;
+		background: #fff;
+		border-radius: 5px;
+		display: block;
+		padding: 10px;
+		text-align: start;
+		direction: rtl;
+		min-height: 50px;
+		text-decoration: none;
+		color: #000;
+		.sender{
+			position: absolute;
+			top: -13px;
+			right: 10px;
+			padding: 0 3px;
+			font-size: 16px;
+		}
+		.datetime{
+			position: absolute;
+			bottom: -12px;
+			left: 0;
+			padding: 0 3px;
+			font-size: 9px;
+			font-family: sans-serif;
+			color: #777;
+		}
+		.content{
+			padding: 5px 10px;
+			font-size: 14px;
+			display: block;
+		}
+		.toolbar{
+			position: absolute;
+			left: 7px;
+			top: -12px;
+			display: flex;
+			.link{
+				display: inline-block;
+				margin: 0 5px;
+				font-size: 13px;
+			}
+		}
+	}
+}

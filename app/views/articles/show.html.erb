@@ -75,6 +75,35 @@
                     <%= @article.user.full_name %>
                 </div>
             </div>
+            <div class="comments">
+                <% if @setting.present? && @setting.can_comment? %>
+                    <div class="send_comment">
+                        <h4 class="header">نظر شما درباره این مقاله چیست؟</h4>
+                        <%= form_with model: @comment, url: '/', method: :post do |f| %>
+                            <div class="input">
+                                <%= f.text_area :content, :style => 'height: 300px;', :rows => 600, :dir => :rtl %>
+                            </div>
+
+                            <%= f.submit "ثبت نظر", :class => 'btn btn-primary'%>
+                        <% end %>
+                    </div>
+                <% end %>
+                <h2 class="header">نظرات کاربران</h2>
+                <% @article.comments.each do |c| %>
+                    <a class="comment" id="#<%= c.hash_id %>">
+                        <div class="toolbar">
+                            <div class="link">کپی لینک</div>
+                            <div class="link">ویرایش</div>
+                            <div class="link link-danger">حذف</div>
+                        </div>
+                        <span class="sender"><%= c.user.full_name %></span>
+                        <span class="datetime">1400/0/0</span>
+                        <p class="content">
+                            <%= c.content %>
+                        </p>
+                    </a>
+                <% end %>
+            </div>
         </div>
         <% else %>
             <span style='color: #777; font-size: 17px; width: 100%; display: block; text-align: center; padding: 20px 0'>مقاله مورد نظر پیدا نشد.</span>

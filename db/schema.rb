@@ -58,6 +58,8 @@ ActiveRecord::Schema.define(version: 2021_10_08_082232) do
     t.integer "user_id"
     t.integer "article_id"
     t.string "content"
+    t.string "send_time"
+    t.string "hash_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["article_id"], name: "index_comments_on_article_id"
@@ -95,4 +97,6 @@ ActiveRecord::Schema.define(version: 2021_10_08_082232) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "comments", "articles"
+  add_foreign_key "comments", "users"
 end
