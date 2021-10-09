@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   get 'dashboard/articles_that_not_verified'
   post 'dashboard/submit_articles_that_not_verified'
 
+  post 'articles/new_comment'
+
   get 'users/signin'
   post 'users/submit_signup'
   get 'users/signup'

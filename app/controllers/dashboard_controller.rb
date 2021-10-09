@@ -177,6 +177,7 @@
     @articles = Article.all
     @users = User.all
     @likes = Like.all
+    @comments = Comment.all
   end
 
   private

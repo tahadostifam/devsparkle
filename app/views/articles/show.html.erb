@@ -79,29 +79,53 @@
                 <% if @setting.present? && @setting.can_comment? %>
                     <div class="send_comment">
                         <h4 class="header">نظر شما درباره این مقاله چیست؟</h4>
-                        <%= form_with model: @comment, url: '/', method: :post do |f| %>
+                        <%= form_with model: @comment, url: articles_new_comment_url, method: :post do |f| %>
+                            <%= f.hidden_field :slug, :value => @article.slug %>
                             <div class="input">
-                                <%= f.text_area :content, :style => 'height: 300px;', :rows => 600, :dir => :rtl %>
+                                <%= f.text_area :content, :multiline => true, :style => 'height: 100px;', :rows => 600, :dir => :rtl %>
+                            </div>
+
+                            <div style="margin-top: 10px; margin-bottom: 10px;">
+                                <% unless flash[:new_comment_errors].nil? %>
+                                    <% flash[:new_comment_errors].each do |e| %>
+                                        <div class="form_error_list">
+                                            <div class="item"><%= e %></div>
+                                        </div>
+                                    <% end %>
+                                <% end %>
+
+                                <% unless flash[:new_comment_success].nil? %>
+                                    <span class="success_message"><%= flash[:new_comment_success] %></span>
+                                <% end %>
                             </div>
 
                             <%= f.submit "ثبت نظر", :class => 'btn btn-primary'%>
                         <% end %>
                     </div>
                 <% end %>
-                <h2 class="header">نظرات کاربران</h2>
-                <% @article.comments.each do |c| %>
-                    <a class="comment" id="#<%= c.hash_id %>">
-                        <div class="toolbar">
-                            <div class="link">کپی لینک</div>
-                            <div class="link">ویرایش</div>
-                            <div class="link link-danger">حذف</div>
+                <h2 class="header">
+                    نظرات کاربران
+                    <% if @article.comments.length > 0 %>
+                        (<%= @article.comments.length %>)
+                    <% end %>    
+                </h2>
+                <% if @article.comments.length > 0 %>
+                    <% @article.comments.each do |c| %>
+                        <div class="comment">
+                            <div class="toolbar">
+                                <div class="link">کپی لینک</div>
+                                <div class="link">ویرایش</div>
+                                <div class="link link-danger">حذف</div>
+                            </div>
+                            <span class="sender"><%= c.user.full_name %></span>
+                            <span class="datetime"><%= c.send_time %></span>
+                            <p class="content" id="#<%= c.hash_id %>">
+                                <%= c.content %>
+                            </p>
                         </div>
-                        <span class="sender"><%= c.user.full_name %></span>
-                        <span class="datetime">1400/0/0</span>
-                        <p class="content">
-                            <%= c.content %>
-                        </p>
-                    </a>
+                    <% end %>
+                <% else %>
+                    <span style="display: block; width: 100%; text-align: center;" class="link">نظری وجود ندارد.</span>
                 <% end %>
             </div>
         </div>

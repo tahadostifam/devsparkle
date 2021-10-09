@@ -12,6 +12,7 @@ class ArticlesController < ApplicationController
   def show
     @article = Article.find_by(slug: params[:slug])
     @setting = Setting.first
+    @comment = Comment.new
     if @article.present?
       if session[:user] != nil
         if @article.user_id == session[:user][:id] || session[:user][:is_owner]
@@ -22,6 +23,29 @@ class ArticlesController < ApplicationController
         @article = nil
       end
       render :show, :locals => { :show_actions => false }
+    end
+  end
+
+  def new_comment
+    if Setting.first.present? && Setting.first.can_comment
+      @article = Article.find_by(slug: params.require(:comment).permit(:slug)[:slug])
+      if @article.present?
+        @comment = Comment.new(new_comment_params)
+        @comment.user_id = session[:user][:id]
+        @comment.article_id = @article.id
+        if @comment.save
+          flash[:new_comment_success] = "نظر شما با موفقیت ثبت شد."
+          redirect_to '/articles/show/' + @article.slug + '/#' + @comment.hash_id
+        else
+          flash[:new_comment_errors] = @comment.errors.full_messages
+          redirect_to '/articles/show/' + @article.slug
+        end
+      else
+        redirect_to '/404'
+        puts params[:article_slug]
+      end
+    else
+      redirect_to '/503'
     end
   end
 
@@ -61,5 +85,9 @@ class ArticlesController < ApplicationController
     unless session[:user].is_admin?
       redirect_to '/503'
     end
+  end
+
+  def new_comment_params
+    params.require(:comment).permit(:content)
   end
 end
