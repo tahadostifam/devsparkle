@@ -20,6 +20,7 @@
                     <%= form_with url: { :action => :submit_articles_that_not_verified } do |f| %>
                         <div class="form">
                             <%= f.hidden_field :slug, :value => a.slug %>
+                            <%= f.hidden_field :next_page, :value => '/dashboard/articles_that_not_verified' %>
                             <%= f.submit 'تایید', :class => 'btn btn-success btn-large-padding' %>
                         </div>
                     <% end %>

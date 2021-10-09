@@ -30,7 +30,7 @@
     @atnv = Article.where(slug: params[:slug])
     if @atnv.present?
       if @atnv.update(published: true)
-        redirect_to action: :articles_that_not_verified
+        redirect_to params[:next_page]
       else
         redirect_to '/503'
       end
