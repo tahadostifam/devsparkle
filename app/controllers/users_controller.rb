@@ -38,40 +38,42 @@ class UsersController < ApplicationController
   end
   
   def signup_with_github
+    # github button
     redirect_to 'https://github.com/login/oauth/authorize?client_id=' + params[:clientid]
   end
 
   def signup_with_github_callback
+    # form
+
     github_api = GithubApi.new
 
     user_info = github_api.fetch_github params['code']
 
     if user_info.present?
-      unless user_info['email'].present?
-        return render :complete_signup_with_github, :locals => { nil_email: true }
-      end
       @user = User.new
+      unless user_info['email'].present?
+        return render :signup_with_github_finished, :locals => { nil_email: true, um_used: false }
+      end
       @user.email = user_info['email']
-      @user.full_name = user_info['name']
       @user.username = user_info['login']
-      flash[:user_info_in_signup_with_github] = @user
-      render :complete_signup_with_github, :locals => { nil_email: false }
+      check_email_and_username_quniqness = User.where(username: @user.username, email: @user.email).first
+      if check_email_and_username_quniqness != nil
+        return render :signup_with_github_finished, :locals => { nil_email: false, um_used: true }  
+      end
+      @user.full_name = user_info['name']
+      rdnpss = SecureRandom.alphanumeric(15)
+      @user.password = rdnpss
+      @user.password_confirmation = rdnpss
+      @user.email_confirmed = true
+
+      if @user.save
+        session[:user] = @user
+        render :signup_with_github_finished, :locals => { nil_email: false, um_used: false }
+      else
+        redirect_to '/500'
+      end
     else
       redirect_to action: :signup
-    end
-  end
-
-  def complete_signup_with_github
-    @user = User.new(flash[:user_info_in_signup_with_github])
-    @user.password = complete_signup_with_github_params['password']
-    @user.password_confirmation = complete_signup_with_github_params['password_confirmation']
-    @user.accept_terms_and_conditions = complete_signup_with_github_params['accept_terms_and_conditions']
-    if @user.save
-      session[:user] = @user
-      redirect_to '/dashboard/index'
-    else
-      flash[:complete_signup_with_github_errors] = @user.errors.full_messages
-      render :complete_signup_with_github, :locals => { nil_email: false, user: @user }
     end
   end
 
@@ -114,7 +116,7 @@ class UsersController < ApplicationController
   private
 
   def complete_signup_with_github_params
-    params.require(:user).permit(:password, :password_confirmation, :accept_terms_and_conditions)
+    params.require(:user).permit(:password, :password_confirmation)
   end
 
   def signin_params

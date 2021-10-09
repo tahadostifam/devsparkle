@@ -1,0 +1,34 @@
+<div class="form form-large center_form">
+    <% if nil_email %>
+        <h3 style="text-align-center">خطا در ادامه عملیات</h3>
+        <span class="link" dir="rtl">
+            دوست عزیز برای ادامه ثبت نام بوسیله اکانت گیت هاب لازم است که ایمیل تان را در اکانت گیت هاب تان عمومی کنید :
+        </span>
+
+        <div style="width: 100%; display: block; margin-top: 20px; text-align: left">
+            <a class="link link-general" style="font-size: 15px" href="https://github.com/settings/profile">https://github.com/settings/profile</a>
+            <div style="width: 100%; height: 350px; display: block; margin-top: 5px; text-align: center" class="image">
+                <%= image_tag '/github_public_email_help.png', :alt => "change github mail to public mail", :onload => "imagePreloader(this)" %>
+            </div>
+        </div>
+    <% end %>
+    <% if um_used %>
+        <div style="text-align: center; padding: 20px 0">
+            <h3 style="text-align-center">کاربر دیگری با این ایمیل یا نام کاربری وجود دارد</h3>
+            <a href="/users/signin" style="margin-top: 10px;" class="link" dir="rtl">
+                صفحه ورود
+            </a>
+        </div>
+    <% else %>
+        <div style="text-align: center">
+            <h3>ثبت نام با موفقیت انجام شد</h3>
+            <span class="link" dir="rtl">
+                نام کاربری شما : <span style="user-select: text; cursor: text;" class="link link-general"><%= @user.username %></span>
+                <br>
+                گذرواژه شما : <span style="user-select: text; cursor: text;" class="link link-general"><%= @user.password %></span>
+                <br>
+                حتمی برای تغییر گذرواژه از داشبورد اقدام کنید.
+            </span>
+        </div>
+    <% end %>
+</div>
