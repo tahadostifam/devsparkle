@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   def submit_signup
+    puts user_params
     @user = User.new(user_params)
     if @user.save
       UserMailer.with(user: @user).send_confirm_account.deliver_later
@@ -124,6 +125,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.permit(:full_name, :email, :username, :password, :password_confirmation, :accept_terms_and_conditions)
+    params.require(:user).permit(:full_name, :email, :username, :password, :password_confirmation, :accept_terms_and_conditions)
   end
 end

@@ -76,7 +76,8 @@
                 </div>
             </div>
             <div class="comments">
-                <% if @setting.present? && @setting.can_comment? %>
+                <% if session[:user] != nil %>
+                  <% if @setting.present? && @setting.can_comment? == true || session[:user][:is_owner] || session[:user][:is_admin] %>
                     <div class="send_comment">
                         <h4 class="header">نظر شما درباره این مقاله چیست؟</h4>
                         <%= form_with model: @comment, url: articles_new_comment_url, method: :post do |f| %>
@@ -103,6 +104,7 @@
                         <% end %>
                     </div>
                 <% end %>
+                <% end %>
                 <h2 class="header">
                     نظرات کاربران
                     <% if @article.comments.length > 0 %>
@@ -113,9 +115,16 @@
                     <% @article.comments.each do |c| %>
                         <div class="comment">
                             <div class="toolbar">
-                                <div class="link">کپی لینک</div>
-                                <div class="link">ویرایش</div>
-                                <div class="link link-danger">حذف</div>
+                              <% if session[:user] != nil  %>
+                                <% if @article.user_id == session[:user][:id] || session[:user][:is_owner] || session[:user][:is_admin] %>
+                                    <div class="link">کپی لینک</div>
+                                    <div class="link">ویرایش</div>
+                                    <%= form_with url: articles_remove_comment_url, method: :post do |f| %>
+                                      <%= f.hidden_field :hash_id, :value => c.hash_id %>
+                                      <%= f.submit 'حذف', :class => 'link link-danger btn-none' %>
+                                    <% end %>
+                                <% end %>
+                              <% end %>
                             </div>
                             <span class="sender"><%= c.user.full_name %></span>
                             <span class="datetime"><%= c.send_time %></span>

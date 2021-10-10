@@ -2,7 +2,8 @@ class ArticlesController < ApplicationController
   before_action :need_owner_access, only: []
   before_action :need_admin_access, only: [
     :confirm_delete_article,
-    :submit_delete_article
+    :submit_delete_article,
+    :remove_comment,
   ]
 
   def index
@@ -46,6 +47,20 @@ class ArticlesController < ApplicationController
       end
     else
       redirect_to '/503'
+    end
+  end
+
+  def remove_comment
+    @comment = Comment.find_by(hash_id: params[:hash_id])
+    if @comment.present?
+      if @comment.user_id == session[:user][:id] || @comment.user.is_owner || @comment.user.is_admin
+        @comment.delete
+        redirect_to '/articles/show/' + @comment.article.slug
+      else
+        redirect_to '/503'
+      end
+    else
+      redirect_to '/404'
     end
   end
 
