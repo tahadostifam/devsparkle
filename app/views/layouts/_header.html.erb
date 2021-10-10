@@ -31,7 +31,7 @@
 			<% end %>
 		</div>
 		<div id="navbar-left">
-			<%= active_link_to 'درباره ما', introduction_about_us_path, :class => "btn btn-secondary" %>
+			<%= active_link_to 'درباره ما', about_us_path, :class => "btn btn-secondary" %>
 			<%= active_link_to 'مقالات', articles_index_path, :class => "btn btn-secondary" %>
 			<a class="btn btn-secondary btn-mute"><del>دوره ها</del></a>
 		</div>
@@ -69,7 +69,7 @@
 				درباره ما
 			</span>
 		</div>
-		'), introduction_about_us_path %>
+		'), about_us_path %>
 		<% unless session[:user].present? %>
 			<%= active_link_to raw('
 			<div class="item">

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'introduction#index'
   
   get 'introduction/index'
-  get 'introduction/about_us'
+  get 'about_us', to: 'introduction#about_us'
 
   get 'dashboard/edit_profile'
   post 'dashboard/submit_edit_profile'

@@ -117,7 +117,7 @@
                             <div class="toolbar">
                               <% if session[:user] != nil  %>
                                 <% if @article.user_id == session[:user][:id] || session[:user][:is_owner] || session[:user][:is_admin] %>
-                                    <div class="link">کپی لینک</div>
+                                    <div class="link" style="position: relative; top: 1px">کپی لینک</div>
                                     <div class="link">ویرایش</div>
                                     <%= form_with url: articles_remove_comment_url, method: :post do |f| %>
                                       <%= f.hidden_field :hash_id, :value => c.hash_id %>
@@ -129,7 +129,7 @@
                             <span class="sender"><%= c.user.full_name %></span>
                             <span class="datetime"><%= c.send_time %></span>
                             <p class="content" id="#<%= c.hash_id %>">
-                                <%= c.content %>
+                                <%= c.content.to_s.strip %>
                             </p>
                         </div>
                     <% end %>
