@@ -178,7 +178,7 @@
 }
 .comments{
 	.header{
-		margin-bottom: 20px;
+		margin-bottom: 35px;
 	}
 	.send_comment{
 		margin-bottom: 10px;
@@ -194,7 +194,7 @@
 		}
 	}
 	.comment{
-		margin-bottom: 30px;
+		margin-bottom: 50px;
 		position: relative;
 		width: 100%;
 		background: #fff;
@@ -208,8 +208,8 @@
 		color: #000;
 		.sender{
 			position: absolute;
-			top: -11px;
-			right: 10px;
+			top: -25px;
+    		right: 0;
 			padding: 0 3px;
 			font-size: 16px;
 		}
@@ -229,8 +229,8 @@
 		}
 		.toolbar{
 			position: absolute;
-			left: 7px;
-			top: -12px;
+			left: 0px;
+			top: -25px;
 			display: flex;
 			.link{
 				display: inline-block;
