@@ -145,19 +145,21 @@
                             <p class="content" id="#comment_<%= c.hash_id %>">
                                 <%= c.content.to_s.strip %>
                             </p>
-                            <% if @article.user_id == session[:user][:id] || session[:user][:is_owner] || session[:user][:is_admin] %>
-                                <div class="edit_comment_textarea" style="display: none">
-                                    <%= form_with model: c, url: {:action => :edit_comment}, :html => {:style => "width: 100%;"}, method: :post do |f| %>
-                                        <%= f.hidden_field :hash_id, :value => c.hash_id %>
+                            <% if session[:user].present? %>
+                                <% if @article.user_id == session[:user][:id] || session[:user][:is_owner] || session[:user][:is_admin] %>
+                                    <div class="edit_comment_textarea" style="display: none">
+                                        <%= form_with model: c, url: {:action => :edit_comment}, :html => {:style => "width: 100%;"}, method: :post do |f| %>
+                                            <%= f.hidden_field :hash_id, :value => c.hash_id %>
 
-                                        <div class="input">
-                                            <%= f.text_area :content, :multiline => true, :style => 'height: 60px; width: 100%', :rows => 600, :dir => :rtl %>
-                                        </div>
+                                            <div class="input">
+                                                <%= f.text_area :content, :multiline => true, :style => 'height: 60px; width: 100%', :rows => 600, :dir => :rtl %>
+                                            </div>
 
-                                        <%= f.submit "ثبت", :class => 'btn btn-primary btn-large-padding'%>
-                                        <div onclick="cancel_edit_comment(this)" class="btn btn-danger" style="display: inline-block">انصراف</div>
-                                    <% end %>
-                                </div>
+                                            <%= f.submit "ثبت", :class => 'btn btn-primary btn-large-padding'%>
+                                            <div onclick="cancel_edit_comment(this)" class="btn btn-danger" style="display: inline-block">انصراف</div>
+                                        <% end %>
+                                    </div>
+                                <% end %>
                             <% end %>
                         </div>
                     <% end %>

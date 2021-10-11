@@ -65,14 +65,16 @@
 			</span>
 		</div>
 		'), articles_index_path %>
-		<% if session[:user][:is_owner] || session[:user][:is_admin]%>
-			<%= active_link_to raw('
-			<div class="item item-center">
-				<div class="icon">
-					<ion-icon name="add-outline"></ion-icon>
+		<% if session[:user].present? %>
+			<% if  session[:user][:is_owner] || session[:user][:is_admin]%>
+				<%= active_link_to raw('
+				<div class="item item-center">
+					<div class="icon">
+						<ion-icon name="add-outline"></ion-icon>
+					</div>
 				</div>
-			</div>
-			'), dashboard_new_article_url %>
+				'), dashboard_new_article_url %>
+			<% end %>
 		<% end %>
 		<%= active_link_to raw('
 		<div class="item">
