@@ -1,4 +1,19 @@
 <div class="container" style="top: 0">
+    <% if flash[:comment_removed_successfully] != nil && flash[:comment_removed_successfully] %>
+        <div class="popup_alert_box form">
+            <button onclick="close_popup_alert_box(this)" class="close_button btn-none">
+                <ion-icon name="close-outline"></ion-icon>
+            </button>
+            <div class="content">
+                <div style="text-align: center;">
+                    <div style="width: 100%; display: block; margin-bottom: 10px; margin-top: 10px;">
+                        <ion-icon style="font-size: 120px;" name="trash-outline"></ion-icon>
+                    </div>
+                    <span dir="rtl">کامنت با موفقیت حذف شد.</span>
+                </div>
+            </div>
+        </div>
+    <% end %>
     <div id="view_article">
        <% if @article.present? %>
             <div class='article_box'>
@@ -112,13 +127,12 @@
                     <% end %>    
                 </h2>
                 <% if @article.comments.length > 0 %>
-                    <% @article.comments.each do |c| %>
+                    <% @comments.each do |c| %>
                         <div class="comment">
                             <div class="toolbar">
                               <% if session[:user] != nil  %>
                                 <% if @article.user_id == session[:user][:id] || session[:user][:is_owner] || session[:user][:is_admin] %>
-                                    <div class="link" style="position: relative; top: 1px">کپی لینک</div>
-                                    <div class="link">ویرایش</div>
+                                    <div class="link" style="position: relative; top: 2px">کپی لینک</div>
                                     <%= form_with url: articles_remove_comment_url, method: :post do |f| %>
                                       <%= f.hidden_field :hash_id, :value => c.hash_id %>
                                       <%= f.submit 'حذف', :class => 'link link-danger btn-none' %>
@@ -128,9 +142,23 @@
                             </div>
                             <span class="sender"><%= c.user.full_name %></span>
                             <span class="datetime"><%= c.send_time %></span>
-                            <p class="content" id="#<%= c.hash_id %>">
+                            <p class="content" id="#comment_<%= c.hash_id %>">
                                 <%= c.content.to_s.strip %>
                             </p>
+                            <% if @article.user_id == session[:user][:id] || session[:user][:is_owner] || session[:user][:is_admin] %>
+                                <div class="edit_comment_textarea" style="display: none">
+                                    <%= form_with model: c, url: {:action => :edit_comment}, :html => {:style => "width: 100%;"}, method: :post do |f| %>
+                                        <%= f.hidden_field :hash_id, :value => c.hash_id %>
+
+                                        <div class="input">
+                                            <%= f.text_area :content, :multiline => true, :style => 'height: 60px; width: 100%', :rows => 600, :dir => :rtl %>
+                                        </div>
+
+                                        <%= f.submit "ثبت", :class => 'btn btn-primary btn-large-padding'%>
+                                        <div onclick="cancel_edit_comment(this)" class="btn btn-danger" style="display: inline-block">انصراف</div>
+                                    <% end %>
+                                </div>
+                            <% end %>
                         </div>
                     <% end %>
                 <% else %>

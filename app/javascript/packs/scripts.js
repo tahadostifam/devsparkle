@@ -4,6 +4,10 @@ window.imagePreloader = function (e) {
 	return e.classList.add('loaded')
 }
 
+window.close_popup_alert_box = (close_button) => {
+	close_button.parentElement.style.display = "none"
+}
+
 document.addEventListener("turbolinks:load", function() {
 	const markdownDivsToHtml = document.querySelector('.md_to_html')
 	if (markdownDivsToHtml) {

@@ -28,6 +28,7 @@ Rails.application.routes.draw do
 
   post 'articles/new_comment'
   post 'articles/remove_comment'
+  post 'articles/edit_comment'
 
   get 'users/signin'
   post 'users/submit_signup'

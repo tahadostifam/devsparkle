@@ -14,6 +14,7 @@ class ArticlesController < ApplicationController
     @article = Article.find_by(slug: params[:slug])
     @setting = Setting.first
     @comment = Comment.new
+    @comments = Comment.order("created_at DESC").all
     if @article.present?
       if session[:user] != nil
         if @article.user_id == session[:user][:id] || session[:user][:is_owner]
@@ -55,6 +56,7 @@ class ArticlesController < ApplicationController
     if @comment.present?
       if @comment.user_id == session[:user][:id] || @comment.user.is_owner || @comment.user.is_admin
         @comment.delete
+        flash[:comment_removed_successfully] = true
         redirect_to '/articles/show/' + @comment.article.slug
       else
         redirect_to '/503'
