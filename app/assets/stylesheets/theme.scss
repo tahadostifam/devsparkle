@@ -154,6 +154,22 @@ body {
             &.active{
                 
             }
+            &.item-center{
+                color: #fff;
+                &.active{
+                    color: #fff;
+                }
+                position: relative;
+                top: -34px;
+                background: #003cff;
+                border-radius: 17px;
+                .icon{
+                    top: 12px;
+                }
+                --size: 50px;
+                width: var(--size);
+                height: var(--size);
+            }
         }
     }
 }

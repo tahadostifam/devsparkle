@@ -7,7 +7,7 @@
 				<%= active_link_to "ثبت نام", users_signup_path, :class => "btn btn-secondary" %>
 				<%= active_link_to "ورود", users_signin_path, :class => "btn btn-secondary" %>
 			<% else %>
-				<div class="dropdown">
+				<div class="dropdown" style="display: inline-block">
 					<div class="button">
 						<div class="inline_avatar">
 							<div class="avatar">
@@ -29,6 +29,11 @@
 					</div>
 				</div>
 			<% end %>
+ 			<a href="<%= dashboard_new_article_url %>">
+				<div style="display: inline-block; margin-right: 10px; font-size: 30px; position: relative; top: 10px; height: 34px; cursor: pointer" class="btn-none">
+					<ion-icon style="color: #dadada;" name="add-outline"></ion-icon>
+				</div>
+			</a>
 		</div>
 		<div id="navbar-left">
 			<%= active_link_to 'درباره ما', about_us_path, :class => "btn btn-secondary" %>
@@ -60,6 +65,15 @@
 			</span>
 		</div>
 		'), articles_index_path %>
+		<% if session[:user][:is_owner] || session[:user][:is_admin]%>
+			<%= active_link_to raw('
+			<div class="item item-center">
+				<div class="icon">
+					<ion-icon name="add-outline"></ion-icon>
+				</div>
+			</div>
+			'), dashboard_new_article_url %>
+		<% end %>
 		<%= active_link_to raw('
 		<div class="item">
 			<div class="icon">
