@@ -74,11 +74,11 @@
                     </div>
                 </div>
             </div>
-            <% if @article.image.persisted? %>
+            <% # if @article.image.url.present? %>
                 <div class='image cover'>
-                    <%= image_tag @article.image, :onload => 'imagePreloader(this)' %>
+                    <%= image_tag @article.image.url, :onload => 'imagePreloader(this)' %>  
                 </div>
-            <% end %>
+            <% # end %>
             <div class="content md_to_html" style="margin: 10px 0;" dir="rtl">
                 <%= @article.content %>
             </div>

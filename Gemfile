@@ -22,6 +22,11 @@ gem 'rest-client', '~> 2.1'
 # a gem for validate activestorage items
 gem 'activestorage-validator'
 # active links handler (+active_class)
+
+# paperclip | ftp active-storage
+gem "paperclip-storage-ftp"
+gem 'paperclip', '~> 6.1'
+
 gem 'active_link_to'
 # date helper for rails
 gem 'rails_pdate'

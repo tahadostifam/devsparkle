@@ -8,7 +8,7 @@
 					<a href="/articles/show/<%= art.slug %>">
 						<div class='article_box'>
 							<div class='image cover'>
-								<%= image_tag art.image, :onload => 'imagePreloader(this)' %>
+								<%= image_tag art.image.url, :onload => 'imagePreloader(this)' %>
 							</div>
 							<h3 class='title'><%= art.header %></h3>
 							<p class='desc'><%= art.cover_text %></p>

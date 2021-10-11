@@ -2,15 +2,31 @@ class Article < ApplicationRecord
     before_create :handle_auto_params_create
     before_update :handle_auto_params_update
     
-    has_one_attached :image
+    has_attached_file :image, {
+        :storage => :ftp,
+        :path => "/public_html/:attachment/:id/:style/:filename",
+        :url => "http://zedxgroup.ir/:attachment/:id/:style/:filename",
+        :ftp_servers => [
+            { 
+                :host => ENV["FTP_HOST"],
+                :user => ENV["FTP_USER"],
+                :password => ENV["FTP_PASS"],
+                passive: true
+            }
+        ],
+        :ftp_ignore_failing_connections => true,
+        :ftp_keep_empty_directories => true
+    }
+    
 
+    validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
+    
     belongs_to :user
     has_many :comments
     has_many :likes
 
     validates_presence_of :header, :cover_text, :content
     validates_presence_of :image, on: :create
-    validates :image, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 1..3.megabytes }
     
     def liked(uid)
         return self.likes.select { |l| l.user_id == uid && l.article_id == self.id }.length > 0

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_08_082232) do
+ActiveRecord::Schema.define(version: 2021_10_11_114325) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -46,20 +46,24 @@ ActiveRecord::Schema.define(version: 2021_10_08_082232) do
     t.text "content", null: false
     t.text "cover_text"
     t.boolean "published", default: false
-    t.string "published_time", default: "1400/07/17"
+    t.string "published_time"
     t.boolean "draft", default: false
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "image_file_name"
+    t.integer "image_file_size"
+    t.string "image_content_type"
+    t.datetime "image_updated_at"
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "article_id"
-    t.string "content"
-    t.string "send_time"
-    t.string "hash_id"
+    t.integer "user_id", null: false
+    t.integer "article_id", null: false
+    t.string "content", null: false
+    t.string "send_time", null: false
+    t.string "hash_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["article_id"], name: "index_comments_on_article_id"
@@ -97,6 +101,4 @@ ActiveRecord::Schema.define(version: 2021_10_08_082232) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "comments", "articles"
-  add_foreign_key "comments", "users"
 end
