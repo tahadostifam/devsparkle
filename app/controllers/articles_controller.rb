@@ -14,7 +14,7 @@ class ArticlesController < ApplicationController
     @article = Article.find_by(slug: params[:slug])
     @setting = Setting.first
     @comment = Comment.new
-    @comments = Comment.order("created_at DESC").all
+    @comments = @article.comments.order("created_at DESC").all
     if @article.present?
       if session[:user] != nil
         if @article.user_id == session[:user][:id] || session[:user][:is_owner]
