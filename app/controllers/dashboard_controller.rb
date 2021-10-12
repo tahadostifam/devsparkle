@@ -113,16 +113,21 @@
   end
 
   def submit_new_article
-    @article = Article.new(new_article_params)
-    @article.user_id = session[:user]['id']
-    unless session[:user][:is_owner]
-      @article.published = false
-    end
-    if @article.save 
-      render 'articles/article_created', :locals => {published: @article.published, slug: @article.slug}
+    unless actions_that_have_recaptcha("new_article_errors")
+      @article = Article.new(new_article_params)
+      render '/dashboard/new_article/'
     else
-      flash[:new_article_errors] = @article.errors.full_messages
-      render :new_article
+      @article = Article.new(new_article_params)
+      @article.user_id = session[:user]['id']
+      unless session[:user][:is_owner]
+        @article.published = false
+      end
+      if @article.save 
+        render 'articles/article_created', :locals => {published: @article.published, slug: @article.slug}
+      else
+        flash[:new_article_errors] = @article.errors.full_messages
+        render :new_article
+      end
     end
   end
 
@@ -181,6 +186,23 @@
   end
 
   private
+
+  def actions_that_have_recaptcha(flash_name)
+    gr_response = params["g-recaptcha-response"]
+    if gr_response != nil && gr_response.strip != ""
+      gr = Grecaptcha.new
+      api_result = gr.verify_recaptcha(gr_response, request.remote_ip)
+      if api_result == false
+        flash[flash_name] = ["ریکپچا را تایید کنید."]
+        return false
+      else
+        return true
+      end
+    else
+      flash[flash_name] = ["ریکپچا را تایید کنید."]
+      return false
+    end
+	end
 
   def require_login
     unless session[:user].present?
