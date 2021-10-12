@@ -29,24 +29,28 @@ class ArticlesController < ApplicationController
   end
 
   def new_comment
-    if Setting.first.present? && Setting.first.can_comment || session[:user][:is_owner] || session[:user][:is_admin]
-      @article = Article.find_by(slug: params.require(:comment).permit(:slug)[:slug])
-      if @article.present?
-        @comment = Comment.new(new_comment_params)
-        @comment.user_id = session[:user][:id]
-        @comment.article_id = @article.id
-        if @comment.save
-          flash[:new_comment_success] = "نظر شما با موفقیت ثبت شد."
-          redirect_to '/articles/show/' + @article.slug + '/#' + @comment.hash_id
-        else
-          flash[:new_comment_errors] = @comment.errors.full_messages
-          redirect_to '/articles/show/' + @article.slug
-        end
+    @article = Article.find_by(slug: params.require(:comment).permit(:slug)[:slug])
+    if @article.present?
+      unless actions_that_have_recaptcha("new_comment_errors")
+        redirect_to '/articles/show/' + @article.slug
       else
-        redirect_to '/404'
+        if Setting.first.present? && Setting.first.can_comment || session[:user][:is_owner] || session[:user][:is_admin]
+            @comment = Comment.new(new_comment_params)
+            @comment.user_id = session[:user][:id]
+            @comment.article_id = @article.id
+            if @comment.save
+              flash[:new_comment_success] = "نظر شما با موفقیت ثبت شد."
+              redirect_to '/articles/show/' + @article.slug + '/#' + @comment.hash_id
+            else
+              flash[:new_comment_errors] = @comment.errors.full_messages
+              redirect_to '/articles/show/' + @article.slug
+            end
+        else
+          redirect_to '/503'
+        end
       end
     else
-      redirect_to '/503'
+      redirect_to '/404'
     end
   end
 
@@ -90,6 +94,23 @@ class ArticlesController < ApplicationController
   end
 
   private
+
+  def actions_that_have_recaptcha(flash_name)
+    gr_response = params["g-recaptcha-response"]
+    if gr_response != nil && gr_response.strip != ""
+      gr = Grecaptcha.new
+      api_result = gr.verify_recaptcha(gr_response, request.remote_ip)
+      if api_result == false
+        flash[flash_name] = ["ریکپچا را تایید کنید."]
+        return false
+      else
+        return true
+      end
+    else
+      flash[flash_name] = ["ریکپچا را تایید کنید."]
+      return false
+    end
+	end
 
   def need_owner_access
     unless session[:user].is_owner?

@@ -259,34 +259,6 @@ small {
         }
     }
 }
-.popup_alert_box{
-    position: fixed;
-    width: 700px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 50;
-    box-shadow: none;
-    --box-size: 400px;
-    min-height: var(--box-size);
-    .close_button{
-        font-size: 25px;
-        position: absolute;
-        right: 3px;
-        padding: 10px;
-        height: 45px;
-        top: 3px;
-        color: #000;
-        cursor: pointer;
-    }
-    .content{
-        width: 100%;
-        height: var(--box-size);
-        justify-content: center;
-        display: flex;
-        align-items: center;
-    }
-}
 .center_recaptcha{
     height: 76px;
     position: relative;

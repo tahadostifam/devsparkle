@@ -1,16 +1,11 @@
 <div class="container" style="top: 0">
     <% if flash[:comment_removed_successfully] != nil && flash[:comment_removed_successfully] %>
-        <div class="popup_alert_box form">
+        <div class="alert alert-danger">
             <button onclick="close_popup_alert_box(this)" class="close_button btn-none">
                 <ion-icon name="close-outline"></ion-icon>
             </button>
-            <div class="content">
-                <div style="text-align: center;">
-                    <div style="width: 100%; display: block; margin-bottom: 10px; margin-top: 10px;">
-                        <ion-icon style="font-size: 120px;" name="trash-outline"></ion-icon>
-                    </div>
-                    <span dir="rtl">کامنت با موفقیت حذف شد.</span>
-                </div>
+            <div class="alert_content">
+                کامنت مورد نظر با موفقیت حذف شد.
             </div>
         </div>
     <% end %>
@@ -114,6 +109,11 @@
                                     <span class="success_message"><%= flash[:new_comment_success] %></span>
                                 <% end %>
                             </div>
+
+                            <div dir="rtl" style="margin-bottom: 10px">
+                                <%= render 'layouts/grecaptcha' %>
+                            </div>
+
 
                             <%= f.submit "ثبت نظر", :class => 'btn btn-primary'%>
                         <% end %>
