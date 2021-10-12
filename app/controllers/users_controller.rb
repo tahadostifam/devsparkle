@@ -1,17 +1,20 @@
 class UsersController < ApplicationController
   def submit_signup
-    puts user_params
-    @user = User.new(user_params)
-    if @user.save
-      UserMailer.with(user: @user).send_confirm_account.deliver_later
-
-      flash[:success_signup] = true
-      flash[:signup_errors_list] = nil
-      redirect_to action: 'signup'
+    unless actions_that_have_recaptcha("signup_errors_list")
+      redirect_to '/users/signup'
     else
-      flash[:success_signup] = false
-      flash[:signup_errors_list] = @user.errors.full_messages
-      redirect_to action: 'signup'
+      @user = User.new(user_params)
+      if @user.save
+        UserMailer.with(user: @user).send_confirm_account.deliver_later
+
+        flash[:success_signup] = true
+        flash[:signup_errors_list] = nil
+        redirect_to action: 'signup'
+      else
+        flash[:success_signup] = false
+        flash[:signup_errors_list] = @user.errors.full_messages
+        redirect_to action: 'signup'
+      end
     end
   end
 
@@ -84,25 +87,25 @@ class UsersController < ApplicationController
 
   def submit_signin
     unless actions_that_have_recaptcha("signin_errors_list")
-      return redirect_to '/users/signin'
-    end
-
-    @user = User.find_by(username: signin_params['username'])
-    if @user.present? && @user.authenticate(signin_params['password'])
-      if @user.email_confirmed?
-        session[:user] = @user
-        redirect_to root_path
+      redirect_to '/users/signin'
+    else
+      @user = User.find_by(username: signin_params['username'])
+      if @user.present? && @user.authenticate(signin_params['password'])
+        if @user.email_confirmed?
+          session[:user] = @user
+          redirect_to root_path
+        else
+          flash[:signin_errors_list] = [
+            "ایمیل شما تایید نشده است... ورود به اکانت امکان پذیر نمی باشد."
+          ]
+          redirect_to action: 'signin'
+        end
       else
         flash[:signin_errors_list] = [
-          "ایمیل شما تایید نشده است... ورود به اکانت امکان پذیر نمی باشد."
+          "نام کاربری یا گذرواژه شما صحیح نمی باشد"
         ]
         redirect_to action: 'signin'
       end
-    else
-      flash[:signin_errors_list] = [
-        "نام کاربری یا گذرواژه شما صحیح نمی باشد"
-      ]
-      redirect_to action: 'signin'
     end
   end
 
@@ -124,9 +127,12 @@ class UsersController < ApplicationController
     gr_response = params["g-recaptcha-response"]
     if gr_response != nil && gr_response.strip != ""
       gr = Grecaptcha.new
-      unless gr.verify_recaptcha(gr_response, request.remote_ip)
+      api_result = gr.verify_recaptcha(gr_response, request.remote_ip)
+      if api_result == false
         flash[flash_name] = ["ریکپچا را تایید کنید."]
         return false
+      else
+        return true
       end
     else
       flash[flash_name] = ["ریکپچا را تایید کنید."]

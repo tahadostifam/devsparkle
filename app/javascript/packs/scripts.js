@@ -8,7 +8,18 @@ window.close_popup_alert_box = (close_button) => {
 	close_button.parentElement.style.display = "none"
 }
 
+
+window.include = (file) => {
+	let script = document.createElement('script');
+	script.src = file;
+	script.type = 'text/javascript';
+	script.defer = true;
+	document.getElementsByTagName('head').item(0).appendChild(script);
+}
+
 document.addEventListener("turbolinks:load", function() {
+	include('https://www.google.com/recaptcha/api.js')
+
 	const markdownDivsToHtml = document.querySelector('.md_to_html')
 	if (markdownDivsToHtml) {
 		markdownDivsToHtml.innerHTML = markdown.toHTML(markdownDivsToHtml.innerHTML.trim());

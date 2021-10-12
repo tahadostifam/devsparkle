@@ -44,7 +44,6 @@ class ArticlesController < ApplicationController
         end
       else
         redirect_to '/404'
-        puts params[:article_slug]
       end
     else
       redirect_to '/503'

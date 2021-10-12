@@ -20,7 +20,6 @@ class GithubApi
                                 Authorization: "token #{access_token}"
                             }
                         ) { |ar_res, ar_req, ar_resa|
-                            puts ar_resa.body
                             if ar_res.code == 200
                                 return JSON.parse(ar_resa.body)
                             else

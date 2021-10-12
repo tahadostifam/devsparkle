@@ -36,24 +36,24 @@
 				<%= f.password_field :password_confirmation %>
 			</div>
 
-		 	<div style="text-align: center;">
-				<div class="checkbox" style="margin-top: 10px;">
-					<%= f.label :tac, raw("من تمام <a href='/users/terms_and_conditions'>قوانین</a> این وبسایت را میپذیرم") %>
-					<%= f.check_box :accept_terms_and_conditions, :checked => false %>
-				</div>
+		 	<div class="checkbox" style="margin-top: 10px;">
+				<%= f.label :tac, raw("من تمام <a href='/users/terms_and_conditions'>قوانین</a> این وبسایت را میپذیرم") %>
+				<%= f.check_box :accept_terms_and_conditions, :checked => false %>
 			</div>
 			
+			<div style="margin: 10px 0;">
+				<% unless flash[:signup_errors_list].nil? %>
+					<% flash[:signup_errors_list].each do |e| %>
+						<div class="form_error_list">
+							<div class="item"><%= e %></div>
+						</div>
+					<% end %>
+				<% end %>
+			</div>
+
 			<div class="center_recaptcha">
 				<%= render 'layouts/grecaptcha' %>
 			</div>
-
-			<% unless flash[:signup_errors_list].nil? %>
-				<% flash[:signup_errors_list].each do |e| %>
-					<div class="form_error_list">
-						<div class="item"><%= e %></div>
-					</div>
-				<% end %>
-			<% end %>
 
 			<div style="width: 100%; text-align: left;">
 				<%= f.submit 'ارسال', :class => "btn btn-block btn-primary btn-large-padding" %>
