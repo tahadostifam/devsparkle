@@ -11,10 +11,6 @@
 			<%= f.password_field :password %>
 		</div>
 
-		<div style="margin-bottom: 10px;">
-			<%= render 'layouts/grecaptcha' %>
-		</div>
-
 		<% unless flash[:signin_errors_list].nil? %>
 			<% flash[:signin_errors_list].each do |e| %>
 				<div class="form_error_list">
@@ -22,6 +18,10 @@
 				</div>
 			<% end %>
 		<% end %>
+
+		<div style="margin-bottom: 10px;">
+			<%= render 'layouts/grecaptcha' %>
+		</div>
 
 		<div style="width: 100%; display: block; text-align: left;">
 			<%= f.submit 'ورود', :class => "btn btn-primary btn-large-padding" %>

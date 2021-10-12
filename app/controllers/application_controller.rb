@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    before_action :check_user_before_action
+	before_action :check_user_before_action
 
 	private
 

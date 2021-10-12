@@ -4,6 +4,7 @@ require "rails/all"
 
 require './lib/github_user_api'
 require './lib/uri_escape'
+require './lib/grecaptcha'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.

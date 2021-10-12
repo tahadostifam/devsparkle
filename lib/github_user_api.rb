@@ -7,7 +7,6 @@ class GithubApi
     end
 
     def fetch_github(callback_code)
-
         RestClient.post('https://github.com/login/oauth/access_token',
             {:client_id => ENV["GITHUB_CLIENT_ID"],
                 :client_secret => ENV["GITHUB_SECRET_ID"],
@@ -34,17 +33,3 @@ class GithubApi
                 }
     end
 end
-
-
-#         
-    
-#     if auth_result.code == 200
-#         final_result = JSON.parse(auth_result)
-
-#         return final_result
-#     else
-#         return nil
-#     end
-# else
-#     return nil
-# end

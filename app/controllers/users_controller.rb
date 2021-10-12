@@ -83,6 +83,10 @@ class UsersController < ApplicationController
   end
 
   def submit_signin
+    unless actions_that_have_recaptcha("signin_errors_list")
+      return redirect_to '/users/signin'
+    end
+
     @user = User.find_by(username: signin_params['username'])
     if @user.present? && @user.authenticate(signin_params['password'])
       if @user.email_confirmed?
@@ -115,6 +119,20 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def actions_that_have_recaptcha(flash_name)
+    gr_response = params["g-recaptcha-response"]
+    if gr_response != nil && gr_response.strip != ""
+      gr = Grecaptcha.new
+      unless gr.verify_recaptcha(gr_response, request.remote_ip)
+        flash[flash_name] = ["ریکپچا را تایید کنید."]
+        return false
+      end
+    else
+      flash[flash_name] = ["ریکپچا را تایید کنید."]
+      return false
+    end
+	end
 
   def complete_signup_with_github_params
     params.require(:user).permit(:password, :password_confirmation)
