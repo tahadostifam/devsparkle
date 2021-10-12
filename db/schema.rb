@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 2021_10_11_114325) do
     t.string "content", null: false
     t.string "send_time", null: false
     t.string "hash_id", null: false
+    t.boolean "accept_by_admin", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["article_id"], name: "index_comments_on_article_id"

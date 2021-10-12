@@ -11,6 +11,10 @@
 			<%= f.password_field :password %>
 		</div>
 
+		<div style="margin-bottom: 10px;">
+			<%= render 'layouts/grecaptcha' %>
+		</div>
+
 		<% unless flash[:signin_errors_list].nil? %>
 			<% flash[:signin_errors_list].each do |e| %>
 				<div class="form_error_list">

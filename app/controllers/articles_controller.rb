@@ -29,7 +29,7 @@ class ArticlesController < ApplicationController
   end
 
   def new_comment
-    if Setting.first.present? && Setting.first.can_comment
+    if Setting.first.present? && Setting.first.can_comment || session[:user][:is_owner] || session[:user][:is_admin]
       @article = Article.find_by(slug: params.require(:comment).permit(:slug)[:slug])
       if @article.present?
         @comment = Comment.new(new_comment_params)
