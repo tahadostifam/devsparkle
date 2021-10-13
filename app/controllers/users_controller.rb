@@ -92,8 +92,15 @@ class UsersController < ApplicationController
       @user = User.find_by(username: signin_params['username'])
       if @user.present? && @user.authenticate(signin_params['password'])
         if @user.email_confirmed?
-          session[:user] = @user
-          redirect_to root_path
+          if @user.is_banned?
+            flash[:signin_errors_list] = [
+              "اکانت شما بن شده است!"
+            ]
+            redirect_to action: 'signin'
+          else
+            session[:user] = @user
+            redirect_to root_path
+          end
         else
           flash[:signin_errors_list] = [
             "ایمیل شما تایید نشده است... ورود به اکانت امکان پذیر نمی باشد."
@@ -117,11 +124,66 @@ class UsersController < ApplicationController
   def forgot_password
   end
 
+  def submit_forgot_password
+    unless actions_that_have_recaptcha("forgot_password_errors")
+      redirect_to '/users/forgot_password'
+    else
+      @user = User.find_by(email: params[:email])
+      if @user.present?
+        if @user.is_banned?
+          flash[:forgot_password_errors] = [
+            "اکانت شما بن شده است."
+          ]
+          redirect_to '/users/forgot_password'
+        else
+          @user.set_forgot_password_token
+          UserMailer.with(user: @user).send_forgot_password.deliver_later
+
+          flash[:forgot_password_sended_successfully] = true
+          redirect_to '/users/forgot_password'
+        end
+      else
+        flash[:forgot_password_errors] = [
+          "کاربری با این ایمیل وجود ندارد."
+        ]
+        redirect_to '/users/forgot_password'
+      end
+    end
+  end
+
+  def forgot_password_set_new
+    @user = User.find_by(forgot_password_token: params[:token])
+    if @user.present? && @user.forgot_password_valid_expire?
+      render 'users/forgot_password_set_new', locals: { form: true, bad_token: false }
+    else
+      render 'users/forgot_password_set_new', locals: { form: false, bad_token: true }
+    end
+  end
+
+  def submit_forgot_password_set_new
+    @user = User.find_by(forgot_password_token: params[:token])
+    if @user.present? && @user.forgot_password_valid_expire?
+      if @user.update(forgot_password_set_new_params)
+        @user.clean_forgot_password
+        render 'users/forgot_password_set_new_success'
+      else
+        flash[:forgot_password_set_new_errors] = @user.errors.full_messages
+        render 'users/forgot_password_set_new'
+      end
+    else
+      redirect_to action: :forgot_password
+    end
+  end
+
   def terms_and_conditions
     @setting = Setting.first
   end
 
   private
+
+  def forgot_password_set_new_params
+    params.permit(:password, :password_confirmation)
+  end
 
   def actions_that_have_recaptcha(flash_name)
     gr_response = params["g-recaptcha-response"]

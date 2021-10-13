@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 	def check_user_before_action
 		if session[:user].present?
 			user = User.find_by(id: session[:user]['id'])
-			if user.present? && user.email_confirmed?
+			if user.present? && user.email_confirmed? && user.is_banned == false
 				session[:user] = user
 				@articles_that_not_verified_length = Article.where(published: false, draft: false).length
 			else

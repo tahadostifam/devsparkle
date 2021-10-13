@@ -1,3 +1,6 @@
+require 'time'
+require 'active_support/time'
+
 class User < ApplicationRecord
     has_many :articles
     
@@ -17,6 +20,27 @@ class User < ApplicationRecord
         self.email_confirmed = true
         self.confirm_token = nil
         save!
+    end
+
+    def set_forgot_password_token
+        self.forgot_password_token = SecureRandom.hex(50)
+        self.forgot_password_expire_time = Time.now.to_s
+        save!
+    end
+
+    def clean_forgot_password
+        self.forgot_password_token = nil
+        self.forgot_password_expire_time = nil
+        save!
+    end
+
+    def forgot_password_valid_expire?
+        uexpire = Time.parse(self.forgot_password_expire_time)
+        valid = uexpire + 10.minute > Time.now
+        unless valid?
+            self.clean_forgot_password
+        end
+        return valid
     end
 
     before_create :confirmation_token

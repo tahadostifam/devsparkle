@@ -90,12 +90,15 @@ ActiveRecord::Schema.define(version: 2021_10_11_114325) do
     t.string "username", null: false
     t.string "password_digest", null: false
     t.boolean "email_confirmed", default: false
-    t.string "confirm_token"
     t.text "bio"
     t.string "gender"
     t.string "website"
     t.boolean "is_owner", default: false
     t.boolean "is_admin", default: false
+    t.boolean "is_banned", default: false
+    t.string "confirm_token"
+    t.string "forgot_password_token"
+    t.string "forgot_password_expire_time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

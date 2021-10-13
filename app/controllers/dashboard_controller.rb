@@ -237,7 +237,7 @@
   end
 
   def update_user_profile_params
-    params.require(:user).permit(:is_admin, :bio, :website)
+    params.require(:user).permit(:is_admin, :is_banned, :bio, :website)
   end
 
   def edit_profile_params
