@@ -9,4 +9,7 @@ GITHUB_SECRET_ID: ""-----"
 FTP_HOST: "0.0.0.0"
 FTP_USER: "user"
 FTP_PASS: "pass"
+
+RECAPTCHA_SITEKEY: "-----"
+RECAPTCHA_SECRETKEY: "-----"
 ```
