@@ -1,89 +1,94 @@
-.input{
-	position: relative;
-	width: 100%;
-	display: block;
-	margin: 15px 0;
-	label{
-		top: -15px;
-	    right: 6px;
-	    background: #fff;
-	    padding: 4px 0;
-		font-family: 'Poppins', 'Samim';
-		display: block;
-	}
-	input, textarea, select{
-		user-select: text;
-		font-family: 'Poppins', 'Samim';
-		width: 100%;
-		display: block;
-		height: 45px;
-		border-radius: 6px;
-		border: 1px solid #ddd;
-		padding: 0 10px;
-		background: #fff;
-		outline: none;
-		&:focus{
-			border: 2px solid #003cff;
-		}
-		&:read-only{
-			cursor: default;
-			&:focus{
-				border: 1px solid #ddd;
-			}
-		}
-	}
-	textarea{
-		padding-top: 10px;
-		min-height: 80px;
-		resize: vertical;
-	}
-	small{
-		width: 100%;
-		display: block;
-		font-family: 'Poppins', 'Samim';
-		font-size: 12px;
-		color: #777;
-		direction: rtl;
-	}
-	&.input-bold{
-		input{
-			border: none;
-			box-shadow: 0px 0px 0px 0.5rem #ffffff14;
-			padding-left: 40px;
-		}
-		.submit-button{
-			position: absolute;
-			top: 10px;
-			left: 6px;
-			width: 30px;
-			height: 30px;
-			font-size: 20px;
-			color: #777;
-			background: transparent;
-			border: none;
-			outline: none;
-			cursor: pointer;
-		}
-	}
+.input {
+    position: relative;
+    width: 100%;
+    display: block;
+    margin: 15px 0;
+    label {
+        top: -15px;
+        right: 6px;
+        background: #fff;
+        padding: 4px 0;
+        font-family: 'Poppins', 'Samim';
+        display: block;
+    }
+    input,
+    textarea,
+    select {
+        user-select: text;
+        font-family: 'Poppins', 'Samim';
+        width: 100%;
+        display: block;
+        height: 45px;
+        border-radius: 6px;
+        border: 1px solid #ddd;
+        padding: 0 10px;
+        background: #fff;
+        outline: none;
+        &:focus {
+            border: 2px solid #003cff;
+        }
+        &:read-only {
+            cursor: default;
+            &:focus {
+                border: 1px solid #ddd;
+            }
+        }
+    }
+    textarea {
+        padding-top: 10px;
+        min-height: 80px;
+        resize: vertical;
+    }
+    small {
+        width: 100%;
+        display: block;
+        font-family: 'Poppins', 'Samim';
+        font-size: 12px;
+        color: #777;
+        direction: rtl;
+    }
+    &.input-bold {
+        input {
+            border: none;
+            box-shadow: 0px 0px 0px 0.5rem #6c6c6e88;
+            padding-left: 40px;
+        }
+        .submit-button {
+            position: absolute;
+            top: 10px;
+            left: 6px;
+            width: 30px;
+            height: 30px;
+            font-size: 20px;
+            color: #777;
+            background: transparent;
+            border: none;
+            outline: none;
+            cursor: pointer;
+        }
+    }
 }
-.selectbox{
-	select{
-		background: #fff;
-		width: 100%;
-	}
+
+.selectbox {
+    select {
+        background: #fff;
+        width: 100%;
+    }
 }
-.mde{
-	label{
-		text-align: right;
-		direction: rtl;
-		width: 100%;
-		display: block;
-	}
-	direction: ltr;
-	text-align: left;
+
+.mde {
+    label {
+        text-align: right;
+        direction: rtl;
+        width: 100%;
+        display: block;
+    }
+    direction: ltr;
+    text-align: left;
 }
-.checkbox{
-	a{
-		color: #003cff;
-	}
+
+.checkbox {
+    a {
+        color: #003cff;
+    }
 }

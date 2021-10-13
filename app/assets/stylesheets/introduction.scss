@@ -1,117 +1,56 @@
-#home_intro{
+#home_intro {
     position: relative;
     width: 100%;
     display: block;
-    height: 550px;
+    height: 500px;
     background: #252b33;
-    border-top: 1px solid #1f2328;
-    .shape{
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 15px;
-        height: 15px;
-        background: #003cff;
-        &.triangle{
-            width: 0;
-            height: 0;
-            border-left: 7.5px solid transparent;
-            border-right: 7.5px solid transparent;
-            border-top: 15px solid #003cff;
-            background: transparent;
-            transform: rotate(20deg);
-        }
-        &.parallelogram{
-            width: 30px;
-            height: 15px;
-            transform: skew(20deg);
-        }
-        &.circle{
-            border-radius: 50%;
-        }
-        &:nth-child(1){
-            left: 10%;
-            top: 70px;
-        }
-        &:nth-child(2){
-            left: 16%;
-            bottom: 70px;
-            top: inherit;
-        }
-        &:nth-child(3){
-            left: inherit;
-            bottom: 80px;
-            right: 20%;
-            top: inherit;
-        }
-        &:nth-child(4){
-            left: inherit;
-            top: 50px;
-            right: 17%;
-        }
-        &:nth-child(5){
-            left: 50%;
-            transform: translate(-50%);
-            top: inherit;
-            bottom: 70px;
-        }
-        &:nth-child(6){
-            left: 50%;
-            transform: translate(-50%);
-            top: 40px;
-        }
-    }
-    .title{
+    .title {
         width: 100%;
         text-align: center;
-        margin-top: 120px;
+        padding-top: 80px;
         font-family: 'Samim';
-        h1{
+        h1 {
             font-size: 40px;
         }
-        h3{
+        h3 {
             color: #cbcbcb;
         }
         color: #fff;
     }
-
     @media screen and (max-width: 600px) {
-        .title{
-            h1{
+        .title {
+            h1 {
                 font-size: 6vw;
             }
-            h3{
+            h3 {
                 font-size: 4vw;
             }
         }
     }
-
-    #home-intro-search-box{
+    #home-intro-search-box {
         position: relative;
         left: 50%;
         transform: translate(-50%);
         width: 800px;
         margin-top: 40px;
-        input{
+        input {
             direction: rtl;
             text-align: right;
         }
     }
-
     @media screen and (max-width: 950px) {
-        #home-intro-search-box{
+        #home-intro-search-box {
             width: 600px;
             margin-top: 40px;
         }
     }
     @media screen and (max-width: 650px) {
-        #home-intro-search-box{
+        #home-intro-search-box {
             width: 85%;
             margin-top: 40px;
         }
     }
-
-    #goto_down_button{
+    #goto_down_button {
         color: #003cff;
         font-size: 30px;
         position: absolute;
@@ -119,13 +58,29 @@
         transform: translate(-50%);
         display: block;
         margin-top: 93px;
+        animation-name: goto_down_animation;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease;
+    }
+}
+
+@keyframes goto_down_animation {
+    0% {
+        padding-top: 0;
+    }
+    50% {
+        padding-top: 15px;
+    }
+    100% {
+        padding-top: 0;
     }
 }
 
 @media screen and (max-width: 650px) {
-    #home_intro{
-        height: 450px;
-        #goto_down_button{
+    #home_intro {
+        height: 420px;
+        #goto_down_button {
             margin-top: 40px;
         }
     }
