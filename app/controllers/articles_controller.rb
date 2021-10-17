@@ -7,7 +7,7 @@ class ArticlesController < ApplicationController
   ]
 
   def index
-    @articles = Article.where(published: true, draft: false)
+    @articles = Article.where(published: true, draft: false).order("CREATED_AT DESC")
   end
 
   def show

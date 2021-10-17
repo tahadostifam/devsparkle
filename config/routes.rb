@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'search/q'
   root 'introduction#index'
   
   get 'introduction/index'
