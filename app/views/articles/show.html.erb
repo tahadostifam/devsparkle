@@ -138,7 +138,6 @@
                             <div class="toolbar">
                               <% if session[:user] != nil  %>
                                 <% if @article.user_id == session[:user][:id] || session[:user][:is_owner] || session[:user][:is_admin] %>
-                                    <div class="link" style="position: relative; top: 2px">کپی لینک</div>
                                     <%= form_with url: articles_remove_comment_url, method: :post do |f| %>
                                       <%= f.hidden_field :hash_id, :value => c.hash_id %>
                                       <%= f.submit 'حذف', :class => 'link link-danger btn-none' %>

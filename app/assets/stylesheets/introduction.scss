@@ -85,3 +85,22 @@
         }
     }
 }
+
+#home_content {
+    top: 0;
+    text-align: right;
+}
+
+#footer {
+    width: 100%;
+    height: 50px;
+    background: #252b33;
+    margin-top: 40px;
+    .center-text {
+        width: 100%;
+        text-align: center;
+        display: block;
+        padding: 12px 0;
+        color: #fff;
+    }
+}

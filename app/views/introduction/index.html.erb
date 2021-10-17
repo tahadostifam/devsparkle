@@ -6,8 +6,6 @@
         </h3>
     </div>
 
-    <!-- top courses slider -->
-
     <div id="home-intro-search-box">
         <div class="input input-bold">
             <input type="text" placeholder="جست و جو کنید!">
@@ -20,4 +18,57 @@
     <a href="#home_intro" id="goto_down_button" class="btn btn-none">
         <ion-icon name="arrow-down-outline"></ion-icon>
     </a>
+</div>
+
+<div id="home_content" class="container">
+    <h2 class="container_title bb">مقالات محبوب</h2>
+    <div id="articles_list">
+        <% if @popular_articles.length > 0 %>
+            <% @popular_articles.each do |art| %>
+                <a href="/articles/show/<%= art.slug %>">
+                    <div class='article_box'>
+                        <div class='image cover'>
+                            <%= image_tag art.image.url, :onload => 'imagePreloader(this)' %>
+                        </div>
+                        <h3 class='title'><%= art.header %></h3>
+                        <p class='desc'><%= art.cover_text %></p>
+                        <div class='footer' style='display: flex; justify-content: space-between' dir='ltr'>
+                            <div>
+                                <span class='author'>
+                                    <%= art.user.full_name %>
+                                    <span class='icon'>
+                                        <ion-icon name='person-outline'></ion-icon>
+                                    </span>
+                                </span>
+                            </div>
+                            <div>
+                                <span class="like_icon link-danger" dir="ltr">
+                                    <span class='icon'>
+                                        <ion-icon name='heart'></ion-icon>
+                                    </span>
+                                    <%= art.likes.length %>
+                                </span>
+                                <span class='comments_count'>
+                                    <%= art.comments.length %>
+                                    <span class='icon'>
+                                        <ion-icon name='chatbubble-outline'></ion-icon>
+                                    </span>
+                                </span>
+                                <span class='article_submit_time'>
+                                    <%= art.published_time %>
+                                    <span class='icon'>
+                                        <ion-icon name='calendar-outline'></ion-icon>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            <% end %>
+        <% end %>
+    </div>
+</div>
+
+<div id="footer">
+    <span dir="rtl" class="center-text">تمامی حقوق برای devsparkle محفوظ می باشد.</span>
 </div>
