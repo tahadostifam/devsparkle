@@ -24,6 +24,9 @@ gem 'activestorage-validator'
 # paperclip | ftp active-storage
 gem "paperclip-storage-ftp"
 gem 'paperclip', '~> 6.1'
+
+gem "rake"
+gem 'shared-mime-info'
 gem 'mimemagic'
 
 gem 'active_link_to'

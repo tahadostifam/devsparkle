@@ -134,6 +134,7 @@ GEM
       terrapin (~> 0.6.0)
     paperclip-storage-ftp (1.2.8)
       paperclip (>= 4.0.0)
+    pg (1.2.3)
     public_suffix (4.0.6)
     puma (5.5.0)
       nio4r (~> 2.0)
@@ -200,6 +201,7 @@ GEM
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
     semantic_range (3.0.0)
+    shared-mime-info (0.2.5)
     spring (3.0.0)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
@@ -256,15 +258,19 @@ DEPENDENCIES
   image_processing (~> 1.2)
   json
   listen (~> 3.3)
+  mimemagic
   paperclip (~> 6.1)
   paperclip-storage-ftp
+  pg (~> 1.2, >= 1.2.3)
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.4, >= 6.1.4.1)
   rails_pdate
+  rake
   rest-client (~> 2.1)
   sass-rails (>= 6)
   selenium-webdriver
+  shared-mime-info
   spring
   sqlite3 (~> 1.4)
   turbolinks (~> 5)
