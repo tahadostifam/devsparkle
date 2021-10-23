@@ -6,14 +6,16 @@
         </h3>
     </div>
 
-    <div id="home-intro-search-box">
-        <div class="input input-bold">
-            <input type="text" placeholder="جست و جو کنید!">
-            <button class="submit-button">
-                <ion-icon name="search-outline"></ion-icon>
-            </button>
+    <%= form_with url: '/search/submit_q', method: :post do |f| %>
+        <div class="search-search-box">
+            <div class="input input-bold">
+                <%= f.text_field :search_q, :placeholder => "جست و جو کنید!" %>
+                <button type="submit" class="submit-button">
+                    <ion-icon name="search-outline"></ion-icon>
+                </button>
+            </div>
         </div>
-    </div>
+    <% end %>
 
     <a href="#home_intro" id="goto_down_button" class="btn btn-none">
         <ion-icon name="arrow-down-outline"></ion-icon>

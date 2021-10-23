@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   get 'search/q'
+  get 'search/submit_q', to: 'search#q'
+  get 'search/q/:search_q', to: 'search#submit_q'
+  get 'search/submit_q/:search_q', to: 'search#submit_q'
+  post 'search/submit_q'
+
   root 'introduction#index'
   
   get 'introduction/index'

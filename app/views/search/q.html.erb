@@ -1,0 +1,67 @@
+<div class="container" style="top: 0">
+    <div class="content">
+        <div dir="rtl">
+            <%= form_with url: '/search/submit_q', method: :post do |f| %>
+                 <div class="search-search-box default-color">
+                    <div class="input">
+                        <%= f.text_field :search_q, :placeholder => "جست و جو کنید!" %>
+                        <button class="submit-button">
+                            <ion-icon name="search-outline"></ion-icon>
+                        </button>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+		<% if @search_article != nil %>
+            <% if @search_article.length > 0 %>
+            <div id="articles_list">
+                <% @search_article.each do |art| %>
+                    <% if art.image.present? %>
+                        <a href="/articles/show/<%= art.slug %>">
+                            <div class='article_box'>
+                                <div class='image cover'>
+                                    <%= image_tag art.image.url, :onload => 'imagePreloader(this)' %>
+                                </div>
+                                <h3 class='title'><%= art.header %></h3>
+                                <p class='desc'><%= art.cover_text %></p>
+                                <div class='footer' style='display: flex; justify-content: space-between' dir='ltr'>
+                                    <div>
+                                        <span class='author'>
+                                            <%= art.user.full_name %>
+                                            <span class='icon'>
+                                                <ion-icon name='person-outline'></ion-icon>
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span class="like_icon link-danger" dir="ltr">
+                                            <span class='icon'>
+                                                <ion-icon name='heart'></ion-icon>
+                                            </span>
+                                            <%= art.likes.length %>
+                                        </span>
+                                        <span class='comments_count'>
+                                            <%= art.comments.length %>
+                                            <span class='icon'>
+                                                <ion-icon name='chatbubble-outline'></ion-icon>
+                                            </span>
+                                        </span>
+                                        <span class='article_submit_time'>
+                                            <%= art.published_time %>
+                                            <span class='icon'>
+                                                <ion-icon name='calendar-outline'></ion-icon>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    <% end %>
+                <% end %>
+            </div>
+            <% else %>
+                <span style='color: #777; font-size: 14px; width: 100%; display: block; text-align: center; padding: 20px 0'>مقاله ای پیدا نشد.</span>
+            <% end %>
+        <% end %>
+    </div>
+</div>
