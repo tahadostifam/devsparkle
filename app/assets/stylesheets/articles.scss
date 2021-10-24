@@ -139,42 +139,6 @@
         }
     }
     .content {
-        ul {
-            padding: 0 18px;
-            li {
-                list-style-type: '🔹';
-                padding-inline-start: 1ch;
-            }
-        }
-        code {
-            width: 100%;
-            background: #252b33;
-            color: #fff;
-            padding: 10px;
-            display: block;
-            text-align: left;
-            direction: ltr;
-            border-radius: 4px;
-            margin: 5px 0;
-        }
-        a {
-            text-decoration: none;
-            color: #003cff;
-        }
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        p {
-            margin: 10px 0;
-            width: 100%;
-        }
-        img {
-            width: 100%;
-            object-fit: cover;
-            border-radius: 7px;
-        }
         padding-bottom: 5px;
     }
     .like_button,
