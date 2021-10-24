@@ -6,10 +6,16 @@
 			<%= f.label :username, 'نام کاربری' %>
 			<%= f.text_field :username %>
 		</div>
+
 		<div class="input">
 			<%= f.label :password, 'گذرواژه' %>
 			<%= f.password_field :password %>
 		</div>
+
+		<label class="checkbox">مرا به خاطر بسپار
+			<%= f.check_box :remember_me %>
+			<span class="checkmark"></span>
+		</label>
 
 		<% unless flash[:signin_errors_list].nil? %>
 			<% flash[:signin_errors_list].each do |e| %>

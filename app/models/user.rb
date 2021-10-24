@@ -7,6 +7,7 @@ class User < ApplicationRecord
     has_secure_password
 
     attr_accessor :accept_terms_and_conditions
+    attr_accessor :remember_me
 
     validates :password, confirmation: true
     validates :username, uniqueness: true

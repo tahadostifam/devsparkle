@@ -11,10 +11,10 @@
                 <%= f.text_area :tac, :style => 'height: 300px', :rows => 600, :dir => :rtl %>
             </div>
 
-            <div class="checkbox" style="margin-right: 5px; margin-top: 10px;">
-                <%= f.label :can_comment, 'امکان نظر دهی برای مقالات' %>
+            <label class="checkbox">امکان نظر دهی برای مقالات
                 <%= f.check_box :can_comment %>
-            </div>
+                <span class="checkmark"></span>
+            </label>
 
             <div style="margin-top: 10px;">
                 <% unless flash[:site_settings_errors].nil? %>

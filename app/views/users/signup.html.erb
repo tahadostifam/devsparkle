@@ -36,10 +36,10 @@
 				<%= f.password_field :password_confirmation %>
 			</div>
 
-		 	<div class="checkbox" style="margin-top: 10px;">
-				<%= f.label :tac, raw("من تمام <a href='/users/terms_and_conditions'>قوانین</a> این وبسایت را میپذیرم") %>
+		 	<label class="checkbox">من تمام <a href='/users/terms_and_conditions'>قوانین</a> این وبسایت را میپذیرم
 				<%= f.check_box :accept_terms_and_conditions, :checked => false %>
-			</div>
+				<span class="checkmark"></span>
+			</label>
 			
 			<div style="margin: 10px 0;">
 				<% unless flash[:signup_errors_list].nil? %>

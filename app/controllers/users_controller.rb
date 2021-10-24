@@ -99,6 +99,16 @@ class UsersController < ApplicationController
             redirect_to action: 'signin'
           else
             session[:user] = @user
+
+            if signin_params[:remember_me] == "1"
+              cookies.signed.permanent[:user_id] = {
+                value: @user.id,
+                expires: 1.weeks.from_now
+              }
+            else
+              cookies.delete :user_id
+            end
+
             redirect_to root_path
           end
         else
@@ -118,6 +128,7 @@ class UsersController < ApplicationController
 
   def logout
     session[:user] = nil
+    cookies.delete :user_id
     redirect_to root_path
   end
 
@@ -207,7 +218,7 @@ class UsersController < ApplicationController
   end
 
   def signin_params
-    params.require(:user).permit(:username, :password)
+    params.require(:user).permit(:username, :password, :remember_me)
   end
 
   def user_params

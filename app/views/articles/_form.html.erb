@@ -37,14 +37,14 @@
     <%= f.text_area :content, :style => 'height: 300px', :rows => 600, :dir => :rtl %>
 </div>
 
-<div class="checkbox" style="margin-right: 5px; margin-top: 10px;">
-    <%= f.label :draft, 'پیش نویس' %>
+<label class="checkbox">پیشنویس
     <%= f.check_box :draft %>
-</div>
+    <span class="checkmark"></span>
+</label>
 
 <% if session[:user][:is_owner] %>
-    <div class="checkbox" style="margin-right: 5px; margin-top: 10px;">
-        <%= f.label :published, 'انتشار مقاله' %>
+    <label class="checkbox">انتشار مقاله
         <%= f.check_box :published %>
-    </div>
+        <span class="checkmark"></span>
+    </label>
 <% end %>

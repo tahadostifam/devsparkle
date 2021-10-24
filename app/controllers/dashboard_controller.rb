@@ -1,6 +1,7 @@
  class DashboardController < ApplicationController
   layout 'dashboard'
   before_action :require_login
+  before_action :articles_that_not_verified_length
   before_action :need_owner_access, only: [
     :manage_users,
     :user_profile,
@@ -203,6 +204,9 @@
       return false
     end
 	end
+  def articles_that_not_verified_length
+    @articles_that_not_verified_length = Article.where(published: false, draft: false).length
+  end
 
   def require_login
     unless session[:user].present?

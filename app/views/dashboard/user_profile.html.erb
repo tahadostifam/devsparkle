@@ -39,15 +39,15 @@
                     <%= f.text_field :gender, :readonly => true %>
                 </div>
 
-                <div class="checkbox" style="margin-right: 5px;">
-                    <%= f.label :is_admin, 'ادمین' %>
+                <label class="checkbox">ادمین
                     <%= f.check_box :is_admin %>
-                </div>
+                    <span class="checkmark"></span>
+			    </label>
 
-                <div class="checkbox" style="margin-right: 5px;">
-                    <%= f.label :is_banned, 'بن کردن کاربر' %>
+                <label class="checkbox">بن کردن کاربر
                     <%= f.check_box :is_banned %>
-                </div>
+                    <span class="checkmark"></span>
+			    </label>
 
                 <% unless flash[:user_profile_errors].nil? %>
                     <% flash[:user_profile_errors].each do |e| %>
