@@ -82,6 +82,7 @@ class ArticlesController < ApplicationController
     if art.present?
       if session[:user].present? && session[:user][:is_owner] || art.user_id == session[:user][:id]
         art.likes.destroy_all
+        art.comments.destroy_all
         art.image.destroy
         art.destroy
         render 'article_deleted'
