@@ -1,4 +1,4 @@
-.alert{
+.alert {
     position: relative;
     display: block;
     width: 100%;
@@ -10,21 +10,22 @@
     border-radius: 5px;
     padding: 12px 17px;
     margin-bottom: 10px;
-    .close_button{
+    .close_button {
         cursor: pointer;
         position: absolute;
         display: inline-block;
         left: 10px;
         top: 13px;
-        ion-icon{
+        ion-icon {
             color: #fff;
             font-size: 24px;
         }
     }
-    &.alert-danger{
-        background: rgb(223, 14, 14);;
+    &.alert-danger {
+        // background: rgb(223, 14, 14);;
+        background: #e3384e;
     }
-    &.alert-success{
-        background: rgb(6, 165, 46);
+    &.alert-success {
+        background: #34d75d;
     }
 }

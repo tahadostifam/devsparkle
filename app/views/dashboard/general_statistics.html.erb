@@ -8,7 +8,7 @@
                 تعداد ادمین ها
             </h4>
             <span class="value">
-                <%= @users.where(is_admin: true, is_owner: true).length %>
+                <%= @users.select("is_admin=true or is_owner=true").length %>
             </span>
         </div>
         <div class="card-box">

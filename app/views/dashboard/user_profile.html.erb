@@ -1,3 +1,14 @@
+<% unless flash[:user_profile_success].nil? %>
+    <div class="alert alert-success" style="margin-bottom: 20px; display: block">
+        <button onclick="close_popup_alert_box(this)" class="close_button btn-none">
+            <ion-icon name="close-outline"></ion-icon>
+        </button>
+        <div class="alert_content">
+            <%= flash[:user_profile_success] %>
+        </div>
+    </div>        
+<% end %>
+
 <div class="content_box">
     <h4 class="header">نمایش اطلاعات کاربری کاربر</h4>
     <div class="form">
@@ -55,10 +66,6 @@
                             <div class="item"><%= e %></div>
                         </div>
                     <% end %>
-                <% end %>
-
-                <% unless flash[:user_profile_success].nil? %>
-                    <span class="success_message"><%= flash[:user_profile_success] %></span>
                 <% end %>
 
                 <div style="width: 100%; text-align: left;">

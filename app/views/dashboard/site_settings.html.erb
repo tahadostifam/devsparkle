@@ -1,3 +1,14 @@
+<% unless flash[:site_settings_success].nil? %>
+    <div class="alert alert-success" style="margin-bottom: 20px; display: block">
+        <button onclick="close_popup_alert_box(this)" class="close_button btn-none">
+            <ion-icon name="close-outline"></ion-icon>
+        </button>
+        <div class="alert_content">
+            <%= flash[:site_settings_success] %>
+        </div>
+    </div>        
+<% end %>
+
 <div class="content_box">
     <%= form_with model: @setting, url: {:action => :submit_site_settings} , method: :post do |f|%>
         <div class="form">
@@ -23,10 +34,6 @@
                             <div class="item"><%= e %></div>
                         </div>
                     <% end %>
-                <% end %>
-
-                <% unless flash[:site_settings_success].nil? %>
-                    <span class="success_message"><%= flash[:site_settings_success] %></span>
                 <% end %>
             </div>
 

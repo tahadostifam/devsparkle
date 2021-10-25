@@ -14,8 +14,8 @@ class ArticlesController < ApplicationController
     @article = Article.find_by(slug: params[:slug])
     @setting = Setting.first
     @comment = Comment.new
-    @comments = @article.comments.order("created_at DESC").all
     if @article.present?
+      @comments = @article.comments.order("created_at DESC").all
       if session[:user] != nil
         if @article.user_id == session[:user][:id] || session[:user][:is_owner]
           return render :show, :locals => { :show_actions => true }
