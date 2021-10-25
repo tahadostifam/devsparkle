@@ -47,6 +47,8 @@ class Article < ApplicationRecord
     def to_slug(val)
         ret = val.strip
         ret.gsub! /['`]/,""
+        ret.gsub! "#", "sharp"
+        ret.gsub! " ", "-"
         ret.gsub! /\s*@\s*/, " at "
         ret.gsub! /\s*&\s*/, " and "
         ret.gsub! /_+/,"_"
