@@ -1,6 +1,13 @@
 # [devsparkle.ir](https://devsparkle.ir)
-my programming blog developed usage ruby on rails
+ruby version: 3.0.0
 
+### development
+```bash
+gem install bundle
+bundle install; npm i;
+```
+
+## Configs
 ### application.yml
 ```yml
 GITHUB_CLIENT_ID: "-----"
