@@ -1,2 +1,96 @@
-<h1>Courses#show</h1>
-<p>Find me in app/views/courses/show.html.erb</p>
+<div id="page__content">
+    <% @course = nil %>
+    <div class="container" style="top: 10px">
+        <% if @course.present? %>
+            <div class="sidebar_panel">
+                <div class="sidebar_nav">
+                    <%= link_to 'اطلاعات حساب کاربری', dashboard_edit_profile_url, :class => 'link' %>
+                    <%= link_to 'تغییر گذرواژه', dashboard_change_password_url, :class => 'link' %>
+                </div>
+            </div>
+            <div class="sidebar_contentside">
+                <div id="show_cardbox">
+                    <%# ANCHOR %>
+                        <div class='card_Box'>
+                                <div style="display: block; width: 100%; margin-bottom: 10px;">
+                                    <h1 class='title' dir="rtl" style="margin-bottom: 10px;"><%= @article.header %></h3>
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <div>
+                                            <% if show_actions %>
+                                                <%= link_to 'حذف', '/articles/confirm_delete_article/' + @article.slug, :style => 'display: inline-block', :class => 'link link-danger' %>
+                                                <%= link_to 'ویرایش', '/dashboard/edit_article/' + @article.slug, :style => 'margin-left: 10px; display: inline-block', :class => 'link' %>
+                                                <% if session[:user][:is_owner] && @article.published == false %>
+                                                    <div style="margin-left: 10px; display: inline-block; position: relative; top:1px">
+                                                        <%= form_with url: { :controller => :dashboard, :action => :submit_articles_that_not_verified } do |f| %>
+                                                            <%= f.hidden_field :slug, :value => @article.slug %>
+                                                            <%= f.hidden_field :next_page, :value => '/articles/show/'+@article.slug %>
+                                                            <%= f.submit 'تایید مقاله', :class => 'link btn-none' %>
+                                                        <% end %>
+                                                    </div>
+                                                <% end %>
+                                            <% end %>
+                                        </div>
+                                        <div>
+                                            <% if session[:user] != nil %>
+                                                <%= form_with url: {:controller => :likes, :action => :toggle_like} do |f| %>
+                                                    <input type="hidden" name="slug" value="<%= @article.slug %>">
+                                                    <button type="submit" class="like_button">
+                                                        <% if @article.liked(session[:user][:id]) %>
+                                                            <span class="article_icon_span link-danger" dir="ltr">
+                                                                <span class='icon'>
+                                                                    <ion-icon name='heart'></ion-icon>
+                                                                </span>
+                                                                <%= @article.likes.length %>
+                                                            </span>
+                                                        <% else %>
+                                                            <span class="article_icon_span" dir="ltr">
+                                                                <span class='icon'>
+                                                                    <ion-icon name='heart'></ion-icon>
+                                                                </span>
+                                                                <%= @article.likes.length %>
+                                                            </span>
+                                                        <% end %>
+                                                    </button>
+                                                <% end %>
+                                            <% else %>
+                                                <span class="article_icon_span" dir="ltr">
+                                                    <span class='icon'>
+                                                        <ion-icon name='heart'></ion-icon>
+                                                    </span>
+                                                    <%= @article.likes.length %>
+                                                </span>
+                                            <% end %>
+                                            <span class="article_icon_span" dir="ltr">
+                                                <span class='icon'>
+                                                    <ion-icon name='calendar-outline'></ion-icon>
+                                                </span>
+                                                <%= @article.published_time %>
+                                            </span>
+                                        </div>
+                                </div>
+                            </div>
+                            <% # if @article.image.url.present? %>
+                                <div class='image cover'>
+                                    <%= image_tag @article.image.url, :onload => 'imagePreloader(this)' %>  
+                                </div>
+                            <% # end %>
+                            <div class="content md_to_html" style="margin: 10px 0;" dir="rtl">
+                                <%= @article.content %>
+                            </div>
+                            <div class="author_row">
+                                <div class="icon">
+                                    <ion-icon name="person-outline"></ion-icon>
+                                </div>
+                                <div class="value">
+                                    <%= @article.user.full_name %>
+                                </div>
+                            </div>
+                        </div>
+                    <%# ANCHOR %>
+                </div>
+            </div>
+        <% else %>
+            <span style='color: #777; font-size: 17px; width: 100%; display: block; text-align: center; padding: 20px 0'>دوره مورد نظر پیدا نشد.</span>
+        <% end %>
+    </div> 
+</div>

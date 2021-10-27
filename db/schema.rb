@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_11_114325) do
+ActiveRecord::Schema.define(version: 2021_10_27_121941) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -69,6 +69,33 @@ ActiveRecord::Schema.define(version: 2021_10_11_114325) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["article_id"], name: "index_comments_on_article_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "course_episodes", force: :cascade do |t|
+    t.string "slug", null: false
+    t.string "header", null: false
+    t.text "cover_text"
+    t.boolean "published", default: false
+    t.integer "course_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "video_file_file_name"
+    t.integer "video_file_file_size"
+    t.string "video_file_content_type"
+    t.datetime "video_file_updated_at"
+    t.index ["course_id"], name: "index_course_episodes_on_course_id"
+  end
+
+  create_table "courses", force: :cascade do |t|
+    t.string "slug", null: false
+    t.string "header", null: false
+    t.text "cover_text"
+    t.boolean "published", default: false
+    t.string "published_time"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_courses_on_user_id"
   end
 
   create_table "likes", force: :cascade do |t|

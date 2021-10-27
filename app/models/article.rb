@@ -1,8 +1,5 @@
 class Article < ApplicationRecord
-    before_create :handle_auto_params_create
-    before_update :handle_auto_params_update
-    
-    has_attached_file :image, {
+    PAPERCLIP_STORAGE_OPTIONS = {
         :storage => :ftp,
         :path => "/public_html/:attachment/:id/:style/:filename",
         :url => "http://zedxgroup.ir/:attachment/:id/:style/:filename",
@@ -16,7 +13,14 @@ class Article < ApplicationRecord
         ],
         :ftp_ignore_failing_connections => true,
         :ftp_keep_empty_directories => true
-    }
+      }
+      
+    before_create :handle_auto_params_create
+    before_update :handle_auto_params_update
+    
+    has_attached_file :image, {
+        
+    }.merge(PAPERCLIP_STORAGE_OPTIONS)
     
 
     validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/

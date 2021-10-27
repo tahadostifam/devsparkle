@@ -8,48 +8,46 @@
   <body>
     <div id="app">
       <%= render 'layouts/header' %>
-      <div id="dashboard_layout">
-            <div id="page__content">
-                <div class="container" style="top: 10px">
-                    <div class="sidebar_panel">
-                        <div class="covered_avatar">
-                            <div class="avatar">
-                                <div class="block_avatar">
-                                    <div class="avatar">
-                                        <%= @user['full_name'][0] %>
-                                    </div>
-                                    <span class="value"><%= @user['full_name'] %></span>
-                                    <%= link_to 'خروج از حساب کاربری', users_logout_url, :class => "link" %>
+      <div id="page__content">
+            <div class="container" style="top: 10px">
+                <div class="sidebar_panel">
+                    <div class="covered_avatar">
+                        <div class="avatar">
+                            <div class="block_avatar">
+                                <div class="avatar">
+                                    <%= @user['full_name'][0] %>
                                 </div>
+                                <span class="value"><%= @user['full_name'] %></span>
+                                <%= link_to 'خروج از حساب کاربری', users_logout_url, :class => "link" %>
                             </div>
                         </div>
-                        <div class="sidebar_nav">
-                            <%= link_to 'اطلاعات حساب کاربری', dashboard_edit_profile_url, :class => 'link' %>
-                            <%= link_to 'تغییر گذرواژه', dashboard_change_password_url, :class => 'link' %>
-                            <% if @user.is_owner? || @user.is_admin? %>
-                                <%= link_to 'مقاله جدید', dashboard_new_article_url, :class => 'link' %>
-                                <%= link_to 'مقاله های من', dashboard_my_articles_url, :class => 'link' %>
-                                <%= link_to "مقاله های تایید نشده (#{@articles_that_not_verified_length})", dashboard_articles_that_not_verified_url, :class => 'link', :dir => :rtl%>
-                                <div class="sepa"></div>
-                                <%= link_to 'آمار کلی', dashboard_general_statistics_url, :class => 'link' %>
-                            <% end %>
-                            <% if @user.is_owner? %>
-                                <div class="sepa"></div>
-                                
-                                <%= link_to 'مدیریت کاربران', dashboard_manage_users_url, :class => 'link' %>
-
-                                <div class="sepa"></div>
-
-                                <%= link_to 'تنظیمات وبسایت', dashboard_site_settings_url, :class => 'link' %>
-                            <% end %>
-                        </div>
                     </div>
-                    <div class="sidebar_contentside">
-                        <%= yield %>
+                    <div class="sidebar_nav">
+                        <%= link_to 'اطلاعات حساب کاربری', dashboard_edit_profile_url, :class => 'link' %>
+                        <%= link_to 'تغییر گذرواژه', dashboard_change_password_url, :class => 'link' %>
+                        <% if @user.is_owner? || @user.is_admin? %>
+                            <%= link_to 'مقاله جدید', dashboard_new_article_url, :class => 'link' %>
+                            <%= link_to 'مقاله های من', dashboard_my_articles_url, :class => 'link' %>
+                            <%= link_to "مقاله های تایید نشده (#{@articles_that_not_verified_length})", dashboard_articles_that_not_verified_url, :class => 'link', :dir => :rtl%>
+                            <div class="sepa"></div>
+                            <%= link_to 'آمار کلی', dashboard_general_statistics_url, :class => 'link' %>
+                        <% end %>
+                        <% if @user.is_owner? %>
+                            <div class="sepa"></div>
+                            
+                            <%= link_to 'مدیریت کاربران', dashboard_manage_users_url, :class => 'link' %>
+
+                            <div class="sepa"></div>
+
+                            <%= link_to 'تنظیمات وبسایت', dashboard_site_settings_url, :class => 'link' %>
+                        <% end %>
                     </div>
-                </div> 
-            </div>
-      </div>
+                </div>
+                <div class="sidebar_contentside">
+                    <%= yield %>
+                </div>
+            </div> 
+        </div>
     </div>
   </body>
 </html>

@@ -19,64 +19,64 @@
             </div>
         </div>                
     <% end %>
-    <div id="view_article">
+    <div id="show_cardbox">
        <% if @article.present? %>
             <div class='card_Box'>
-            <div style="display: block; width: 100%; margin-bottom: 10px;">
-                <h1 class='title' dir="rtl" style="margin-bottom: 10px;"><%= @article.header %></h3>
-                <div style="display: flex; justify-content: space-between;">
-                    <div>
-                        <% if show_actions %>
-                            <%= link_to 'حذف', '/articles/confirm_delete_article/' + @article.slug, :style => 'display: inline-block', :class => 'link link-danger' %>
-                            <%= link_to 'ویرایش', '/dashboard/edit_article/' + @article.slug, :style => 'margin-left: 10px; display: inline-block', :class => 'link' %>
-                            <% if session[:user][:is_owner] && @article.published == false %>
-                                <div style="margin-left: 10px; display: inline-block; position: relative; top:1px">
-                                    <%= form_with url: { :controller => :dashboard, :action => :submit_articles_that_not_verified } do |f| %>
-                                        <%= f.hidden_field :slug, :value => @article.slug %>
-                                        <%= f.hidden_field :next_page, :value => '/articles/show/'+@article.slug %>
-                                        <%= f.submit 'تایید مقاله', :class => 'link btn-none' %>
-                                    <% end %>
-                                </div>
+                <div style="display: block; width: 100%; margin-bottom: 10px;">
+                    <h1 class='title' dir="rtl" style="margin-bottom: 10px;"><%= @article.header %></h3>
+                    <div style="display: flex; justify-content: space-between;">
+                        <div>
+                            <% if show_actions %>
+                                <%= link_to 'حذف', '/articles/confirm_delete_article/' + @article.slug, :style => 'display: inline-block', :class => 'link link-danger' %>
+                                <%= link_to 'ویرایش', '/dashboard/edit_article/' + @article.slug, :style => 'margin-left: 10px; display: inline-block', :class => 'link' %>
+                                <% if session[:user][:is_owner] && @article.published == false %>
+                                    <div style="margin-left: 10px; display: inline-block; position: relative; top:1px">
+                                        <%= form_with url: { :controller => :dashboard, :action => :submit_articles_that_not_verified } do |f| %>
+                                            <%= f.hidden_field :slug, :value => @article.slug %>
+                                            <%= f.hidden_field :next_page, :value => '/articles/show/'+@article.slug %>
+                                            <%= f.submit 'تایید مقاله', :class => 'link btn-none' %>
+                                        <% end %>
+                                    </div>
+                                <% end %>
                             <% end %>
-                        <% end %>
-                    </div>
-                    <div>
-                        <% if session[:user] != nil %>
-                            <%= form_with url: {:controller => :likes, :action => :toggle_like} do |f| %>
-                                <input type="hidden" name="slug" value="<%= @article.slug %>">
-                                <button type="submit" class="like_button">
-                                    <% if @article.liked(session[:user][:id]) %>
-                                        <span class="article_icon_span link-danger" dir="ltr">
-                                            <span class='icon'>
-                                                <ion-icon name='heart'></ion-icon>
+                        </div>
+                        <div>
+                            <% if session[:user] != nil %>
+                                <%= form_with url: {:controller => :likes, :action => :toggle_like} do |f| %>
+                                    <input type="hidden" name="slug" value="<%= @article.slug %>">
+                                    <button type="submit" class="like_button">
+                                        <% if @article.liked(session[:user][:id]) %>
+                                            <span class="article_icon_span link-danger" dir="ltr">
+                                                <span class='icon'>
+                                                    <ion-icon name='heart'></ion-icon>
+                                                </span>
+                                                <%= @article.likes.length %>
                                             </span>
-                                            <%= @article.likes.length %>
-                                        </span>
-                                    <% else %>
-                                        <span class="article_icon_span" dir="ltr">
-                                            <span class='icon'>
-                                                <ion-icon name='heart'></ion-icon>
+                                        <% else %>
+                                            <span class="article_icon_span" dir="ltr">
+                                                <span class='icon'>
+                                                    <ion-icon name='heart'></ion-icon>
+                                                </span>
+                                                <%= @article.likes.length %>
                                             </span>
-                                            <%= @article.likes.length %>
-                                        </span>
-                                    <% end %>
-                                </button>
+                                        <% end %>
+                                    </button>
+                                <% end %>
+                            <% else %>
+                                <span class="article_icon_span" dir="ltr">
+                                    <span class='icon'>
+                                        <ion-icon name='heart'></ion-icon>
+                                    </span>
+                                    <%= @article.likes.length %>
+                                </span>
                             <% end %>
-                        <% else %>
                             <span class="article_icon_span" dir="ltr">
                                 <span class='icon'>
-                                    <ion-icon name='heart'></ion-icon>
+                                    <ion-icon name='calendar-outline'></ion-icon>
                                 </span>
-                                <%= @article.likes.length %>
+                                <%= @article.published_time %>
                             </span>
-                        <% end %>
-                        <span class="article_icon_span" dir="ltr">
-                            <span class='icon'>
-                                <ion-icon name='calendar-outline'></ion-icon>
-                            </span>
-                            <%= @article.published_time %>
-                        </span>
-                    </div>
+                        </div>
                 </div>
             </div>
             <% # if @article.image.url.present? %>

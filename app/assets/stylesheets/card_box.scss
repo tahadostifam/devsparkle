@@ -94,7 +94,7 @@
     }
 }
 
-#view_article {
+#show_cardbox {
     text-align: right;
     .article_icon_span {
         .icon {
@@ -149,25 +149,25 @@
 }
 
 @media screen and (min-width: 1250px) {
-    #view_article .cover {
+    #show_cardbox .cover {
         height: 600px;
     }
 }
 
 @media screen and (max-width: 1250px) {
-    #view_article .cover {
+    #show_cardbox .cover {
         height: 500px;
     }
 }
 
 @media screen and (max-width: 800px) {
-    #view_article .cover {
+    #show_cardbox .cover {
         height: 400px;
     }
 }
 
 @media screen and (max-width: 600px) {
-    #view_article .cover {
+    #show_cardbox .cover {
         height: 300px;
     }
 }
