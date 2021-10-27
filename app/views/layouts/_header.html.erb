@@ -29,13 +29,9 @@
 					</div>
 				</div>
 			<% end %>
-			<% if session[:user].present? %>
-				<% if  session[:user][:is_owner] || session[:user][:is_admin]%>
-					<a href="<%= dashboard_new_article_url %>" style="display: inline-block; margin-right: 10px; font-size: 30px; position: relative; top: 10px; height: 34px; cursor: pointer" class="btn-none">
-						<ion-icon style="color: #dadada;" name="add-outline"></ion-icon>
-					</a>
-				<% end %>
-			<% end %>
+			<a href="<%= search_q_url %>" style="display: inline-block; margin-right: 10px; font-size: 30px; position: relative; top: 10px; height: 34px; cursor: pointer" class="btn-none">
+				<ion-icon style="color: #dadada;" name="search-outline"></ion-icon>
+			</a>
 		</div>
 		<div id="navbar-left">
 			<%= active_link_to 'درباره ما', about_us_path, :class => "btn btn-secondary" %>

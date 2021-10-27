@@ -1,6 +1,5 @@
 class SearchController < ApplicationController
   def q
-    
   end
 
   def submit_q

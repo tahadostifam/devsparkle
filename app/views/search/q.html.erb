@@ -1,7 +1,7 @@
 <div class="container" style="top: 0">
     <div class="content">
         <div dir="rtl">
-            <%= form_with url: '/search/submit_q', method: :post do |f| %>
+            <%= form_with model: @search_article, url: '/search/submit_q', method: :post do |f| %>
                  <div class="search-search-box default-color">
                     <div class="input">
                         <%= f.text_field :search_q, :placeholder => "جست و جو کنید!" %>
@@ -62,6 +62,10 @@
             <% else %>
                 <span style='color: #777; font-size: 14px; width: 100%; display: block; text-align: center; padding: 20px 0'>مقاله ای پیدا نشد.</span>
             <% end %>
+        <% else %>
+            <div style="width: 100%; display: block; margin: 90px 0; text-align: center">
+			    <%= image_tag '/images/search.svg', :style => 'width: 400px;', :alt => "search" %>
+		    </div>
         <% end %>
     </div>
 </div>
