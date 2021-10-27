@@ -1,4 +1,4 @@
-.article_box {
+.card_Box {
     position: relative;
     .title {
         color: #000;
@@ -62,7 +62,7 @@
     }
 }
 
-#articles_list {
+.listed_cards {
     width: 100%;
     display: grid;
     grid-template-columns: calc(100% / 3) calc(100% / 3 - 15px) calc(100% / 3 - 15px);
@@ -71,28 +71,24 @@
 }
 
 @media screen and (max-width: 1100px) {
-    #articles_list {
+    .listed_cards {
         grid-template-columns: calc(100% / 2) calc(100% / 2 - 10px);
     }
 }
 
 @media screen and (max-width: 720px) {
-    #articles_list {
+    .listed_cards {
         grid-template-columns: 100%;
         grid-gap: 15px;
     }
 }
 
-#articles_mini_list {
-    width: 100%;
-    display: grid;
+.mini_list {
     grid-template-columns: calc(100% / 2) calc(100% / 2 - 15px);
-    grid-gap: 15px;
-    direction: rtl;
 }
 
 @media screen and (max-width: 1100px) {
-    #articles_mini_list {
+    .mini_list {
         grid-template-columns: calc(100%);
         grid-gap: 0;
     }

@@ -14,11 +14,11 @@
         </div>
 		<% if @search_article != nil %>
             <% if @search_article.length > 0 %>
-            <div id="articles_list">
+            <div class="listed_cards">
                 <% @search_article.each do |art| %>
                     <% if art.image.present? %>
                         <a href="/articles/show/<%= art.slug %>">
-                            <div class='article_box'>
+                            <div class='card_Box'>
                                 <div class='image cover'>
                                     <%= image_tag art.image.url, :onload => 'imagePreloader(this)' %>
                                 </div>

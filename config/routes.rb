@@ -57,9 +57,6 @@ Rails.application.routes.draw do
 
   post 'likes/toggle_like'
 
-  # get 'courses/index'
-  # get 'courses/show'
-  # get 'courses/edit'
-  # get 'courses/new'
-  # get 'courses/delete'
+  get 'courses/index'
+  get 'courses/show'
 end

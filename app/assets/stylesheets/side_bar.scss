@@ -1,5 +1,6 @@
 $panel_width: 300px;
-#dashboard_panel{
+
+.sidebar_panel{
     float: right;
     display: inline-block;
     width: $panel_width;
@@ -39,7 +40,7 @@ $panel_width: 300px;
             }
         }
     }
-    #dashboard_nav{
+    .sidebar_nav{
         position: relative;
         left: 50%;
         transform: translate(-50%);
@@ -59,7 +60,8 @@ $panel_width: 300px;
         }
     }
 }
-#dashboard_content{
+
+.sidebar_contentside{
     .content_box{
         box-shadow: 0px 0px 0px 5px rgba(255, 255, 255, 0.5);
         background: #fff;
@@ -80,14 +82,15 @@ $panel_width: 300px;
     padding-bottom: 40px;
     width: calc(100% - #{$panel_width} - 20px);
 }
+
 @media screen and (max-width: 1100px) {
-    #dashboard_panel{
+    .sidebar_panel{
         float: none;
         width: 100%;
         display: block;
         margin-bottom: 20px;
     }
-    #dashboard_content{
+    .sidebar_contentside{
         display: block;
         width: 100%;
     }

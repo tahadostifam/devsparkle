@@ -40,13 +40,13 @@
 		<div id="navbar-left">
 			<%= active_link_to 'درباره ما', about_us_path, :class => "btn btn-secondary" %>
 			<%= active_link_to 'مقالات', articles_index_path, :class => "btn btn-secondary" %>
-			<a class="btn btn-secondary btn-mute"><del>دوره ها</del></a>
+			<%= active_link_to 'دوره ها', courses_index_path, :class => "btn btn-secondary" %>
 		</div>
 	</div>
 </div>
 
-<div id="bottom_navigator">
-	<div id="bottom_navigator_nav">
+<div class="bottom_navigator">
+	<div class="bottom_navigator_nav">
 		<a>
 			<div class="item">
 				<div class="icon">

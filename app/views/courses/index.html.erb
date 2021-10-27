@@ -1,21 +1,22 @@
 <div class="container" style="top: 0">
+    <% @courses = [] %>
     <div class="content">
-		<h2 class="container_title bb">مقالات</h2>
-		<% if @articles.length > 0 %>
+		<h2 class="container_title bb">دوره های آموزشی</h2>
+		<% if @courses.length > 0 %>
 		<div class="listed_cards">
-		    <% @articles.each do |art| %>
-		    	<% if art.image.present? %>
-					<a href="/articles/show/<%= art.slug %>">
+		    <% @courses.each do |co| %>
+		    	<% if co.image.present? %>
+					<a href="/courses/show/<%= co.slug %>">
 						<div class='card_Box'>
 							<div class='image cover'>
-								<%= image_tag art.image.url, :onload => 'imagePreloader(this)' %>
+								<%= image_tag co.image.url, :onload => 'imagePreloader(this)' %>
 							</div>
-							<h3 class='title'><%= art.header %></h3>
-							<p class='desc'><%= art.cover_text[0, 120] %>...</p>
+							<h3 class='title'><%= co.header %></h3>
+							<p class='desc'><%= co.cover_text[0, 120] %>...</p>
 							<div class='footer' style='display: flex; justify-content: space-between' dir='ltr'>
 								<div>
 									<span class='author'>
-										<%= art.user.full_name %>
+										<%= co.user.full_name %>
 										<span class='icon'>
 											<ion-icon name='person-outline'></ion-icon>
 										</span>
@@ -24,18 +25,18 @@
 								<div>
 									<span class="like_icon link-danger" dir="ltr">
 										<span class='icon'>
-											<ion-icon name='heart'></ion-icon>
+											<ion-icon name='heco'></ion-icon>
 										</span>
-										<%= art.likes.length %>
+										<%= co.likes.length %>
 									</span>
 									<span class='comments_count'>
-										<%= art.comments.length %>
+										<%= co.comments.length %>
 										<span class='icon'>
 											<ion-icon name='chatbubble-outline'></ion-icon>
 										</span>
 									</span>
-									<span class='article_submit_time'>
-										<%= art.published_time %>
+									<span class='coicle_submit_time'>
+										<%= co.published_time %>
 										<span class='icon'>
 											<ion-icon name='calendar-outline'></ion-icon>
 										</span>

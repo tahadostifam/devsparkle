@@ -9,9 +9,9 @@
     <div id="app">
       <%= render 'layouts/header' %>
       <div id="dashboard_layout">
-            <div id="page_content">
+            <div id="page__content">
                 <div class="container" style="top: 10px">
-                    <div id="dashboard_panel">
+                    <div class="sidebar_panel">
                         <div class="covered_avatar">
                             <div class="avatar">
                                 <div class="block_avatar">
@@ -23,7 +23,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="dashboard_nav">
+                        <div class="sidebar_nav">
                             <%= link_to 'اطلاعات حساب کاربری', dashboard_edit_profile_url, :class => 'link' %>
                             <%= link_to 'تغییر گذرواژه', dashboard_change_password_url, :class => 'link' %>
                             <% if @user.is_owner? || @user.is_admin? %>
@@ -44,7 +44,7 @@
                             <% end %>
                         </div>
                     </div>
-                    <div id="dashboard_content">
+                    <div class="sidebar_contentside">
                         <%= yield %>
                     </div>
                 </div> 

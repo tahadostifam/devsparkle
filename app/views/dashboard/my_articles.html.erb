@@ -5,7 +5,7 @@
 		    <% @my_articles.each do |art| %>
 		    	<% if art.image.present? %>
 					<a href="/articles/show/<%= art.slug %>">
-						<div class='article_box'>
+						<div class='card_Box'>
 							<% if art.draft? %>
 								<span class="hashtag hashtag-black">(پیشنویس)</span>
 							<% elsif art.published? %>

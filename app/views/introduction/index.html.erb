@@ -24,11 +24,11 @@
 
 <div id="home_content" class="container">
     <h2 class="container_title bb">مقالات محبوب</h2>
-    <div id="articles_list">
+    <div class="listed_cards">
         <% if @popular_articles.length > 0 %>
             <% @popular_articles.each do |art| %>
                 <a href="/articles/show/<%= art.slug %>">
-                    <div class='article_box'>
+                    <div class='card_Box'>
                         <div class='image cover'>
                             <%= image_tag art.image.url, :onload => 'imagePreloader(this)' %>
                         </div>
