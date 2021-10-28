@@ -115,8 +115,11 @@
 
   def submit_new_article
     @article = Article.new(new_article_params)
-    
-    @article.user_id = session[:user]['id']
+
+    unless actions_that_have_recaptcha("new_article_errors")
+      render '/dashboard/new_article/'
+    else
+      @article.user_id = session[:user]['id']
       unless session[:user][:is_owner]
         @article.published = false
       end
@@ -125,15 +128,8 @@
       else
         flash[:new_article_errors] = @article.errors.full_messages
         render :new_article
-      end
-
-    # ANCHOR
-    
-    # unless actions_that_have_recaptcha("new_article_errors")
-    #   render '/dashboard/new_article/'
-    # else
-      
-    # end
+      end  
+    end
   end
   
   def submit_new_course
