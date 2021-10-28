@@ -186,6 +186,14 @@
     @comments = Comment.all
   end
 
+  def new_course
+    @course = Course.new
+  end
+
+  def submit_new_course
+    @course = Course.new
+  end
+
   private
 
   def actions_that_have_recaptcha(flash_name)

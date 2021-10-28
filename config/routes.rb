@@ -20,6 +20,9 @@ Rails.application.routes.draw do
   get 'dashboard/change_password'
   post 'dashboard/submit_change_password'
 
+  get 'dashboard/new_course'
+  post 'dashboard/submit_new_course'
+
   get 'dashboard/new_article'
   post 'dashboard/submit_new_article'
   get 'dashboard/submit_new_article', to: 'dashboard#new_article'

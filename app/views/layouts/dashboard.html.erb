@@ -26,18 +26,25 @@
                         <%= link_to 'اطلاعات حساب کاربری', dashboard_edit_profile_url, :class => 'link' %>
                         <%= link_to 'تغییر گذرواژه', dashboard_change_password_url, :class => 'link' %>
                         <% if @user.is_owner? || @user.is_admin? %>
+                            <div class="sepa"></div>
+
                             <%= link_to 'مقاله جدید', dashboard_new_article_url, :class => 'link' %>
                             <%= link_to 'مقاله های من', dashboard_my_articles_url, :class => 'link' %>
                             <%= link_to "مقاله های تایید نشده (#{@articles_that_not_verified_length})", dashboard_articles_that_not_verified_url, :class => 'link', :dir => :rtl%>
+                            
                             <div class="sepa"></div>
+
+                            <%= link_to 'دوره جدید', dashboard_new_course_url, :class => 'link' %>
+                            <%= link_to 'دوره های من', dashboard_new_article_url, :class => 'link' %>
+
+                            <div class="sepa"></div>
+
                             <%= link_to 'آمار کلی', dashboard_general_statistics_url, :class => 'link' %>
                         <% end %>
                         <% if @user.is_owner? %>
                             <div class="sepa"></div>
                             
                             <%= link_to 'مدیریت کاربران', dashboard_manage_users_url, :class => 'link' %>
-
-                            <div class="sepa"></div>
 
                             <%= link_to 'تنظیمات وبسایت', dashboard_site_settings_url, :class => 'link' %>
                         <% end %>
