@@ -32,6 +32,17 @@
     </div>
 <% end %>
 
+<div class="input">
+    <%= f.label :price, 'قیمت دوره' %>
+    <%= f.text_field :price, :dir => :ltr %>
+    <small>اگر دوره رایگان است قیمت آن را صفر قرار دهید</small>
+</div>
+
+<label class="checkbox">پایان دوره
+    <%= f.check_box :course_finish_state %>
+    <span class="checkmark"></span>
+</label>
+
 <% if session[:user][:is_owner] %>
     <label class="checkbox">انتشار دوره
         <%= f.check_box :published %>

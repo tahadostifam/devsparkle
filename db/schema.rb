@@ -91,6 +91,8 @@ ActiveRecord::Schema.define(version: 2021_10_27_121941) do
     t.string "header", null: false
     t.text "cover_text"
     t.boolean "published", default: false
+    t.boolean "course_finish_state", default: false
+    t.integer "price", default: 0
     t.string "published_time"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false

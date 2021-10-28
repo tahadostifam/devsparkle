@@ -5,6 +5,8 @@ class CreateCourses < ActiveRecord::Migration[6.1]
       t.string :header, null: false, foreign_key: true
       t.text :cover_text
       t.boolean :published, default: false
+      t.boolean :course_finish_state, default: false
+      t.integer :price, default: 0
       t.string :published_time
       t.references :user
       t.timestamps

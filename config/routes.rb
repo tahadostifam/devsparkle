@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
   get 'dashboard/new_course'
   post 'dashboard/submit_new_course'
+  get 'dashboard/submit_new_course', to: 'dashboard#new_course'
 
   get 'dashboard/new_article'
   post 'dashboard/submit_new_article'

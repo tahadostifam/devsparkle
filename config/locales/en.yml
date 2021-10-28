@@ -45,6 +45,13 @@ en:
         content: ''
         content: 'محتوا'
         image: 'عکس'
+      course:
+        header: 'سر برگ'
+        cover_text: 'توضیحات کوتاه'
+        price: "قیمت"
+        course_finish_state: 'وضعیت تمام شدن دوره'
+        content: 'محتوا'
+        image: 'عکس'
     errors:
       messages: 
         blank: "نمی تواند خالی باشد"

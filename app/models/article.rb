@@ -1,4 +1,7 @@
 class Article < ApplicationRecord
+    include Slug
+    include PersianDate
+
     before_create :handle_auto_params_create
     before_update :handle_auto_params_update
     
@@ -44,24 +47,12 @@ class Article < ApplicationRecord
 
     private
 
-    def to_slug(val)
-        ret = val.strip
-        ret.gsub! /['`]/,""
-        ret.gsub! "#", "sharp"
-        ret.gsub! " ", "-"
-        ret.gsub! /\s*@\s*/, " at "
-        ret.gsub! /\s*&\s*/, " and "
-        ret.gsub! /_+/,"_"
-        ret.gsub! /\A[_\.]+|[_\.]+\z/,""
-        ret
-    end
-
     def handle_auto_params_update
-        self.slug = to_slug(self.header)
+        self.slug = make_slug(self.header).to_s
     end
 
     def handle_auto_params_create
-        self.slug = to_slug(self.header)
-        self.published_time = Date.today.to_pdate.strftime("%Y/%m/%d")
+        self.slug = make_slug(self.header).to_s
+        self.published_time = pdate_today
     end
 end

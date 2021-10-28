@@ -16,12 +16,22 @@
                 <% end %>
             </div>
 
+            <div style="margin-top: 10px;">
+                <% unless flash[:new_course_errors].nil? %>
+                    <% flash[:new_course_errors].each do |e| %>
+                        <div class="form_error_list">
+                            <div class="item"><%= e %></div>
+                        </div>
+                    <% end %>
+                <% end %>
+            </div>
+
             <div style="margin-bottom: 10px;">
 				<%= render 'layouts/grecaptcha' %>
 			</div>
 
             <div style="width: 100%; display: block; text-align: left;">
-                <%= f.submit 'ثبت دوره', :class => "btn btn-primary btn-large-padding" %>
+                <%= f.submit 'ثبت دوره', :class => "btn btn-primary btn-large-padding", data: { disable_with: "درحال ارسال فرم" } %>
             </div>
         <% end %>
     </div>

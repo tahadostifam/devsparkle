@@ -1,4 +1,10 @@
 class Course < ApplicationRecord
+    include Slug
+    include PersianDate
+
+    before_create :handle_auto_params_create
+    before_update :handle_auto_params_update
+
     has_many :course_episodes
     belongs_to :user
 
@@ -18,4 +24,20 @@ class Course < ApplicationRecord
         :ftp_ignore_failing_connections => true,
         :ftp_keep_empty_directories => true
     }
+
+    validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
+
+    validates_presence_of :header, :cover_text, :price
+    validates_presence_of :image, on: :create
+
+    private
+
+    def handle_auto_params_update
+        self.slug = make_slug(self.header).to_s
+    end
+
+    def handle_auto_params_create
+        self.slug = make_slug(self.header).to_s
+        self.published_time = pdate_today
+    end
 end

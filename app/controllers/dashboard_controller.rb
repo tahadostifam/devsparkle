@@ -114,12 +114,9 @@
   end
 
   def submit_new_article
-    unless actions_that_have_recaptcha("new_article_errors")
-      @article = Article.new(new_article_params)
-      render '/dashboard/new_article/'
-    else
-      @article = Article.new(new_article_params)
-      @article.user_id = session[:user]['id']
+    @article = Article.new(new_article_params)
+    
+    @article.user_id = session[:user]['id']
       unless session[:user][:is_owner]
         @article.published = false
       end
@@ -128,6 +125,32 @@
       else
         flash[:new_article_errors] = @article.errors.full_messages
         render :new_article
+      end
+
+    # ANCHOR
+    
+    # unless actions_that_have_recaptcha("new_article_errors")
+    #   render '/dashboard/new_article/'
+    # else
+      
+    # end
+  end
+  
+  def submit_new_course
+    @course = Course.new(new_course_params)
+    # ANCHOR
+    unless actions_that_have_recaptcha("new_course_errors")
+      render '/dashboard/new_course'
+    else
+      @course.user_id = session[:user]['id']
+      unless session[:user][:is_owner]
+        @course.published = false
+      end
+      if @course.save 
+        # TODO
+      else
+        flash[:new_course_errors] = @course.errors.full_messages
+        render :new_course
       end
     end
   end
@@ -190,10 +213,6 @@
     @course = Course.new
   end
 
-  def submit_new_course
-    @course = Course.new
-  end
-
   private
 
   def actions_that_have_recaptcha(flash_name)
@@ -212,8 +231,9 @@
       return false
     end
 	end
+
   def articles_that_not_verified_length
-    @articles_that_not_verified_length = Article.where(published: false, draft: false).length
+    @articles_that_not_verified_length = Article.where("published=false and draft=false").length
   end
 
   def require_login
@@ -258,5 +278,9 @@
 
   def change_password_params
     params.permit(:password, :password_confirmation)
+  end
+
+  def new_course_params
+    params.require(:course).permit(:header, :cover_text, :image, :price, :course_finish_state)
   end
 end
