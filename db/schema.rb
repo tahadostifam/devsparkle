@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_27_121941) do
+ActiveRecord::Schema.define(version: 2021_10_28_150549) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -97,6 +97,10 @@ ActiveRecord::Schema.define(version: 2021_10_27_121941) do
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "image_file_name"
+    t.integer "image_file_size"
+    t.string "image_content_type"
+    t.datetime "image_updated_at"
     t.index ["user_id"], name: "index_courses_on_user_id"
   end
 

@@ -1,11 +1,10 @@
 <div class="container" style="top: 0">
-    <% @courses = [] %>
-    <div class="content">
+	<div class="content">
 		<h2 class="container_title bb">دوره های آموزشی</h2>
 		<% if @courses.length > 0 %>
 		<div class="listed_cards">
-		    <% @courses.each do |co| %>
-		    	<% if co.image.present? %>
+			<% @courses.each do |co| %>
+				<% if co.image.present? %>
 					<a href="/courses/show/<%= co.slug %>">
 						<div class='card_Box'>
 							<div class='image cover'>
@@ -25,15 +24,9 @@
 								<div>
 									<span class="like_icon link-danger" dir="ltr">
 										<span class='icon'>
-											<ion-icon name='heco'></ion-icon>
+											<ion-icon name="book-outline"></ion-icon>
 										</span>
-										<%= co.likes.length %>
-									</span>
-									<span class='comments_count'>
-										<%= co.comments.length %>
-										<span class='icon'>
-											<ion-icon name='chatbubble-outline'></ion-icon>
-										</span>
+										<span style="margin-right: 3px;">0</span>
 									</span>
 									<span class='coicle_submit_time'>
 										<%= co.published_time %>
@@ -49,7 +42,7 @@
 			<% end %>
 		</div>
 		<% else %>
-			<span style='color: #777; font-size: 14px; width: 100%; display: block; text-align: center; padding: 20px 0'>مقاله ای پیدا نشد.</span>
+			<span style='color: #777; font-size: 14px; width: 100%; display: block; text-align: center; padding: 20px 0'>دوره ای پیدا نشد.</span>
 		<% end %>
-    </div>
+	</div>
 </div>

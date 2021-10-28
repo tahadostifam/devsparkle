@@ -134,21 +134,26 @@
   
   def submit_new_course
     @course = Course.new(new_course_params)
-    # ANCHOR
+
     unless actions_that_have_recaptcha("new_course_errors")
-      render '/dashboard/new_course'
+      render 'dashboard/new_course', :locals => { created_successfully: false }
     else
       @course.user_id = session[:user]['id']
       unless session[:user][:is_owner]
         @course.published = false
       end
       if @course.save 
-        # TODO
+        render 'dashboard/new_course', :locals => { created_successfully: true }
       else
         flash[:new_course_errors] = @course.errors.full_messages
-        render :new_course
+        render 'dashboard/new_course', :locals => { created_successfully: false }
       end
     end
+  end
+
+  def new_course
+    @course = Course.new
+    render 'dashboard/new_course', :locals => { created_successfully: false }
   end
 
   def edit_article
@@ -203,10 +208,6 @@
     @users = User.all
     @likes = Like.all
     @comments = Comment.all
-  end
-
-  def new_course
-    @course = Course.new
   end
 
   private
