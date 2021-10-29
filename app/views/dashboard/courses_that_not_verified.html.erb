@@ -17,7 +17,7 @@
                     <%= a.user.full_name %>
                 </td>
                 <td>
-                    <%= form_with url: { :action => :submit_articles_that_not_verified } do |f| %>
+                    <%= form_with url: { :action => :submit_courses_that_not_verified } do |f| %>
                         <div class="form">
                             <%= f.hidden_field :slug, :value => a.slug %>
                             <%= f.hidden_field :next_page, :value => '/dashboard/courses_that_not_verified' %>

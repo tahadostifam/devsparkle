@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   post 'dashboard/submit_new_course'
   get 'dashboard/submit_new_course', to: 'dashboard#new_course'
   get 'dashboard/courses_that_not_verified'
+  post 'dashboard/submit_courses_that_not_verified'
 
   post 'articles/new_comment'
   post 'articles/remove_comment'

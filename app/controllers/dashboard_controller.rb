@@ -7,13 +7,19 @@
     :user_profile,
     :submit_user_profile,
     :articles_that_not_verified,
-    :submit_articles_that_not_verified
+    :submit_articles_that_not_verified,
+    :courses_that_not_verified,
+    :submit_courses_that_not_verified,
+    :site_settings,
+    :submit_site_settings
   ]
   before_action :need_admin_access, only: [
     :new_article,
     :submit_new_article,
     :my_articles,
-    :general_statistics
+    :general_statistics,
+    :new_course,
+    :submit_new_course
   ]
 
   def site_settings
@@ -42,6 +48,19 @@
 
   def courses_that_not_verified
     @conv = Course.where(published: false)
+  end
+
+  def submit_courses_that_not_verified
+    @conv = Course.where(slug: params[:slug])
+    if @conv.present?
+      if @conv.update(published: true)
+        redirect_to params[:next_page]
+      else
+        redirect_to '/503'
+      end
+    else
+      redirect_to action: :articles_that_not_verified
+    end
   end
 
   def submit_site_settings
