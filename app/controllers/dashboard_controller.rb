@@ -132,6 +132,10 @@
     @my_articles = Article.where(user_id: session[:user]['id'])
   end
 
+  def my_courses
+    @my_courses = Course.where(user_id: session[:user]['id'])
+  end
+
   def new_article
     @article = Article.new
   end

@@ -1,0 +1,52 @@
+<div class="content">
+		<h2 class="container_title bb">دوره های های من (<%= @my_courses.length %>)</h2>
+		<% if @my_courses.length > 0 %>
+		<div class="listed_cards mini_list">
+		    <% @my_courses.each do |co| %>
+		    	<% if co.image.present? %>
+					<a href="/courses/show/<%= co.slug %>">
+						<div class='card_Box'>
+							<% if co.published? %>
+								<span class="hashtag hashtag-primary">(منتشر شده)</span>
+							<% else %>
+								<span class="hashtag hashtag-red">(منتشر نشده)</span>
+							<% end %>
+							<div class='image cover big_cover'>
+								<%= image_tag co.image.url, :onload => 'imagePreloader(this)' %>
+							</div>
+							<h3 class='title'><%= co.header %></h3>
+							<p class='desc'><%= co.cover_text[0, 120] %>...</p>
+							<%# ANCHOR %>
+                            <div class='footer' style='display: flex; justify-content: space-between' dir='ltr'>
+                                <div>
+                                    <span class='author'>
+                                        <%= co.user.full_name %>
+                                        <span class='icon'>
+                                            <ion-icon name='person-outline'></ion-icon>
+                                        </span>
+                                    </span>
+                                </div>
+                                <div>
+                                    <span class="like_icon link-danger" dir="ltr">
+                                        <span class='icon'>
+                                            <ion-icon name="book-outline"></ion-icon>
+                                        </span>
+                                        <span style="margin-right: 3px;">0</span>
+                                    </span>
+                                    <span class='coicle_submit_time'>
+                                        <%= co.published_time %>
+                                        <span class='icon'>
+                                            <ion-icon name='calendar-outline'></ion-icon>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+					</a>
+				<% end %>
+			<% end %>
+		</div>
+		<% else %>
+			<span style='color: #777; font-size: 14px; width: 100%; display: block; text-align: center; padding: 20px 0'>دوره ای پیدا نشد.</span>
+		<% end %>
+    </div>

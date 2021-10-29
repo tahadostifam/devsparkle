@@ -37,7 +37,7 @@
                             <div class="sepa"></div>
 
                             <%= link_to 'دوره جدید', dashboard_new_course_url, :class => 'link' %>
-                            <%= link_to 'دوره های من', dashboard_new_article_url, :class => 'link' %>
+                            <%= link_to 'دوره های من', dashboard_my_courses_url, :class => 'link' %>
                             <% if @user.is_owner? %>
                                 <%= link_to "دوره های تایید نشده (#{@courses_that_not_verified_length})", dashboard_courses_that_not_verified_url, :class => 'link' %>
                             <% end %>

@@ -1,7 +1,7 @@
 <div class="content">
 		<h2 class="container_title bb">مقاله های من (<%= @my_articles.length %>)</h2>
 		<% if @my_articles.length > 0 %>
-		<div id="articles_mini_list">
+		<div class="listed_cards mini_list">
 		    <% @my_articles.each do |art| %>
 		    	<% if art.image.present? %>
 					<a href="/articles/show/<%= art.slug %>">
