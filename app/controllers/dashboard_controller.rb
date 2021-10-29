@@ -1,7 +1,7 @@
  class DashboardController < ApplicationController
   layout 'dashboard'
   before_action :require_login
-  before_action :articles_that_not_verified_length
+  before_action :that_not_verified_length
   before_action :need_owner_access, only: [
     :manage_users,
     :user_profile,
@@ -38,6 +38,10 @@
     else
       redirect_to action: :articles_that_not_verified
     end
+  end
+
+  def courses_that_not_verified
+    @conv = Course.where(published: false)
   end
 
   def submit_site_settings
@@ -136,24 +140,24 @@
     @course = Course.new(new_course_params)
 
     unless actions_that_have_recaptcha("new_course_errors")
-      render 'dashboard/new_course', :locals => { created_successfully: false }
+      render 'dashboard/new_course', :locals => { created_successfully: false, published: @course.published, slug: "" }
     else
       @course.user_id = session[:user]['id']
       unless session[:user][:is_owner]
         @course.published = false
       end
       if @course.save 
-        render 'dashboard/new_course', :locals => { created_successfully: true }
+        render 'dashboard/new_course', :locals => { created_successfully: true, published: @course.published, slug: @course.slug }
       else
         flash[:new_course_errors] = @course.errors.full_messages
-        render 'dashboard/new_course', :locals => { created_successfully: false }
+        render 'dashboard/new_course', :locals => { created_successfully: false, published: @course.published, slug: "" }
       end
     end
   end
 
   def new_course
     @course = Course.new
-    render 'dashboard/new_course', :locals => { created_successfully: false }
+    render 'dashboard/new_course', :locals => { created_successfully: false, published: false, slug: "" }
   end
 
   def edit_article
@@ -229,8 +233,9 @@
     end
 	end
 
-  def articles_that_not_verified_length
+  def that_not_verified_length
     @articles_that_not_verified_length = Article.where("published=false and draft=false").length
+    @courses_that_not_verified_length = Course.where("published=false").length
   end
 
   def require_login
@@ -278,6 +283,6 @@
   end
 
   def new_course_params
-    params.require(:course).permit(:header, :cover_text, :image, :price, :course_finish_state)
+    params.require(:course).permit(:header, :cover_text, :image, :price, :course_finish_state, :published)
   end
 end

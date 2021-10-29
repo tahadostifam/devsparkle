@@ -20,9 +20,7 @@ Rails.application.routes.draw do
   get 'dashboard/change_password'
   post 'dashboard/submit_change_password'
 
-  get 'dashboard/new_course'
-  post 'dashboard/submit_new_course'
-  get 'dashboard/submit_new_course', to: 'dashboard#new_course'
+  
 
   get 'dashboard/new_article'
   post 'dashboard/submit_new_article'
@@ -35,6 +33,11 @@ Rails.application.routes.draw do
   post 'dashboard/submit_site_settings'
   get 'dashboard/articles_that_not_verified'
   post 'dashboard/submit_articles_that_not_verified'
+  
+  get 'dashboard/new_course'
+  post 'dashboard/submit_new_course'
+  get 'dashboard/submit_new_course', to: 'dashboard#new_course'
+  get 'dashboard/courses_that_not_verified'
 
   post 'articles/new_comment'
   post 'articles/remove_comment'

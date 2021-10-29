@@ -43,16 +43,16 @@
 
 <div class="bottom_navigator">
 	<div class="bottom_navigator_nav">
-		<a>
-			<div class="item">
-				<div class="icon">
-					<ion-icon name="school-outline"></ion-icon>
-				</div>
-				<span class="text">
-					<del>دوره ها</del>
-				</span>
+		<%= active_link_to raw('
+		<div class="item">
+			<div class="icon">
+				<ion-icon name="school-outline"></ion-icon>
 			</div>
-		</a>
+			<span class="text">
+				دوره ها
+			</span>
+		</div>
+		'), courses_index_url %>
 		<%= active_link_to raw('
 		<div class="item">
 			<div class="icon">
@@ -72,6 +72,14 @@
 					</div>
 				</div>
 				'), dashboard_new_article_url %>
+			<% else %>
+				<%= active_link_to raw('
+				<div class="item item-center">
+					<div class="icon">
+						<ion-icon name="search-outline"></ion-icon>
+					</div>
+				</div>
+				'), search_q_url %>
 			<% end %>
 		<% end %>
 		<%= active_link_to raw('
