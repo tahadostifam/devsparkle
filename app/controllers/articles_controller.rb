@@ -2,8 +2,7 @@ class ArticlesController < ApplicationController
   before_action :need_owner_access, only: []
   before_action :need_admin_access, only: [
     :confirm_delete_article,
-    :submit_delete_article,
-    :remove_comment,
+    :submit_delete_article
   ]
 
   def index

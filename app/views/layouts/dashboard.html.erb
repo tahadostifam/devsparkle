@@ -22,7 +22,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="sidebar_nav">
+                    <div class="sidebar_nav link_row">
                         <%= link_to 'اطلاعات حساب کاربری', dashboard_edit_profile_url, :class => 'link' %>
                         <%= link_to 'تغییر گذرواژه', dashboard_change_password_url, :class => 'link' %>
                         <% if @user.is_owner? || @user.is_admin? %>
