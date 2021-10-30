@@ -32,6 +32,9 @@
                             سطح دوره : <span class="link-black"></span>
                         </a>
                         <a class="link link-mute">
+                            تعداد دانشجویان : <span class="link-black">0</span>
+                        </a>
+                        <a class="link link-mute">
                             وضعیت دوره : <span class="link-black">
                                 <% if @course.course_finish_state == true %>
                                     <span class="link-general">اتمام دوره</span>
@@ -45,41 +48,44 @@
                         </a>
                     </div>
                     <div class="sepa"></div>
-                    <%= form_with url: '', method: :post do |f| %>
-                        <%= f.submit "عضویت در دوره", :class => "btn btn-primary btn-block", data: { disable_with: "لطفا صبر کنید" } %>
-                    <% end %>
+                    <div style="margin: 5px 0;">
+                        <%= form_with url: '', method: :post do |f| %>
+                            <%= f.submit "عضویت در دوره", :class => "btn btn-primary btn-block", data: { disable_with: "لطفا صبر کنید" } %>
+                        <% end %>
+                    </div>
                 </div>
             </div>
             <div class="sidebar_contentside">
                 <div id="show_cardbox">
                     <%# ANCHOR %>
                         <div class='card_Box'>
-                                <div style="display: block; width: 100%; margin-bottom: 10px;">
-                                    <h1 class='title' dir="rtl" style="margin-bottom: 10px;"><%= @course.header %></h3>
-                                    <div style="display: flex; justify-content: space-between;">
-                                        <div>
-                                            <% if show_actions %>
-                                                <%= link_to 'حذف', '/articles/confirm_delete_article/' + @course.slug, :style => 'display: inline-block', :class => 'link link-danger' %>
-                                                <%= link_to 'ویرایش', '/dashboard/edit_article/' + @course.slug, :style => 'margin-left: 10px; display: inline-block', :class => 'link' %>
-                                                <% if session[:user][:is_owner] && @course.published == false %>
-                                                    <div style="margin-left: 10px; display: inline-block; position: relative; top:1px">
-                                                        <%= form_with url: { :controller => :dashboard, :action => :submit_articles_that_not_verified } do |f| %>
-                                                            <%= f.hidden_field :slug, :value => @course.slug %>
-                                                            <%= f.hidden_field :next_page, :value => '/articles/show/'+@course.slug %>
-                                                            <%= f.submit 'تایید مقاله', :class => 'link btn-none' %>
-                                                        <% end %>
-                                                    </div>
-                                                <% end %>
+                            <div style="display: block; width: 100%; margin-bottom: 10px;">
+                                <h1 class='title' dir="rtl" style="margin-bottom: 10px;"><%= @course.header %></h3>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <div>
+                                        <% if show_actions %>
+                                            <%# NOTE %>
+                                            <%= link_to 'حذف', '/articles/confirm_delete_article/' + @course.slug, :style => 'display: inline-block', :class => 'link link-danger' %>
+                                            <%= link_to 'ویرایش', '/dashboard/edit_article/' + @course.slug, :style => 'margin-left: 10px; display: inline-block', :class => 'link' %>
+                                            <% if session[:user][:is_owner] && @course.published == false %>
+                                                <div style="margin-left: 10px; display: inline-block; position: relative; top:1px">
+                                                    <%= form_with url: { :controller => :dashboard, :action => :submit_articles_that_not_verified } do |f| %>
+                                                        <%= f.hidden_field :slug, :value => @course.slug %>
+                                                        <%= f.hidden_field :next_page, :value => '/articles/show/'+@course.slug %>
+                                                        <%= f.submit 'تایید مقاله', :class => 'link btn-none' %>
+                                                    <% end %>
+                                                </div>
                                             <% end %>
-                                        </div>
-                                        <div>
-                                            <span class="article_icon_span" dir="ltr">
-                                                <span class='icon'>
-                                                    <ion-icon name='calendar-outline'></ion-icon>
-                                                </span>
-                                                <%= @course.published_time %>
+                                        <% end %>
+                                    </div>
+                                    <div>
+                                        <span class="article_icon_span" dir="ltr">
+                                            <span class='icon'>
+                                                <ion-icon name='calendar-outline'></ion-icon>
                                             </span>
-                                        </div>
+                                            <%= @course.published_time %>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                             <div class='image cover'>
