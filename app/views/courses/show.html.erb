@@ -79,7 +79,7 @@
                                         <% end %>
                                     </div>
                                     <div>
-                                        <span class="article_icon_span" dir="ltr">
+                                        <span class="cardbox_icon" dir="ltr">
                                             <span class='icon'>
                                                 <ion-icon name='calendar-outline'></ion-icon>
                                             </span>
@@ -90,6 +90,9 @@
                             </div>
                             <div class='image cover'>
                                 <%= image_tag @course.image.url %>  
+                            </div>
+                            <div class="content md_to_html" style="padding-bottom: 0;">
+                                <%= @course.cover_text %>
                             </div>
                             <div class="author_row">
                                 <div class="icon">
