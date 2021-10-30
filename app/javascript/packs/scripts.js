@@ -1,13 +1,15 @@
 const markdown = require('./markdown.min');
 
-window.imagePreloader = function (e) {
-	return e.classList.add('loaded')
+function loadImages() {
+	const images = document.querySelectorAll('.image')
+	images.forEach((item, index) => {
+		item.querySelector('img').classList.add('loaded')
+	})
 }
 
 window.close_popup_alert_box = (close_button) => {
 	close_button.parentElement.style.display = "none"
 }
-
 
 window.include = (file) => {
 	let script = document.createElement('script');
@@ -17,8 +19,14 @@ window.include = (file) => {
 	document.getElementsByTagName('head').item(0).appendChild(script);
 }
 
+window.onload = () => {
+	loadImages();
+}
+
 document.addEventListener("turbolinks:load", function() {
 	include('https://www.google.com/recaptcha/api.js')
+
+	loadImages()
 
 	const markdownDivsToHtml = document.querySelector('.md_to_html')
 	if (markdownDivsToHtml) {

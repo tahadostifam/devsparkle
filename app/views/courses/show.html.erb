@@ -1,11 +1,53 @@
 <div id="page__content">
-    <% @course = nil %>
     <div class="container" style="top: 10px">
         <% if @course.present? %>
             <div class="sidebar_panel">
-                <div class="sidebar_nav">
-                    <%= link_to 'اطلاعات حساب کاربری', dashboard_edit_profile_url, :class => 'link' %>
-                    <%= link_to 'تغییر گذرواژه', dashboard_change_password_url, :class => 'link' %>
+                <div class="sidebar_nav link_row">
+                    <div class="covered_avatar" style="padding: 10px 0;">
+                        <div class="avatar">
+                            <div class="block_avatar">
+                                <ion-icon name="card-outline" class="avatar avatar-icon"></ion-icon>
+                                <a class="link link-large" style="margin: 10px 0;">
+                                    قیمت این دوره
+                                </a>
+                                <span class="link-success">
+                                    <% if @course.price == 0 %>
+                                        رایگان
+                                    <% else %>
+                                        <%= @course.price %>
+                                    <% end %>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sepa"></div>
+                    <div dir="rtl">
+                        <a class="link">
+                            <span class="link-mute">مدرس این دوره : </span><span class="link-general"><%= @course.user.full_name %></span>
+                        </a>
+                        <a class="link link-mute">
+                            تعداد ویدیو ها : <span class="link-black">0</span>
+                        </a>
+                        <a class="link link-mute">
+                            سطح دوره : <span class="link-black"></span>
+                        </a>
+                        <a class="link link-mute">
+                            وضعیت دوره : <span class="link-black">
+                                <% if @course.course_finish_state == true %>
+                                    <span class="link-general">اتمام دوره</span>
+                                <% else %>
+                                    <span class="link-success">درحال برگزاری</span>
+                                <% end %>
+                            </span>
+                        </a>
+                        <a class="link link-mute">
+                            آخرین بروزرسانی : <span class="link-black"><%= @course.published_time %></span>
+                        </a>
+                    </div>
+                    <div class="sepa"></div>
+                    <%= form_with url: '', method: :post do |f| %>
+                        <%= f.submit "عضویت در دوره", :class => "btn btn-primary btn-block", data: { disable_with: "لطفا صبر کنید" } %>
+                    <% end %>
                 </div>
             </div>
             <div class="sidebar_contentside">
@@ -13,17 +55,17 @@
                     <%# ANCHOR %>
                         <div class='card_Box'>
                                 <div style="display: block; width: 100%; margin-bottom: 10px;">
-                                    <h1 class='title' dir="rtl" style="margin-bottom: 10px;"><%= @article.header %></h3>
+                                    <h1 class='title' dir="rtl" style="margin-bottom: 10px;"><%= @course.header %></h3>
                                     <div style="display: flex; justify-content: space-between;">
                                         <div>
                                             <% if show_actions %>
-                                                <%= link_to 'حذف', '/articles/confirm_delete_article/' + @article.slug, :style => 'display: inline-block', :class => 'link link-danger' %>
-                                                <%= link_to 'ویرایش', '/dashboard/edit_article/' + @article.slug, :style => 'margin-left: 10px; display: inline-block', :class => 'link' %>
-                                                <% if session[:user][:is_owner] && @article.published == false %>
+                                                <%= link_to 'حذف', '/articles/confirm_delete_article/' + @course.slug, :style => 'display: inline-block', :class => 'link link-danger' %>
+                                                <%= link_to 'ویرایش', '/dashboard/edit_article/' + @course.slug, :style => 'margin-left: 10px; display: inline-block', :class => 'link' %>
+                                                <% if session[:user][:is_owner] && @course.published == false %>
                                                     <div style="margin-left: 10px; display: inline-block; position: relative; top:1px">
                                                         <%= form_with url: { :controller => :dashboard, :action => :submit_articles_that_not_verified } do |f| %>
-                                                            <%= f.hidden_field :slug, :value => @article.slug %>
-                                                            <%= f.hidden_field :next_page, :value => '/articles/show/'+@article.slug %>
+                                                            <%= f.hidden_field :slug, :value => @course.slug %>
+                                                            <%= f.hidden_field :next_page, :value => '/articles/show/'+@course.slug %>
                                                             <%= f.submit 'تایید مقاله', :class => 'link btn-none' %>
                                                         <% end %>
                                                     </div>
@@ -31,58 +73,24 @@
                                             <% end %>
                                         </div>
                                         <div>
-                                            <% if session[:user] != nil %>
-                                                <%= form_with url: {:controller => :likes, :action => :toggle_like} do |f| %>
-                                                    <input type="hidden" name="slug" value="<%= @article.slug %>">
-                                                    <button type="submit" class="like_button">
-                                                        <% if @article.liked(session[:user][:id]) %>
-                                                            <span class="article_icon_span link-danger" dir="ltr">
-                                                                <span class='icon'>
-                                                                    <ion-icon name='heart'></ion-icon>
-                                                                </span>
-                                                                <%= @article.likes.length %>
-                                                            </span>
-                                                        <% else %>
-                                                            <span class="article_icon_span" dir="ltr">
-                                                                <span class='icon'>
-                                                                    <ion-icon name='heart'></ion-icon>
-                                                                </span>
-                                                                <%= @article.likes.length %>
-                                                            </span>
-                                                        <% end %>
-                                                    </button>
-                                                <% end %>
-                                            <% else %>
-                                                <span class="article_icon_span" dir="ltr">
-                                                    <span class='icon'>
-                                                        <ion-icon name='heart'></ion-icon>
-                                                    </span>
-                                                    <%= @article.likes.length %>
-                                                </span>
-                                            <% end %>
                                             <span class="article_icon_span" dir="ltr">
                                                 <span class='icon'>
                                                     <ion-icon name='calendar-outline'></ion-icon>
                                                 </span>
-                                                <%= @article.published_time %>
+                                                <%= @course.published_time %>
                                             </span>
                                         </div>
                                 </div>
                             </div>
-                            <% # if @article.image.url.present? %>
-                                <div class='image cover'>
-                                    <%= image_tag @article.image.url, :onload => 'imagePreloader(this)' %>  
-                                </div>
-                            <% # end %>
-                            <div class="content md_to_html" style="margin: 10px 0;" dir="rtl">
-                                <%= @article.content %>
+                            <div class='image cover'>
+                                <%= image_tag @course.image.url %>  
                             </div>
                             <div class="author_row">
                                 <div class="icon">
                                     <ion-icon name="person-outline"></ion-icon>
                                 </div>
                                 <div class="value">
-                                    <%= @article.user.full_name %>
+                                    <%= @course.user.full_name %>
                                 </div>
                             </div>
                         </div>

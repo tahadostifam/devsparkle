@@ -16,7 +16,7 @@
             <%= f.file_field :image, accept: 'image/png,image/jpg,image/jpeg',:style => 'display: none' %>
         </div>
         <div class="image" style="display: none;">
-            <img src="#" alt="preview image before upload" onload="imagePreloader(this)">
+            <img src="#" alt="preview image before upload">
         </div>
     </div>
 <% else %>
@@ -27,7 +27,7 @@
             <%= f.file_field :image, accept: 'image/png,image/jpg,image/jpeg',:style => 'display: none' %>
         </div>
         <div class="image">
-            <%= image_tag @article.image.url, :alt => "preview image before upload", :onload => "imagePreloader(this)" %>
+            <%= image_tag @article.image.url, :alt => "preview image before upload" %>
         </div>
     </div>
 <% end %>

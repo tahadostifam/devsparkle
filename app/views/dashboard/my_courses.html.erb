@@ -12,11 +12,10 @@
 								<span class="hashtag hashtag-red">(منتشر نشده)</span>
 							<% end %>
 							<div class='image cover big_cover'>
-								<%= image_tag co.image.url, :onload => 'imagePreloader(this)' %>
+								<%= image_tag co.image.url %>
 							</div>
 							<h3 class='title'><%= co.header %></h3>
 							<p class='desc'><%= co.cover_text[0, 120] %>...</p>
-							<%# ANCHOR %>
                             <div class='footer' style='display: flex; justify-content: space-between' dir='ltr'>
                                 <div>
                                     <span class='author'>

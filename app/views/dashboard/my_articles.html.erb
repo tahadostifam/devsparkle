@@ -14,7 +14,7 @@
 								<span class="hashtag hashtag-red">(منتشر نشده)</span>
 							<% end %>
 							<div class='image cover big_cover'>
-								<%= image_tag art.image.url, :onload => 'imagePreloader(this)' %>
+								<%= image_tag art.image.url %>
 							</div>
 							<h3 class='title'><%= art.header %></h3>
 							<p class='desc'><%= art.cover_text[0, 120] %>...</p>

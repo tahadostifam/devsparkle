@@ -67,5 +67,5 @@ Rails.application.routes.draw do
   post 'likes/toggle_like'
 
   get 'courses/index'
-  get 'courses/show'
+  get 'courses/show/:slug', to: 'courses#show'
 end

@@ -29,15 +29,15 @@ $panel_width: 300px;
                 font-size: 25px;
                 color: #fff;
                 padding-top: 23px;
+                &.avatar-icon{
+                    background: none;
+                    color: #252b33;
+                    border-radius: 0;
+                }
             }
             .value{
                 display: block;
                 margin-top: 15px;
-            }
-            .link{
-                color: #777;
-                font-family: 'Samim';
-                font-size: 13px;
             }
         }
     }
@@ -51,13 +51,7 @@ $panel_width: 300px;
         text-align: right;
         border-top: 1px solid #f1f1f1;
         .link{
-            display: block;
-            width: 100%;
-            color: #777;
-            font-family: 'Samim';
-            font-size: 14px;
             line-height: 30px;
-            transition: none;
         }
     }
 }
@@ -94,25 +88,5 @@ $panel_width: 300px;
     .sidebar_contentside{
         display: block;
         width: 100%;
-    }
-}
-.card-box{
-    width: 100%;
-    padding: 20px 10px;
-    text-align: center;
-    .icon{
-        font-size: 60px;
-        color: #111;
-    }
-    .title{
-        position: relative;
-        top: -15px;
-        color: #777;
-    }
-    .value{
-        position: relative;
-        top: -5px;
-        color: #777;
-        font-family: 'sans-serif';
     }
 }

@@ -22,15 +22,27 @@ body {
     .link {
         color: #777;
         font-family: "Poppins", "Gandom";
-        font-size: 16px;
+        font-size: 14px;
         transition: 0.3s ease;
         cursor: pointer;
-        &.link-danger {
-            color: rgb(255, 11, 11);
-        }
-        &.link-general {
-            color: #003cff;
-        }
+    }
+    .link-danger {
+        color: rgb(255, 11, 11);
+    }
+    .link-general {
+        color: #003cff;
+    }
+    .link-success {
+        color: #106b2b;
+    }
+    .link-black{
+        color: #000;
+    }
+    .link-mute{
+        cursor: default;
+    }
+    .link-large{
+        font-size: 17px;
     }
 }
 
