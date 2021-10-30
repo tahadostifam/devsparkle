@@ -6,7 +6,8 @@ class Course < ApplicationRecord
     before_update :handle_auto_params_update
 
     has_many :course_episodes
-    has_and_belongs_to :user
+    has_many :user
+    belongs_to :user
 
     has_attached_file :image,
     {

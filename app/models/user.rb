@@ -3,6 +3,7 @@ require 'active_support/time'
 
 class User < ApplicationRecord
     has_many :articles
+    has_many :courses
     
     has_secure_password
 
@@ -16,6 +17,13 @@ class User < ApplicationRecord
     validates_presence_of :password_confirmation, if: :password_digest_changed?
     validates_inclusion_of :gender, :in => ['عدم انتخاب', 'مذکر', 'مونث', nil]
     validates_acceptance_of :accept_terms_and_conditions, :message => "برای ثبت نام باید قوانین وبسایت را بپذیرید", :attribute => false
+
+    # NOTE - just dev!!!!
+    def to_owner
+        self.is_owner = true
+        self.is_admin = true
+        save!
+    end
     
     def email_activate
         self.email_confirmed = true
