@@ -3,7 +3,10 @@ require 'active_support/time'
 
 class User < ApplicationRecord
     has_many :articles
-    has_many :courses
+    # has_many :courses
+    
+    has_many :course_members
+    has_many :courses, through: :course_members
 
     has_secure_password
 
@@ -17,7 +20,7 @@ class User < ApplicationRecord
     validates_presence_of :password_confirmation, if: :password_digest_changed?
     validates_inclusion_of :gender, :in => ['عدم انتخاب', 'مذکر', 'مونث', nil]
     validates_acceptance_of :accept_terms_and_conditions, :message => "برای ثبت نام باید قوانین وبسایت را بپذیرید", :attribute => false
-
+    
     # NOTE - "just dev" do
     # User.create(full_name: "$ Rocks D. Xebec", username: "xebec", email: "xebec@rocks.d", password: "1234", password_confirmation: "1234", email_confirmed: true, is_owner: true, is_admin: true)
     def to_owner

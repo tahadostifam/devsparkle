@@ -3,8 +3,9 @@ class Course < ApplicationRecord
     include PersianDate
 
     has_many :course_episodes
-    has_many :users, foreign_key: "id"
     belongs_to :user
+    has_many :course_members
+    has_many :users, through: :course_members
 
     before_create :handle_auto_params_create
     before_update :handle_auto_params_update

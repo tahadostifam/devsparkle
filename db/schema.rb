@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_31_111742) do
+ActiveRecord::Schema.define(version: 2021_10_31_130846) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -86,6 +86,15 @@ ActiveRecord::Schema.define(version: 2021_10_31_111742) do
     t.index ["course_id"], name: "index_course_episodes_on_course_id"
   end
 
+  create_table "course_members", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "course_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_id"], name: "index_course_members_on_course_id"
+    t.index ["user_id"], name: "index_course_members_on_user_id"
+  end
+
   create_table "courses", force: :cascade do |t|
     t.string "slug", null: false
     t.string "header", null: false
@@ -102,15 +111,6 @@ ActiveRecord::Schema.define(version: 2021_10_31_111742) do
     t.string "image_content_type"
     t.datetime "image_updated_at"
     t.index ["user_id"], name: "index_courses_on_user_id"
-  end
-
-  create_table "courses_users", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "course_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["course_id"], name: "index_courses_users_on_course_id"
-    t.index ["user_id"], name: "index_courses_users_on_user_id"
   end
 
   create_table "likes", force: :cascade do |t|
