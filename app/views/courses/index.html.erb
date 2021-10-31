@@ -6,7 +6,7 @@
 			<% @courses.each do |co| %>
 				<% if co.image.present? %>
 					<a href="/courses/show/<%= co.slug %>">
-						<div class='card_Box'>
+						<div class='card_box'>
 							<div class='image cover'>
 								<%= image_tag co.image.url %>
 							</div>

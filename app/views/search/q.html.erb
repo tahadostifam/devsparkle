@@ -18,7 +18,7 @@
                 <% @search_article.each do |art| %>
                     <% if art.image.present? %>
                         <a href="/articles/show/<%= art.slug %>">
-                            <div class='card_Box'>
+                            <div class='card_box'>
                                 <div class='image cover'>
                                     <%= image_tag art.image.url %>
                                 </div>

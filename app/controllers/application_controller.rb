@@ -10,7 +10,6 @@ class ApplicationController < ActionController::Base
 		elsif cookies.signed[:user_id].present?
 			user = User.find_by(id: cookies.signed[:user_id])
 			do_user_auth_action(user)
-			puts 'cookieeeeeee'
 		else
 			user = nil
 		end

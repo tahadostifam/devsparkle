@@ -4,7 +4,7 @@ require 'active_support/time'
 class User < ApplicationRecord
     has_many :articles
     has_many :courses
-    
+
     has_secure_password
 
     attr_accessor :accept_terms_and_conditions
@@ -18,12 +18,14 @@ class User < ApplicationRecord
     validates_inclusion_of :gender, :in => ['عدم انتخاب', 'مذکر', 'مونث', nil]
     validates_acceptance_of :accept_terms_and_conditions, :message => "برای ثبت نام باید قوانین وبسایت را بپذیرید", :attribute => false
 
-    # NOTE - just dev!!!!
+    # NOTE - "just dev" do
+    # User.create(full_name: "$ Rocks D. Xebec", username: "xebec", email: "xebec@rocks.d", password: "1234", password_confirmation: "1234", email_confirmed: true, is_owner: true, is_admin: true)
     def to_owner
         self.is_owner = true
         self.is_admin = true
         save!
     end
+    # NOTE - end
     
     def email_activate
         self.email_confirmed = true

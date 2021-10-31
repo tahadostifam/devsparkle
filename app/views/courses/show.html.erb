@@ -32,7 +32,7 @@
                             سطح دوره : <span class="link-black"></span>
                         </a>
                         <a class="link link-mute">
-                            تعداد دانشجویان : <span class="link-black">0</span>
+                            تعداد دانشجویان : <span class="link-black"><%= @course.users.length %></span>
                         </a>
                         <a class="link link-mute">
                             وضعیت دوره : <span class="link-black">
@@ -58,7 +58,7 @@
             <div class="sidebar_contentside">
                 <div id="show_cardbox">
                     <%# ANCHOR %>
-                        <div class='card_Box'>
+                        <div class='card_box'>
                             <div style="display: block; width: 100%; margin-bottom: 10px;">
                                 <h1 class='title' dir="rtl" style="margin-bottom: 10px;"><%= @course.header %></h3>
                                 <div style="display: flex; justify-content: space-between;">

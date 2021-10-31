@@ -1,0 +1,3 @@
+class CourseMember < ApplicationRecord
+    
+end

@@ -1,6 +1,6 @@
-class CoursesUsers < ActiveRecord::Migration[6.1]
+class CreateCourseMembers < ActiveRecord::Migration[6.1]
   def change
-    create_table :course_users do |t|
+    create_table :courses_users do |t|
       t.references :user
       t.references :course
       t.timestamps

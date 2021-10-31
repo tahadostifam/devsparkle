@@ -2,12 +2,12 @@ class Course < ApplicationRecord
     include Slug
     include PersianDate
 
+    has_many :course_episodes
+    has_many :users, foreign_key: "id"
+    belongs_to :user
+
     before_create :handle_auto_params_create
     before_update :handle_auto_params_update
-
-    has_many :course_episodes
-    has_many :user
-    belongs_to :user
 
     has_attached_file :image,
     {
