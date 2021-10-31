@@ -3,7 +3,8 @@ class SearchController < ApplicationController
   end
 
   def submit_q
-    @search_article = Article.where('header LIKE ?', "%#{params['search_q']}%")
+    @search_in_articles = Article.where('header LIKE ?', "%#{params['search_q']}%")
+    @search_in_courses = Course.where('header LIKE ?', "%#{params['search_q']}%")
     render 'search/q'
   end
 end

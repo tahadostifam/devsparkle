@@ -1,7 +1,7 @@
 <div class="container" style="top: 0">
     <div class="content">
         <div dir="rtl">
-            <%= form_with model: @search_article, url: '/search/submit_q', method: :post do |f| %>
+            <%= form_with model: @search_in_articles, url: '/search/submit_q', method: :post do |f| %>
                  <div class="search-search-box default-color">
                     <div class="input">
                         <%= f.text_field :search_q, :placeholder => "جست و جو کنید!" %>
@@ -12,42 +12,42 @@
                 </div>
             <% end %>
         </div>
-		<% if @search_article != nil %>
-            <% if @search_article.length > 0 %>
+		<% if @search_in_articles != nil || @search_in_courses != nil %>
+            <% if @search_in_articles.length > 0 %>
             <div class="listed_cards">
-                <% @search_article.each do |art| %>
-                    <% if art.image.present? %>
-                        <a href="/articles/show/<%= art.slug %>">
+                <% @search_in_articles.each do |i| %>
+                    <% if i.image.present? %>
+                        <a href="/articles/show/<%= i.slug %>">
                             <div class='card_box'>
                                 <div class='image cover'>
-                                    <%= image_tag art.image.url %>
+                                    <%= image_tag i.image.url %>
                                 </div>
-                                <h3 class='title'><%= art.header %></h3>
-                                <p class='desc'><%= art.cover_text[0, 120] %>...</p>
+                                <h3 class='title'><%= i.header %></h3>
+                                <p class='desc'><%= i.cover_text[0, 120] %>...</p>
                                 <div class='footer' style='display: flex; justify-content: space-between' dir='ltr'>
                                     <div>
                                         <span class='author'>
-                                            <%= art.user.full_name %>
+                                            <%= i.user.full_name %>
                                             <span class='icon'>
                                                 <ion-icon name='person-outline'></ion-icon>
                                             </span>
                                         </span>
                                     </div>
                                     <div>
-                                        <span class="like_icon link-danger" dir="ltr">
+                                        <span class="footer_icon link-danger" dir="ltr">
                                             <span class='icon'>
                                                 <ion-icon name='heart'></ion-icon>
                                             </span>
-                                            <%= art.likes.length %>
+                                            <%= i.likes.length %>
                                         </span>
                                         <span class='comments_count'>
-                                            <%= art.comments.length %>
+                                            <%= i.comments.length %>
                                             <span class='icon'>
                                                 <ion-icon name='chatbubble-outline'></ion-icon>
                                             </span>
                                         </span>
                                         <span class='article_submit_time'>
-                                            <%= art.published_time %>
+                                            <%= i.published_time %>
                                             <span class='icon'>
                                                 <ion-icon name='calendar-outline'></ion-icon>
                                             </span>
@@ -69,3 +69,19 @@
         <% end %>
     </div>
 </div>
+<%
+=begin%>
+ <span class="footer_icon link-danger" dir="ltr">
+    <span class='icon'>
+        <ion-icon name="book-outline"></ion-icon>
+    </span>
+    <span style="margin-right: 3px;">0</span>
+</span>
+<span class='coicle_submit_time'>
+    <%= i.published_time %>
+    <span class='icon'>
+        <ion-icon name='calendar-outline'></ion-icon>
+    </span>
+</span> 
+<%
+=end%>

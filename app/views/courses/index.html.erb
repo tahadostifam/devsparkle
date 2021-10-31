@@ -22,11 +22,13 @@
 									</span>
 								</div>
 								<div>
-									<span class="like_icon link-danger" dir="ltr">
+									<span class="footer_icon link-danger" dir="ltr">
 										<span class='icon'>
 											<ion-icon name="book-outline"></ion-icon>
 										</span>
-										<span style="margin-right: 3px;">0</span>
+										<span style="margin-right: 3px;">
+											<%= co.users.where("is_admin=false").length %>
+										</span>
 									</span>
 									<span class='coicle_submit_time'>
 										<%= co.published_time %>
