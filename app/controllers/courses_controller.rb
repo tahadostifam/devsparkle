@@ -20,4 +20,21 @@ class CoursesController < ApplicationController
       render :show, :locals => { :show_actions => false }
     end
   end
+
+  def join_at_course
+    @course = Course.find_by(slug: params[:slug])
+    if @course.present?
+      user = session[:user]
+      if user != nil
+        if !user[:is_owner] && !user[:is_admin]
+          @course.users << user
+          redirect_to '/courses/show/' + @course.slug
+        else
+          redirect_to '/503'    
+        end
+      end
+    else
+      redirect_to '/404'
+    end
+  end
 end

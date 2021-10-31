@@ -32,7 +32,7 @@
                             سطح دوره : <span class="link-black"></span>
                         </a>
                         <a class="link link-mute">
-                            تعداد دانشجویان : <span class="link-black"><%= @course.users.length %></span>
+                            تعداد دانشجویان : <span class="link-black"><%= @course.users.where("is_admin=false").length %></span>
                         </a>
                         <a class="link link-mute">
                             وضعیت دوره : <span class="link-black">
@@ -49,8 +49,11 @@
                     </div>
                     <div class="sepa"></div>
                     <div style="margin: 5px 0;">
-                        <%= form_with url: '', method: :post do |f| %>
-                            <%= f.submit "عضویت در دوره", :class => "btn btn-primary btn-block", data: { disable_with: "لطفا صبر کنید" } %>
+                        <% if session[:user] != nil && !session[:user][:is_owner] && !session[:user][:is_admin] %>
+                            <%= form_with url: '/courses/join_at_course', method: :post do |f| %>
+                                <%= f.hidden_field :slug, :value => @course.slug %>
+                                <%= f.submit "عضویت در دوره", :class => "btn btn-primary btn-block", data: { disable_with: "لطفا صبر کنید" } %>
+                            <% end %>
                         <% end %>
                     </div>
                 </div>
@@ -94,6 +97,14 @@
                             <div class="content md_to_html" style="padding-bottom: 0;">
                                 <%= @course.cover_text %>
                             </div>
+                            <%# TODO - remove %>
+                                <div>
+                                    <h1>Members</h1> <br>
+                                    <% @course.users.where("is_admin=false").each do |user| %>
+                                        <%= user.full_name %>
+                                    <% end %>
+                                </div>
+
                             <div class="author_row">
                                 <div class="icon">
                                     <ion-icon name="person-outline"></ion-icon>
