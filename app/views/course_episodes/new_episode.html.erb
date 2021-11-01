@@ -1,0 +1,52 @@
+<div class="container" style="top: 0">
+    <div class="content_box">
+        <% created_successfully = false %>
+        <% if created_successfully != nil && !created_successfully %>
+            <div class="form low_shadow low_radius">
+                <h4 class="header large_header">ویدیو جدید</h4>
+                <%= form_for @episode, url: {:action => 'submit_new_episode'}, method: :post do |f| %>
+                    
+                    
+                    <div style="margin-top: 10px;">
+                        <% unless flash[:new_episode_errors].nil? %>
+                            <% flash[:new_episode_errors].each do |e| %>
+                                <div class="form_error_list">
+                                    <div class="item"><%= e %></div>
+                                </div>
+                            <% end %>
+                        <% end %> 
+                    </div>
+
+                    <div style="margin-bottom: 10px;">
+                        <%= render 'layouts/grecaptcha' %>
+                    </div>
+
+                    <div style="width: 100%; display: block; text-align: left;">
+                        <%= f.submit 'ثبت ویدیو', :class => "btn btn-primary btn-large-padding", data: { disable_with: "درحال ارسال فرم" } %>
+                    </div>
+                <% end %>
+            </div>
+        <% else %>
+            <div class="form low_shadow low_radius" style="top: 20px">
+                <div style="text-align: center">
+                    <div style="width: 100%; display: block; margin-bottom: 10px;">
+                        <%= image_tag '/images/videographer.svg', :style => 'width: 60%;', :alt => "mail error" %>
+                    </div>
+
+                    <span dir="rtl">
+                        ویدیو با موفقیت ثبت شد.
+                        <br>
+                        <% unless published %>
+                            و بعد از تایید موسس قابل مشاهده خواهد بود.
+                        <% end %>
+                    </span>
+
+                    <div style="width: 100%; display: block; margin-top: 20px">
+                        <%= link_to "نمایش ویدیو", '/courses/videos/show/' + @episode.slug, :class => 'btn btn-primary' %>
+                        <%= link_to "ویدیو ها", '/courses/videos/' + @course.slug, :class => 'btn btn-primary btn-large-padding' %>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>

@@ -27,23 +27,25 @@
             <% end %>
         </div>
     <% else %>
-        <div style="text-align: center">
-            <div style="width: 100%; display: block; margin-bottom: 10px;">
-                <%= image_tag '/images/videographer.svg', :style => 'width: 60%;', :alt => "mail error" %>
+        <div class="form">
+            <div style="text-align: center">
+                <div style="width: 100%; display: block; margin-bottom: 10px;">
+                    <%= image_tag '/images/videographer.svg', :style => 'width: 60%;', :alt => "mail error" %>
+                </div>
+
+                <span dir="rtl">
+                    دوره آموزشی با موفقیت ثبت شد.
+                    <br>
+                    <% unless published %>
+                        و بعد از تایید موسس قابل مشاهده خواهد بود.
+                    <% end %>
+                </span>
+
+                <div style="width: 100%; display: block; margin-top: 20px">
+                    <%= link_to "نمایش دوره", '/courses/show/' + slug, :class => 'btn btn-primary' %>
+                    <%= link_to "ویدیو ها", '/courses/videos/show/', :class => 'btn btn-primary btn-large-padding' %>
+                </div>
             </div>
-
-            <span dir="rtl">
-                دوره آموزشی با موفقیت ثبت شد.
-                <br>
-                <% unless published %>
-                    و بعد از تایید موسس قابل مشاهده خواهد بود.
-                <% end %>
-            </span>
-
-            <div style="width: 100%; display: block; margin-top: 20px">
-            	<%= link_to "نمایش دوره", '/courses/show/' + slug, :class => 'btn btn-primary' %>
-            	<%= link_to "ویدیو ها", '/courses/videos/show/', :class => 'btn btn-primary btn-large-padding' %>
-        	</div>
         </div>
     <% end %>
 </div>

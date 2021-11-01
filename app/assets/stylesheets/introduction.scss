@@ -27,7 +27,7 @@
             }
         }
     }
-    .search-search-box {
+    .search-box {
         position: relative;
         left: 50%;
         transform: translate(-50%);
@@ -39,13 +39,13 @@
         }
     }
     @media screen and (max-width: 950px) {
-        #home-intro-search-box {
+        .search-box {
             width: 600px;
             margin-top: 40px;
         }
     }
     @media screen and (max-width: 650px) {
-        #home-intro-search-box {
+        .search-box {
             width: 85%;
             margin-top: 40px;
         }

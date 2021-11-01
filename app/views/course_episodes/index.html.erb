@@ -7,15 +7,36 @@
                     <span style="width: max-content"><%= @course.header %></span>
                 </div>
                 <div style="float: left">
-                    <a href="/courses/videos/new">
-                        <div class="center_at_flex_icon" style="margin-top: -2px;">
+                    <a href="/courses/videos/new_episode/<%= @course.slug %>">
+                        <div class="center_at_flex_icon" style="margin-top: -2px; margin-left: -10px;">
                             <ion-icon name="add-outline"></ion-icon>
                         </div>
                     </a>
                 </div>
             </div>
-            <%# TODO %>
-            
+            <table class="table">
+                <!-- headers -->
+                <tr>
+                    <th>سر برگ</th>
+                    <th>وضعیت انتشار</th>
+                    <th>-</th>
+                </tr>
+                <!-- rows -->
+                <% @course.course_episodes.each do |i| %>
+                    <tr>
+                        <td>
+                            <%= link_to i.header, '/articles/show/' + i.slug, :class => 'link', :style => 'font-size: 16px' %>
+                        </td>
+                        <td>
+                            <% if i.published %>
+                                <span class="link link-success">منتشر شده</span>
+                            <% else %>
+                                <span class="link link-danger">منتشر نشده</span>
+                            <% end %>
+                        </td>
+                    </tr>
+                <% end %>
+            </table>
         </div>
     </div>
 </div>
