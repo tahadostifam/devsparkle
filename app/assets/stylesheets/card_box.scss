@@ -19,7 +19,7 @@
         display: block;
         .author,
         .comments_count,
-        .article_submit_time,
+        .datetime_span,
         .footer_icon {
             position: relative;
             color: #003cff;
@@ -30,7 +30,7 @@
                 right: 0;
             }
         }
-        .article_submit_time {
+        .datetime_span {
             font-family: sans-serif;
         }
         .comments_count,

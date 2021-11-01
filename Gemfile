@@ -30,6 +30,9 @@ gem 'paperclip', '~> 6.1'
 gem 'active_link_to'
 # date helper for rails
 gem 'rails_pdate'
+
+gem 'active_record_union'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
