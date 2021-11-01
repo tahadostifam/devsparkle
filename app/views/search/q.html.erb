@@ -1,7 +1,7 @@
 <div class="container" style="top: 0">
     <div class="content">
         <div dir="rtl">
-            <%= form_with model: @search_in_articles, url: '/search/submit_q', method: :post do |f| %>
+            <%= form_with url: '/search/submit_q', method: :post do |f| %>
                  <div class="search-search-box default-color">
                     <div class="input">
                         <%= f.text_field :search_q, :placeholder => "جست و جو کنید!" %>
@@ -12,76 +12,11 @@
                 </div>
             <% end %>
         </div>
-		<% if @search_in_articles != nil || @search_in_courses != nil %>
-            <% if @search_in_articles.length > 0 %>
-            <div class="listed_cards">
-                <% @search_in_articles.each do |i| %>
-                    <% if i.image.present? %>
-                        <a href="/articles/show/<%= i.slug %>">
-                            <div class='card_box'>
-                                <div class='image cover'>
-                                    <%= image_tag i.image.url %>
-                                </div>
-                                <h3 class='title'><%= i.header %></h3>
-                                <p class='desc'><%= i.cover_text[0, 120] %>...</p>
-                                <div class='footer' style='display: flex; justify-content: space-between' dir='ltr'>
-                                    <div>
-                                        <span class='author'>
-                                            <%= i.user.full_name %>
-                                            <span class='icon'>
-                                                <ion-icon name='person-outline'></ion-icon>
-                                            </span>
-                                        </span>
-                                    </div>
-                                    <div>
-                                        <span class="footer_icon link-danger" dir="ltr">
-                                            <span class='icon'>
-                                                <ion-icon name='heart'></ion-icon>
-                                            </span>
-                                            <%= i.likes.length %>
-                                        </span>
-                                        <span class='comments_count'>
-                                            <%= i.comments.length %>
-                                            <span class='icon'>
-                                                <ion-icon name='chatbubble-outline'></ion-icon>
-                                            </span>
-                                        </span>
-                                        <span class='article_submit_time'>
-                                            <%= i.published_time %>
-                                            <span class='icon'>
-                                                <ion-icon name='calendar-outline'></ion-icon>
-                                            </span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    <% end %>
-                <% end %>
-            </div>
-            <% else %>
-                <span style='color: #777; font-size: 14px; width: 100%; display: block; text-align: center; padding: 20px 0'>مقاله ای پیدا نشد.</span>
+        <% if @search_result != nil %>
+            <% @search_result.each do |s| %>
+                <h1><%= s["header"] %></h1> <br>
             <% end %>
-        <% else %>
-            <div style="width: 100%; display: block; margin: 90px 0; text-align: center">
-			    <%= image_tag '/images/search.svg', :style => 'width: 400px;', :alt => "search" %>
-		    </div>
         <% end %>
     </div>
 </div>
-<%
-=begin%>
- <span class="footer_icon link-danger" dir="ltr">
-    <span class='icon'>
-        <ion-icon name="book-outline"></ion-icon>
-    </span>
-    <span style="margin-right: 3px;">0</span>
-</span>
-<span class='coicle_submit_time'>
-    <%= i.published_time %>
-    <span class='icon'>
-        <ion-icon name='calendar-outline'></ion-icon>
-    </span>
-</span> 
-<%
-=end%>
+
