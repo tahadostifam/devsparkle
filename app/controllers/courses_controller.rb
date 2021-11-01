@@ -10,8 +10,8 @@ class CoursesController < ApplicationController
     if @course.present?
       # @comments = @course.comments.order("created_at DESC").all
       if session[:user] != nil
+        @youre_member_of_this_course = CourseMember.find_by(user_id: session[:user][:id], course_id: @course.id)
         if @course.user_id == session[:user][:id] || session[:user][:is_owner]
-          @youre_member_of_this_course = CourseMember.find_by(user_id: session[:user][:id], course_id: @course.id)
           return render :show, :locals => { :show_actions => true }
         end
       end
