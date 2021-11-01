@@ -8,6 +8,7 @@ class CreateCourses < ActiveRecord::Migration[6.1]
       t.boolean :course_finish_state, default: false
       t.integer :price, default: 0
       t.string :published_time
+      t.string :record_type, default: 'course'
       t.references :user
       t.timestamps
     end

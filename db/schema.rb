@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2021_10_31_130846) do
     t.boolean "published", default: false
     t.string "published_time"
     t.boolean "draft", default: false
+    t.string "record_type", default: "article"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -103,6 +104,7 @@ ActiveRecord::Schema.define(version: 2021_10_31_130846) do
     t.boolean "course_finish_state", default: false
     t.integer "price", default: 0
     t.string "published_time"
+    t.string "record_type", default: "course"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

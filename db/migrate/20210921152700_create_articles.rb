@@ -8,6 +8,7 @@ class CreateArticles < ActiveRecord::Migration[6.1]
       t.boolean :published, default: false
       t.string :published_time
       t.boolean :draft, default: false
+      t.string :record_type, default: 'article'
       t.references :user
       t.timestamps
     end

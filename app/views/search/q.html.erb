@@ -16,9 +16,8 @@
             <% if @search_result.length > 0 %>
                 <div class="listed_cards">
                     <% @search_result.each do |i| %>
-                    <%= i.class.table_name %>
                         <% if i.image %>  
-                            <a href="/<%= i.class.table_name %>/show/<%= i.slug %>">
+                            <a href="/<%= i.record_type %>s/show/<%= i.slug %>">
                                 <div class='card_box'>
                                     <div class='image cover'>
                                         <%= image_tag i.image.url %>
@@ -35,23 +34,40 @@
                                             </span>
                                         </div>
                                         <div>
-                                            <span class="footer_icon link-danger" dir="ltr">
-                                                <span class='icon'>
-                                                    <ion-icon name='heart'></ion-icon>
+                                            <% if i.record_type == 'article' %>
+                                                <%
+=begin%>
+<span class="footer_icon link-danger" dir="ltr">
+    <span class='icon'>
+        <ion-icon name='heart'></ion-icon>
+    </span>
+    <%= i.likes.length %>
+</span> 
+<%
+=end%>
+                                                <span class='comments_count'>
+                                                    <%
+=begin%>
+ <%= i.comments.length %> 
+<%
+=end%>
+                                                    <span class='icon'>
+                                                        <ion-icon name='chatbubble-outline'></ion-icon>
+                                                    </span>
                                                 </span>
-                                                <%= i.likes.length %>
-                                            </span>
-                                            <span class='comments_count'>
-                                                <%= i.comments.length %>
-                                                <span class='icon'>
-                                                    <ion-icon name='chatbubble-outline'></ion-icon>
+                                            <% else %>
+                                                <span class="footer_icon link-danger" dir="ltr">
+                                                    <span class='icon'>
+                                                        <ion-icon name="book-outline"></ion-icon>
+                                                    </span>
+                                                    <span style="margin-right: 3px;"><%= i.users.length %></span>
                                                 </span>
-                                            </span>
+                                            <% end %> 
                                             <span class='datetime_span'>
-                                                <%= i.published_time %>
                                                 <span class='icon'>
                                                     <ion-icon name='calendar-outline'></ion-icon>
                                                 </span>
+                                                <%= i.published_time %>
                                             </span>
                                         </div>
                                     </div>
