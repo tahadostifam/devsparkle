@@ -58,6 +58,8 @@ Rails.application.routes.draw do
   get 'courses/index'
   get 'courses/show/:slug', to: 'courses#show'
   post 'courses/join_at_course'
+  get 'courses/videos/show/:slug', to: 'course_episodes#show'
+  get 'courses/videos/:slug', to: 'course_episodes#index'
 
   # Users 
   get 'users/signin'

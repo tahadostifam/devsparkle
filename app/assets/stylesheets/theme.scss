@@ -211,6 +211,7 @@ small {
     position: relative;
     top: $header_height;
     padding: 20px 90px;
+    padding-bottom: 0px;
     .container_title {
         font-size: 27px;
         margin-bottom: 10px;
@@ -224,7 +225,8 @@ small {
 
 @media screen and (max-width: 1100px) {
     .container {
-        padding: 20px 20px;
+        padding: 0 20px;
+        padding-top: 20px;
     }
 }
 
@@ -254,6 +256,16 @@ small {
     div {
         width: 100%;
     }
+}
+.center_at_flex_icon{
+    color: #777;
+    font-size: 22px;
+    width: max-content;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    padding-top: 6px;
+    display: inline-block;
 }
 
 @media screen and (max-width: 700px) {

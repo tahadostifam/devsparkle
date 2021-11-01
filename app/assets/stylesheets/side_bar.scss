@@ -67,14 +67,13 @@ $panel_width: 300px;
             padding: 0;
             margin: 0;
         }
-        .header{
-            font-size: 17px;
-            width: 100%;
-            display: block;
-            color: rgb(85, 85, 85);
-        }
     }
-    padding-bottom: 40px;
+    .header{
+        font-size: 17px;
+        width: 100%;
+        display: block;
+        color: rgb(85, 85, 85);
+    }
     width: calc(100% - #{$panel_width} - 20px);
 }
 
