@@ -42,7 +42,7 @@
                         </div>
                         <div>
                             <% if session[:user] != nil %>
-                                <%= form_with url: {:controller => :likes, :action => :toggle_like} do |f| %>
+                                <%= form_with url: {:controller => :likes, :action => :article_toggle_like} do |f| %>
                                     <input type="hidden" name="slug" value="<%= @article.slug %>">
                                     <button type="submit" class="like_button">
                                         <% if @article.liked(session[:user][:id]) %>
@@ -50,14 +50,14 @@
                                                 <span class='icon'>
                                                     <ion-icon name='heart'></ion-icon>
                                                 </span>
-                                                <%= @article.likes.length %>
+                                                <%= @article.article_likes.length %>
                                             </span>
                                         <% else %>
                                             <span class="cardbox_icon" dir="ltr">
                                                 <span class='icon'>
                                                     <ion-icon name='heart'></ion-icon>
                                                 </span>
-                                                <%= @article.likes.length %>
+                                                <%= @article.article_likes.length %>
                                             </span>
                                         <% end %>
                                     </button>
@@ -67,7 +67,7 @@
                                     <span class='icon'>
                                         <ion-icon name='heart'></ion-icon>
                                     </span>
-                                    <%= @article.likes.length %>
+                                    <%= @article.article_likes.length %>
                                 </span>
                             <% end %>
                             <span class="cardbox_icon" dir="ltr">

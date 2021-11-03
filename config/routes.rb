@@ -41,7 +41,7 @@ Rails.application.routes.draw do
   post 'articles/submit_delete_article'
 
   # Likes
-  post 'likes/toggle_like'
+  post 'likes/article/toggle_like', to: 'likes#article_toggle_like'
   
   # Site Settings
   get 'dashboard/general_statistics'
@@ -61,7 +61,7 @@ Rails.application.routes.draw do
   get 'courses/videos/show/:slug', to: 'course_episodes#show'
   get 'courses/videos/:slug', to: 'course_episodes#index'
   get 'courses/videos/new_episode/:slug', to: 'course_episodes#new_episode'
-  get 'courses/videos/submit_new_episode', to: 'course_episodes#submit_new_episode'
+  post 'courses/videos/submit_new_episode'
 
   # Users 
   get 'users/signin'

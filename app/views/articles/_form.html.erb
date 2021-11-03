@@ -9,7 +9,7 @@
 </div>
 
 <% if !preview_image %>
-    <div class="input fileupload">
+    <div class="input imageupload">
         <%= f.label :image, 'عکس', :style => 'display: block; width: 100%;' %>
         <div style="position: relative; margin-top: 16px; right: -6px">
             <%= f.label :image, 'انتخاب عکس', :class => 'btn btn-primary', :style => 'width: 100%; padding: 10px; text-align: center;' %>
@@ -20,7 +20,7 @@
         </div>
     </div>
 <% else %>
-    <div class="input fileupload">
+    <div class="input imageupload">
         <%= f.label :image, 'عکس', :style => 'display: block; width: 100%;' %>
         <div style="position: relative; margin-top: 16px; right: -6px;">
             <%= f.label :image, 'انتخاب عکس', :class => 'btn btn-primary', :style => 'width: 100%; padding: 10px; text-align: center;' %>

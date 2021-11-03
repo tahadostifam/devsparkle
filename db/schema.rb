@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_31_130846) do
+ActiveRecord::Schema.define(version: 2021_11_03_131609) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -38,6 +38,13 @@ ActiveRecord::Schema.define(version: 2021_10_31_130846) do
     t.integer "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "article_likes", force: :cascade do |t|
+    t.integer "article_id"
+    t.integer "user_id"
+    t.index ["article_id"], name: "index_article_likes_on_article_id"
+    t.index ["user_id"], name: "index_article_likes_on_user_id"
   end
 
   create_table "articles", force: :cascade do |t|
@@ -113,13 +120,6 @@ ActiveRecord::Schema.define(version: 2021_10_31_130846) do
     t.string "image_content_type"
     t.datetime "image_updated_at"
     t.index ["user_id"], name: "index_courses_on_user_id"
-  end
-
-  create_table "likes", force: :cascade do |t|
-    t.integer "article_id"
-    t.integer "user_id"
-    t.index ["article_id"], name: "index_likes_on_article_id"
-    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "settings", force: :cascade do |t|

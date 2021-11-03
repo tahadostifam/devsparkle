@@ -22,7 +22,7 @@ class CourseEpisodesController < ApplicationController
   end
 
   def submit_new_episode
-
+    
   end
 
   private

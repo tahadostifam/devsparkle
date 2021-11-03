@@ -1,5 +1,5 @@
 class LikesController < ApplicationController
-    def toggle_like
+    def article_toggle_like
         slug = params[:slug]
         uid = session[:user][:id]
         art = Article.find_by(slug: slug)

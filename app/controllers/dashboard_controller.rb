@@ -233,7 +233,7 @@
   def general_statistics
     @articles = Article.all
     @users = User.all
-    @likes = Like.all
+    @article_likes = ArticleLike.all
     @comments = Comment.all
   end
 

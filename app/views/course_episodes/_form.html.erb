@@ -1,0 +1,27 @@
+<div class="input">
+    <%= f.label :header, 'سر برگ' %>
+    <%= f.text_field :header, :dir => :rtl %>
+</div>
+
+<div class="input">
+    <%= f.label :cover_text, 'توضیحات کوتاه (کاور)' %>
+    <%= f.text_area :cover_text, :dir => :rtl %>
+</div>
+
+<% if session[:user][:is_owner] %>
+    <label class="checkbox">انتشار مقاله
+        <%= f.check_box :published %>
+        <span class="checkmark"></span>
+    </label>
+<% end %>
+
+<div class="input videoupload">
+    <%= f.label :video, 'ویدیو', :style => 'display: block; width: 100%;' %>
+    <div style="position: relative; margin-top: 16px; right: -6px">
+        <%= f.label :video, 'انتخاب ویدیو', :class => 'btn btn-primary', :style => 'width: 100%; padding: 10px; text-align: center;' %>
+        <%= f.file_field :video, accept: 'video/mp4,video/mkv',:style => 'display: none' %>
+    </div>
+    <div style="display: none" class="progress">
+        <div class="progress-bar" style="width: 20%">20%</div>
+    </div>
+</div>

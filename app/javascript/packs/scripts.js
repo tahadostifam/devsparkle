@@ -33,17 +33,31 @@ document.addEventListener("turbolinks:load", function() {
 		markdownDivsToHtml.innerHTML = markdown.toHTML(markdownDivsToHtml.innerHTML.trim());
 	}
 
-	const fileuploadDiv = document.querySelector('.fileupload')
-	if (fileuploadDiv) {
-		fileuploadDiv.querySelector('input').onchange = (e) => {
-		  const file = fileuploadDiv.querySelector('input').files[0]
-		  const imageTag = fileuploadDiv.querySelector('.image img')
+	const imageuploadDiv = document.querySelector('.imageupload')
+	if (imageuploadDiv) {
+		imageuploadDiv.querySelector('input').onchange = (e) => {
+		  const file = imageuploadDiv.querySelector('input').files[0]
+		  const imageTag = imageuploadDiv.querySelector('.image img')
 		  if (file) {
-		  	const imageTag = fileuploadDiv.querySelector('.image img')
 		  	imageTag.src = URL.createObjectURL(file)
 
-		  	fileuploadDiv.querySelector('.image').style.display = 'block'
+		  	imageuploadDiv.querySelector('.image').style.display = 'block'
 		  }
 		}
 	}
+
+	// TODO
+	// const videouploadDiv = document.querySelector('.videoupload')
+	// if (videouploadDiv) {
+	// 	videouploadDiv.querySelector('input').onchange = (e) => {
+	// 	  const file = videouploadDiv.querySelector('input').files[0]
+	// 	  const progressTag = videouploadDiv.querySelector('.progress')
+	// 	  if (file) {
+	// 	  	// const imageTag = videouploadDiv.querySelector('.image img')
+	// 	  	// imageTag.src = URL.createObjectURL(file)
+
+	// 	  	videouploadDiv.querySelector('.progress').style.display = 'block'
+	// 	  }
+	// 	}
+	// }
 })
