@@ -1,0 +1,56 @@
+<% if co.image.present? %>
+    <a href="/courses/show/<%= co.slug %>">
+        <div class='card_box'>
+            <% if show_publish_banner %>
+                <% if co.published? %>
+                    <span class="hashtag hashtag-primary">(منتشر شده)</span>
+                <% else %>
+                    <span class="hashtag hashtag-red">(منتشر نشده)</span>
+                <% end %>
+            <% end %>
+            <div class='image cover'>
+                <%= image_tag co.image.url %>
+            </div>
+            <h3 class='title'><%= co.header %></h3>
+            <p class='desc'><%= co.cover_text[0, 120] %>...</p>
+            <div class='footer' style='display: flex; justify-content: space-between' dir='ltr'>
+                <div>
+                    <span class='author'>
+                        <%= co.user.full_name %>
+                        <span class='icon'>
+                            <ion-icon name='person-outline'></ion-icon>
+                        </span>
+                    </span>
+                </div>
+                <div>
+                    <span class="footer_icon link-danger" dir="ltr">
+                        <span class='icon'>
+                            <ion-icon name='heart'></ion-icon>
+                        </span>
+                        <%= CourseLike.where(course_id: co.id).length %>
+                    </span> 
+                    <span class='comments_count'>
+                        0
+                        <span class='icon'>
+                            <ion-icon name='chatbubble-outline'></ion-icon>
+                        </span>
+                    </span>
+                    <span class="footer_icon link-danger" dir="ltr">
+                        <span class='icon'>
+                            <ion-icon name="book-outline"></ion-icon>
+                        </span>
+                        <span style="margin-right: 3px;">
+                            <%= co.users.where("is_admin=false").length %>
+                        </span>
+                    </span>
+                    <span class='coicle_submit_time'>
+                        <%= co.published_time %>
+                        <span class='icon'>
+                            <ion-icon name='calendar-outline'></ion-icon>
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </a>
+<% end %>
