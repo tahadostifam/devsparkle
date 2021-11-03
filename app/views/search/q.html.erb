@@ -35,27 +35,33 @@
                                         </div>
                                         <div>
                                             <% if i.record_type == 'article' %>
-                                                <%
-=begin%>
-<span class="footer_icon link-danger" dir="ltr">
-    <span class='icon'>
-        <ion-icon name='heart'></ion-icon>
-    </span>
-    <%= i.likes.length %>
-</span> 
-<%
-=end%>
+                                                <%# NOTE - for Article %>
+                                                <span class="footer_icon link-danger" dir="ltr">
+                                                    <span class='icon'>
+                                                        <ion-icon name='heart'></ion-icon>
+                                                    </span>
+                                                    <%= ArticleLike.where(article_id: i.id).length %>
+                                                </span> 
                                                 <span class='comments_count'>
-                                                    <%
-=begin%>
- <%= i.comments.length %> 
-<%
-=end%>
+                                                    0
                                                     <span class='icon'>
                                                         <ion-icon name='chatbubble-outline'></ion-icon>
                                                     </span>
                                                 </span>
                                             <% else %>
+                                                <%# NOTE - for Course %>
+                                                <span class="footer_icon link-danger" dir="ltr">
+                                                    <span class='icon'>
+                                                        <ion-icon name='heart'></ion-icon>
+                                                    </span>
+                                                    <%= CourseLike.where(course_id: i.id).length %>
+                                                </span> 
+                                                <span class='comments_count'>
+                                                    0
+                                                    <span class='icon'>
+                                                        <ion-icon name='chatbubble-outline'></ion-icon>
+                                                    </span>
+                                                </span>
                                                 <span class="footer_icon link-danger" dir="ltr">
                                                     <span class='icon'>
                                                         <ion-icon name="book-outline"></ion-icon>
