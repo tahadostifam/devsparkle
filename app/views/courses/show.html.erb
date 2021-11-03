@@ -96,6 +96,35 @@
                                         <% end %>
                                     </div>
                                     <div>
+                                        <% if session[:user] != nil %>
+                                            <%= form_with url: {:controller => :likes, :action => :course_toggle_like} do |f| %>
+                                                <input type="hidden" name="slug" value="<%= @course.slug %>">
+                                                <button type="submit" class="like_button">
+                                                    <% if @course.liked(session[:user][:id]) %>
+                                                        <span class="cardbox_icon link-danger" dir="ltr">
+                                                            <span class='icon'>
+                                                                <ion-icon name='heart'></ion-icon>
+                                                            </span>
+                                                            <%= @course.course_likes.length %>
+                                                        </span>
+                                                    <% else %>
+                                                        <span class="cardbox_icon" dir="ltr">
+                                                            <span class='icon'>
+                                                                <ion-icon name='heart'></ion-icon>
+                                                            </span>
+                                                            <%= @course.course_likes.length %>
+                                                        </span>
+                                                    <% end %>
+                                                </button>
+                                            <% end %>
+                                        <% else %>
+                                            <span class="cardbox_icon" dir="ltr">
+                                                <span class='icon'>
+                                                    <ion-icon name='heart'></ion-icon>
+                                                </span>
+                                                <%= @article.article_likes.length %>
+                                            </span>
+                                        <% end %>
                                         <span class="cardbox_icon" dir="ltr">
                                             <span class='icon'>
                                                 <ion-icon name='calendar-outline'></ion-icon>

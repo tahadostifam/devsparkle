@@ -6,6 +6,7 @@ class Course < ApplicationRecord
     belongs_to :user
     has_many :course_members
     has_many :users, through: :course_members
+    has_many :course_likes
 
     before_create :handle_auto_params_create
     before_update :handle_auto_params_update
@@ -31,6 +32,20 @@ class Course < ApplicationRecord
 
     validates_presence_of :header, :cover_text, :price
     validates_presence_of :image, on: :create
+
+    def liked(uid)
+        return self.course_likes.select { |l| l.user_id == uid && l.course_id == self.id }.length > 0
+    end
+
+    def like(aid, uid)
+        l = CourseLike.new(course_id: aid, user_id: uid)
+        l.save!
+    end
+
+    def unlike(aid, uid)
+        l = CourseLike.find_by(course_id: aid, user_id: uid)
+        l.delete
+    end
 
     private
 

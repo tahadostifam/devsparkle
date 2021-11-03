@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_03_131609) do
+ActiveRecord::Schema.define(version: 2021_11_03_132711) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -92,6 +92,13 @@ ActiveRecord::Schema.define(version: 2021_11_03_131609) do
     t.string "video_file_content_type"
     t.datetime "video_file_updated_at"
     t.index ["course_id"], name: "index_course_episodes_on_course_id"
+  end
+
+  create_table "course_likes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "course_id"
+    t.index ["course_id"], name: "index_course_likes_on_course_id"
+    t.index ["user_id"], name: "index_course_likes_on_user_id"
   end
 
   create_table "course_members", force: :cascade do |t|

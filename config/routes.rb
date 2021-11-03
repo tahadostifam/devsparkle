@@ -42,6 +42,7 @@ Rails.application.routes.draw do
 
   # Likes
   post 'likes/article/toggle_like', to: 'likes#article_toggle_like'
+  post 'likes/course/toggle_like', to: 'likes#course_toggle_like'
   
   # Site Settings
   get 'dashboard/general_statistics'
