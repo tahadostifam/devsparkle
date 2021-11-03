@@ -7,8 +7,13 @@
                     <span style="width: max-content"><%= @course.header %></span>
                 </div>
                 <div style="float: left">
+                    <a href="/courses/show/<%= @course.slug %>">
+                        <div class="center_at_flex_icon" style="margin-top: -2px; margin-left: -8px;">
+                            <ion-icon name="arrow-back-outline"></ion-icon>
+                        </div>
+                    </a>
                     <a href="/courses/videos/new_episode/<%= @course.slug %>">
-                        <div class="center_at_flex_icon" style="margin-top: -2px; margin-left: -10px;">
+                        <div class="center_at_flex_icon" style="margin-top: -2px; margin-left: -5px;">
                             <ion-icon name="add-outline"></ion-icon>
                         </div>
                     </a>
