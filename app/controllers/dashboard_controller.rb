@@ -1,4 +1,6 @@
  class DashboardController < ApplicationController
+  include Recaptcha
+  
   layout 'dashboard'
   before_action :require_login
   before_action :that_not_verified_length
@@ -143,7 +145,7 @@
   def submit_new_article
     @article = Article.new(new_article_params)
 
-    unless actions_that_have_recaptcha("new_article_errors")
+    unless have_recaptcha("new_article_errors")
       render '/dashboard/new_article/'
     else
       @article.user_id = session[:user]['id']
@@ -162,7 +164,7 @@
   def submit_new_course
     @course = Course.new(new_course_params)
 
-    unless actions_that_have_recaptcha("new_course_errors")
+    unless have_recaptcha("new_course_errors")
       render 'dashboard/new_course', :locals => { created_successfully: false, published: @course.published, slug: "" }
     else
       @course.user_id = session[:user]['id']
@@ -238,23 +240,6 @@
   end
 
   private
-
-  def actions_that_have_recaptcha(flash_name)
-    gr_response = params["g-recaptcha-response"]
-    if gr_response != nil && gr_response.strip != ""
-      gr = Grecaptcha.new
-      api_result = gr.verify_recaptcha(gr_response, request.remote_ip)
-      if api_result == false
-        flash[flash_name] = ["ریکپچا را تایید کنید."]
-        return false
-      else
-        return true
-      end
-    else
-      flash[flash_name] = ["ریکپچا را تایید کنید."]
-      return false
-    end
-	end
 
   def that_not_verified_length
     @articles_that_not_verified_length = Article.where("published=false and draft=false").length

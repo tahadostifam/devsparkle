@@ -27,23 +27,6 @@ class CourseEpisodesController < ApplicationController
 
   private
 
-  def actions_that_have_recaptcha(flash_name)
-    gr_response = params["g-recaptcha-response"]
-    if gr_response != nil && gr_response.strip != ""
-      gr = Grecaptcha.new
-      api_result = gr.verify_recaptcha(gr_response, request.remote_ip)
-      if api_result == false
-        flash[flash_name] = ["ریکپچا را تایید کنید."]
-        return false
-      else
-        return true
-      end
-    else
-      flash[flash_name] = ["ریکپچا را تایید کنید."]
-      return false
-    end
-	end
-
   def need_owner_access
     unless session[:user].is_owner?
       redirect_to '/503'
