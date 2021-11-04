@@ -19,4 +19,7 @@ FTP_PASS: "pass"
 
 RECAPTCHA_SITEKEY: "-----"
 RECAPTCHA_SECRETKEY: "-----"
+
+FTP_UPLOAD_PATH: "/public_html/:attachment/:id/:style/:filename"
+FTP_DOWNLOAD_URL: "http://your-domain/:attachment/:id/:style/:filename"
 ```

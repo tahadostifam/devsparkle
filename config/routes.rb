@@ -39,7 +39,7 @@ Rails.application.routes.draw do
   get 'articles/show/:slug', to: 'articles#show'
   get 'articles/confirm_delete_article/:slug', to: 'articles#confirm_delete_article'
   post 'articles/submit_delete_article'
-
+  
   # Likes
   post 'likes/article/toggle_like', to: 'likes#article_toggle_like'
   post 'likes/course/toggle_like', to: 'likes#course_toggle_like'
@@ -63,6 +63,8 @@ Rails.application.routes.draw do
   get 'courses/videos/:slug', to: 'course_episodes#index'
   get 'courses/videos/new_episode/:slug', to: 'course_episodes#new_episode'
   post 'courses/videos/submit_new_episode'
+  get 'courses/confirm_delete_course/:slug', to: 'courses#confirm_delete_course'
+  post 'courses/submit_delete_course'
 
   # Users 
   get 'users/signin'

@@ -1,0 +1,29 @@
+<div class="form form-large center_form" style="padding-top: 20px;">
+    <div style="text-align: center;">
+        <h1>حذف دوره</h1>
+        
+        <h5><%= @course.header %></h5>
+
+        <span dir="rtl" style="margin-top: 20px; display: block;">
+            ادمین عزیز لطفا توجه داشته باشید امکان برگرداندن دوره بعد از حذف ممکن نخواهد بود.
+            <br>
+            همچنین با حذف دوره تمام ویدیو ها هم حذف خواهد شد.
+        </span>
+
+        <div style="margin-top: 15px;" dir="rtl">
+            <%= link_to raw("
+            انصراف
+            "), '/courses/show/' + @course.slug, :class => 'btn btn-primary', :style => 'margin-left: 5px' %>
+
+            <div style="display: inline-block;">
+                <%= form_with url: '/courses/submit_delete_course' do |f| %>
+                    <%= f.hidden_field :slug, :value => @course.slug %>
+                    <%= f.submit raw("حذف دوره"),
+                    :class => 'btn btn-danger',
+                    :style => 'padding-bottom: 10px'
+                    %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

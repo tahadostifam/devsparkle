@@ -82,14 +82,14 @@
                                     <div>
                                         <% if show_actions %>
                                             <%# NOTE %>
-                                            <%= link_to 'حذف', '/articles/confirm_delete_article/' + @course.slug, :style => 'display: inline-block', :class => 'link link-danger' %>
-                                            <%= link_to 'ویرایش', '/dashboard/edit_article/' + @course.slug, :style => 'margin-left: 10px; display: inline-block', :class => 'link' %>
+                                            <%= link_to 'حذف', '/courses/confirm_delete_course/' + @course.slug, :style => 'display: inline-block', :class => 'link link-danger' %>
+                                            <%= link_to 'ویرایش', '/dashboard/edit_course/' + @course.slug, :style => 'margin-left: 10px; display: inline-block', :class => 'link' %>
                                             <% if session[:user][:is_owner] && @course.published == false %>
                                                 <div style="margin-left: 10px; display: inline-block; position: relative; top:1px">
-                                                    <%= form_with url: { :controller => :dashboard, :action => :submit_articles_that_not_verified } do |f| %>
+                                                    <%= form_with url: { :controller => :dashboard, :action => :submit_courses_that_not_verified } do |f| %>
                                                         <%= f.hidden_field :slug, :value => @course.slug %>
-                                                        <%= f.hidden_field :next_page, :value => '/articles/show/'+@course.slug %>
-                                                        <%= f.submit 'تایید مقاله', :class => 'link btn-none' %>
+                                                        <%= f.hidden_field :next_page, :value => '/courses/show/'+@course.slug %>
+                                                        <%= f.submit 'تایید دوره', :class => 'link btn-none' %>
                                                     <% end %>
                                                 </div>
                                             <% end %>

@@ -43,4 +43,29 @@ class CoursesController < ApplicationController
       redirect_to '/404'
     end
   end
+
+  def confirm_delete_course
+    @course = Course.find_by(slug: params[:slug])
+    if @course.nil?
+      redirect_to action: :index
+    end
+  end
+
+  def submit_delete_course
+    slug = params[:slug]
+    co = Course.find_by(slug: slug)
+    if co.present?
+      if session[:user].present? && session[:user][:is_owner] || co.user_id == session[:user][:id]
+        co.course_likes.destroy_all
+        # co.comments.destroy_all
+        co.image.destroy
+        co.destroy
+        render 'course_deleted'
+      else
+        redirect_to '/503'
+      end
+    else
+      redirect_to action: :index
+    end
+  end
 end
