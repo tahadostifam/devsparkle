@@ -1,3 +1,4 @@
+const axios = require('./axios.min');
 const markdown = require('./markdown.min');
 
 function loadImages() {
@@ -27,6 +28,60 @@ document.addEventListener("turbolinks:load", function() {
 	include('https://www.google.com/recaptcha/api.js')
 
 	loadImages()
+
+	// const new_course_episode = document.getElementById('new_course_episode')
+	// if (new_course_episode) {
+	// 	new_course_episode.addEventListener('submit', (e) => {
+	// 		e.preventDefault();
+	// 		const slug = $("[name='course_episode[slug]']").val()
+	// 		const formData = new FormData()
+	// 		formData.append("slug", slug);
+	// 		formData.append("header", $("[name='course_episode[header]']").val());
+	// 		formData.append("cover_text", $("[name='course_episode[cover_text]']").val());
+	// 		formData.append("published", $("[name='course_episode[published]']").val());
+	// 		const videoFile = $("[name='course_episode[video_file]']")[0].files[0];
+	// 		if (videoFile) {
+	// 			formData.append("video_file", videoFile);
+	// 		}
+	// 		formData.append("g-recaptcha-response", $("[name='g-recaptcha-response']").val());
+	// 		formData.append("authenticity_token", $("[name='authenticity_token']").val());
+	// 		axios.post('/courses/videos/submit_new_episode', formData, {
+	// 			onUploadProgress: (e) => {
+	// 				var percentCompleted = Math.round((e.loaded * 100) / e.total)
+	// 				const stringPercentCompleted = percentCompleted.toString() + '%'
+	// 				const progress_bar = $(".progress .progress-bar");
+	// 				progress_bar.css('width', stringPercentCompleted);
+	// 				progress_bar.html(stringPercentCompleted)
+	// 				$(".progress").css('display', 'block')
+	// 			}
+	// 		}).then((callback) => {
+	// 			if (callback.data.status == 'error') {
+	// 				if (callback.data.message == 'service unavailable') {
+	// 					window.location.pathname = '/courses/show/' + slug
+	// 				}
+	// 				else if (callback.data.message == 'course not found') {
+	// 					window.location.pathname = '/courses/index'
+	// 				}
+	// 				else if (callback.data.errors) {
+	// 					const error_list = $(".form_error_list")
+	// 					error_list.html("")
+	// 					callback.data.errors.forEach((i) => {
+	// 						error_list.append(`<div class="item">${i}</div>`)
+	// 					})
+	// 				}
+	// 			}
+	// 			else if (callback.data.status == 'success') {
+	// 				window.location.pathname = '/courses/episode_created'
+	// 			}
+	// 		}).catch((error) => {
+	// 			if (error) {
+	// 				console.log(error);
+	// 			}
+	// 		}).finally(() => {
+	// 			$('#new_episode_submit_button').removeAttr('disabled', 'disabled');
+	// 		});
+	// 	})
+	// }
 
 	const markdownDivsToHtml = document.querySelector('.md_to_html')
 	if (markdownDivsToHtml) {

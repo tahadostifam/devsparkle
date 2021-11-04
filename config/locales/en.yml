@@ -52,6 +52,10 @@ en:
         course_finish_state: 'وضعیت تمام شدن دوره'
         content: 'محتوا'
         image: 'عکس'
+      course_episode:
+        header: 'سر برگ'
+        cover_text: 'توضیحات کوتاه'
+        video_file: "فایل ویدیو"
     errors:
       messages: 
         blank: "نمی تواند خالی باشد"

@@ -65,6 +65,7 @@ Rails.application.routes.draw do
   post 'courses/videos/submit_new_episode', to: 'course_episodes#submit_new_episode'
   get 'courses/confirm_delete_course/:slug', to: 'courses#confirm_delete_course'
   post 'courses/submit_delete_course'
+  get 'courses/episode_created', to: 'course_episodes#episode_created'
 
   # Users 
   get 'users/signin'

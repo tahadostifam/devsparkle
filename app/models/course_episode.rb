@@ -19,4 +19,7 @@ class CourseEpisode < ApplicationRecord
     }
 
     validates_attachment_content_type :video_file, content_type: /\Avideo\/.*\z/
+
+    validates_presence_of :header, :cover_text
+    validates_presence_of :video_file, on: :create
 end

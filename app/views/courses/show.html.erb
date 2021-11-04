@@ -140,6 +140,12 @@
                             <div class="content md_to_html" style="padding-bottom: 0;">
                                 <%= @course.cover_text %>
                             </div>
+
+                            <% @course.course_episodes.each do |e| %>
+                                <h1>Video: <%= e.header %></h1>
+                                <video style="width: 100%" controls src="<%= e.video_file %>"></video>
+                            <% end %>
+
                             <div class="author_row">
                                 <div class="icon">
                                     <ion-icon name="person-outline"></ion-icon>

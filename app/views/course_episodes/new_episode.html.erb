@@ -8,22 +8,22 @@
                     <%= f.hidden_field :slug, :value => @course.slug %>
                     <%= render 'course_episodes/form', f: f %>
                     
-                    <div style="margin-top: 10px;">
+                    <div class="form_error_list" style="margin-bottom: 10px;">
                         <% unless flash[:new_episode_errors].nil? %>
                             <% flash[:new_episode_errors].each do |e| %>
                                 <div class="form_error_list">
                                     <div class="item"><%= e %></div>
                                 </div>
                             <% end %>
-                        <% end %> 
+                        <% end %>
                     </div>
 
-                    <div style="margin-bottom: 10px;">
+                    <div style="masrgin-bottom: 10px;">
                         <%= render 'layouts/grecaptcha' %>
                     </div>
 
                     <div style="width: 100%; display: block; text-align: left;">
-                        <%= f.submit 'ثبت ویدیو', :class => "btn btn-primary btn-large-padding", data: { disable_with: "درحال ارسال فرم" } %>
+                        <%= f.submit 'ثبت ویدیو', :id => "new_episode_submit_button", :class => "btn btn-primary btn-large-padding", data: { disable_with: "درحال ارسال فرم" } %>
                     </div>
                 <% end %>
             </div>
