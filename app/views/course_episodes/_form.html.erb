@@ -9,17 +9,17 @@
 </div>
 
 <% if session[:user][:is_owner] %>
-    <label class="checkbox">انتشار مقاله
+    <label class="checkbox">انتشار ویدیو
         <%= f.check_box :published %>
         <span class="checkmark"></span>
     </label>
 <% end %>
 
 <div class="input videoupload">
-    <%= f.label :video, 'ویدیو', :style => 'display: block; width: 100%;' %>
+    <%= f.label :video_file, 'ویدیو', :style => 'display: block; width: 100%;' %>
     <div style="position: relative; margin-top: 16px; right: -6px">
-        <%= f.label :video, 'انتخاب ویدیو', :class => 'btn btn-primary', :style => 'width: 100%; padding: 10px; text-align: center;' %>
-        <%= f.file_field :video, accept: 'video/mp4,video/mkv',:style => 'display: none' %>
+        <%= f.label :video_file, 'انتخاب ویدیو', :class => 'btn btn-primary', :style => 'width: 100%; padding: 10px; text-align: center;' %>
+        <%= f.file_field :video_file, accept: 'video/mp4,video/mkv',:style => 'display: none' %>
     </div>
     <div style="display: none" class="progress">
         <div class="progress-bar" style="width: 20%">20%</div>

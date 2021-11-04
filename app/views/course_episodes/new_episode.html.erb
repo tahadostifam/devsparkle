@@ -4,7 +4,8 @@
         <% if created_successfully != nil && !created_successfully %>
             <div class="form low_shadow low_radius">
                 <h4 class="header large_header">ویدیو جدید</h4>
-                <%= form_for @episode, url: 'submit_new_episode', method: :post do |f| %>
+                <%= form_for @episode, url: '/courses/videos/submit_new_episode', method: :post do |f| %>
+                    <%= f.hidden_field :slug, :value => @course.slug %>
                     <%= render 'course_episodes/form', f: f %>
                     
                     <div style="margin-top: 10px;">

@@ -22,7 +22,26 @@ class CourseEpisodesController < ApplicationController
   end
 
   def submit_new_episode
-    
+    @course = Course.find_by(slug: new_episode_params[:slug])
+    unless @course.present?
+      return redirect_to '/404'
+    end
+    if (@course.user_id == session[:user][:id]) || (session[:user][:is_owner])
+      unless session[:user][:is_owner]
+        new_episode_params[:published] = false
+      end
+
+      @episode = CourseEpisode.new(new_episode_params)
+      @episode.course_id = @course.id
+      if @episode.save
+        render 'episode_created'
+      else
+        flash[:new_episode_errors] = @episode.errors.full_messages
+        render 'new_episode'
+      end
+    else
+      redirect_to '/503'
+    end
   end
 
   private
@@ -37,5 +56,9 @@ class CourseEpisodesController < ApplicationController
     unless session[:user].is_admin?
       redirect_to '/503'
     end
+  end
+
+  def new_episode_params
+    params.require(:course_episode).permit(:slug, :header, :cover_text, :published, :video_file)
   end
 end

@@ -62,7 +62,7 @@ Rails.application.routes.draw do
   get 'courses/videos/show/:slug', to: 'course_episodes#show'
   get 'courses/videos/:slug', to: 'course_episodes#index'
   get 'courses/videos/new_episode/:slug', to: 'course_episodes#new_episode'
-  post 'courses/videos/submit_new_episode'
+  post 'courses/videos/submit_new_episode', to: 'course_episodes#submit_new_episode'
   get 'courses/confirm_delete_course/:slug', to: 'courses#confirm_delete_course'
   post 'courses/submit_delete_course'
 

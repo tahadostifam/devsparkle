@@ -17,4 +17,6 @@ class CourseEpisode < ApplicationRecord
         :ftp_ignore_failing_connections => true,
         :ftp_keep_empty_directories => true
     }
+
+    validates_attachment_content_type :video_file, content_type: /\Avideo\/.*\z/
 end

@@ -23,14 +23,14 @@ gem 'rest-client', '~> 2.1'
 gem 'activestorage-validator'
 # active links handler (+active_class)
 
-# paperclip | ftp active-storage
+# paperclip -> ftp active-storage
 gem "paperclip-storage-ftp"
 gem 'paperclip', '~> 6.1'
 
 gem 'active_link_to'
 # date helper for rails
 gem 'rails_pdate'
-
+# union support for ActiveRecord
 gem 'active_record_union'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
