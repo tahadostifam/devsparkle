@@ -19,6 +19,12 @@
                         <% if i.image %>  
                             <a href="/<%= i.record_type %>s/show/<%= i.slug %>">
                                 <div class='card_box'>
+                                    <% if i.record_type == 'article' %>
+                                        <span class="hashtag hashtag-primary">مقاله</span>
+                                    <% end %>
+                                    <% if i.record_type == 'course' %>
+                                        <span class="hashtag hashtag-black">دوره</span>
+                                    <% end %>
                                     <div class='image cover'>
                                         <%= image_tag i.image.url %>
                                     </div>
@@ -26,11 +32,11 @@
                                     <p class='desc'><%= i.cover_text[0, 120] %>...</p>
                                     <div class='footer' style='display: flex; justify-content: space-between' dir='ltr'>
                                         <div>
-                                            <span class='author'>
-                                                <%= i.user.full_name %>
+                                            <span class='author' dir="ltr">
                                                 <span class='icon'>
                                                     <ion-icon name='person-outline'></ion-icon>
                                                 </span>
+                                                <%= i.user.full_name %>
                                             </span>
                                         </div>
                                         <div>

@@ -84,14 +84,33 @@
 
 @media screen and (max-width: 1100px) {
     .listed_cards {
-        grid-template-columns: calc(100% / 2) calc(100% / 2 - 10px);
+        grid-template-columns: calc(100% / 2 - 10px);
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .listed_cards {
+        grid-template-columns: 100%;
+        grid-gap: 15px;
+        .card_box .cover{
+            height: 330px;
+        }
     }
 }
 
 @media screen and (max-width: 720px) {
     .listed_cards {
-        grid-template-columns: 100%;
-        grid-gap: 15px;
+        .card_box .cover{
+            height: 280px;
+        }
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .listed_cards {
+        .card_box .cover{
+            height: 200px;
+        }
     }
 }
 
