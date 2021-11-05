@@ -21,7 +21,7 @@
         <%= f.label :video_file, 'انتخاب ویدیو', :class => 'btn btn-primary', :style => 'width: 100%; padding: 10px; text-align: center;' %>
         <%= f.file_field :video_file, accept: 'video/mp4,video/mkv',:style => 'display: none' %>
     </div>
-    <div style="display: none" class="progress">
-        <div class="progress-bar" style="width: 0%">0%</div>
+    <div style="display: none" class="videoplayer__section">
+        <video src="#" controls width="100%"></video>
     </div>
 </div>

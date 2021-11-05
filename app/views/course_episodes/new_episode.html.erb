@@ -18,11 +18,11 @@
                         <% end %>
                     </div>
 
-                    <div style="masrgin-bottom: 10px;">
+                    <div>
                         <%= render 'layouts/grecaptcha' %>
                     </div>
 
-                    <div style="width: 100%; display: block; text-align: left;">
+                    <div style="width: 100%; display: block; text-align: left; margin-top: 10px;">
                         <%= f.submit 'ثبت ویدیو', :id => "new_episode_submit_button", :class => "btn btn-primary btn-large-padding", data: { disable_with: "درحال ارسال فرم" } %>
                     </div>
                 <% end %>

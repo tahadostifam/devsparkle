@@ -1,4 +1,3 @@
-const axios = require('./axios.min');
 const markdown = require('./markdown.min');
 
 function loadImages() {
@@ -101,18 +100,16 @@ document.addEventListener("turbolinks:load", function() {
 		}
 	}
 
-	// TODO
-	// const videouploadDiv = document.querySelector('.videoupload')
-	// if (videouploadDiv) {
-	// 	videouploadDiv.querySelector('input').onchange = (e) => {
-	// 	  const file = videouploadDiv.querySelector('input').files[0]
-	// 	  const progressTag = videouploadDiv.querySelector('.progress')
-	// 	  if (file) {
-	// 	  	// const imageTag = videouploadDiv.querySelector('.image img')
-	// 	  	// imageTag.src = URL.createObjectURL(file)
+	const videouploadDiv = document.querySelector('.videoupload')
+	if (videouploadDiv) {
+		videouploadDiv.querySelector('input').onchange = (e) => {
+		  const file = videouploadDiv.querySelector('input').files[0]
+		  if (file) {
+		  	const videoTag = videouploadDiv.querySelector('.videoplayer__section video')
+		  	videoTag.src = URL.createObjectURL(file)
 
-	// 	  	videouploadDiv.querySelector('.progress').style.display = 'block'
-	// 	  }
-	// 	}
-	// }
+		  	videouploadDiv.querySelector('.videoplayer__section').style.display = 'block'
+		  }
+		}
+	}
 })
